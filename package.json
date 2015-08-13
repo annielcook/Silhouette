@@ -1,0 +1,36 @@
+{
+  "name": "silhouette",
+  "productName": "Silhouette",
+  "version": "0.0.0",
+  "description": "My world-class app",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "annielcook/silhouette",
+  "author": {
+    "name": "Annie Cook",
+    "email": "anniecook@ostby.com",
+    "url": "localhost:1337"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore=dist --prune --asar --all --version=0.30.0"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css"
+  ],
+  "keywords": [
+    "electron-app"
+  ],
+  "dependencies": {
+    "electron-debug": "^0.1.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.0.0",
+    "electron-prebuilt": "^0.30.0"
+  }
+}
