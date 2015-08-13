@@ -27,6 +27,7 @@
     "electron-app"
   ],
   "dependencies": {
+    "angular": "^1.4.4",
     "electron-debug": "^0.1.1"
   },
   "devDependencies": {
