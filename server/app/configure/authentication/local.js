@@ -54,4 +54,15 @@ module.exports = function (app) {
 
     });
 
+    app.post('/signup', function (req, res, next) {
+        User.create(req.body)
+        .then(function (user) {
+            req.logIn(user, function (){
+                console.log('success');
+                res.status(201).json(user)
+            })
+        })
+        .then(null, next)
+    })
+
 };
