@@ -10,9 +10,9 @@ require('electron-debug')();
 
 function createMainWindow () {
 	const win = new BrowserWindow({
-		width: 600,
-		height: 400,
-		resizable: false
+		width: 1000,
+		height: 800,
+		resizable: true
 	});
 
 	win.loadUrl(`file://${__dirname}/index.html`);
@@ -44,4 +44,5 @@ app.on('activate-with-no-open-windows', function () {
 
 app.on('ready', function () {
 	mainWindow = createMainWindow();
+	mainWindow.openDevTools();
 });
