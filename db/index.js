@@ -2,7 +2,7 @@
 var Promise = require('bluebird')
 var path = require('path')
 var Grid = require('gridfs-stream')
-var databaseURI = 'mongodb://localhost:27017/silhouette';
+var databaseURI = 'mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette';
 
 //@@ how to connect????
 var mongoose = require('mongoose')
