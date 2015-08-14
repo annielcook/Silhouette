@@ -1,3 +1,10 @@
+var mongoose = require('mongoose');
+var Promise = require('bluebird');
+require('./models/index.js');
+var User = Promise.promisifyAll(mongoose.model('User'));
+
+mongoose.connect('mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette');
+
 var seedUsers = function() {
 
    var users = [{
@@ -31,3 +38,8 @@ var seedUsers = function() {
    return User.createAsync(users);
 
 };
+
+seedUsers()
+  .then(function(arrUser) {
+    console.log('1) We seed users first');
+  })
