@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 require('./models/index.js');
 var User = Promise.promisifyAll(mongoose.model('User'));
+var Grid = require('gridfs-stream');
 var db = mongoose.connect('mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette').connection;
+// var gridFs = new GridFs(db[, 'SilhouetteFiles']);
 
 var connect = new Promise(function(res, rej){
   db.on('open', res);
@@ -53,10 +55,12 @@ var seedUsers = function() {
 
 connect.then(function () {
   console.log('MongoDb connection opened. Yay!');
+  var gfs = Grid(db, mongoose.mongo);
   mongoose.connection.db.dropDatabase(function() {
+    console.log('Previous database dropped');
     seedUsers()
       .then(function(arrUser) {
-        console.log('1) We seed users first');
+        console.log('Users seeded. Yay!');
         process.kill(0);
       })
   });
