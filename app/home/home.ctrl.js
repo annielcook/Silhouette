@@ -1,17 +1,17 @@
 app.controller('HomeCtrl', function ($scope, $state, HomeFactory) {
-  $scope.hello = "hello Anna";
-  $scope.uploadFile = function(event){
-    var files = event.target.files;
-    console.log('files', files);
-  };
+  
+  $scope.hello = "Hello Anna";
+
+  $scope.uploadFile = HomeFactory.uploadFile;
 
 })
 
 app.factory('HomeFactory', function($http){
   return{
-    uploadFileX: function(file){
-      console.log('here');
-      console.log('file', file);
+    uploadFile :function(event){
+      var file = event.target.files;
+      console.log('files', file);
+      return file;
     }
   }
 })
