@@ -44,5 +44,5 @@ app.on('activate-with-no-open-windows', function () {
 
 app.on('ready', function () {
 	mainWindow = createMainWindow();
-	mainWindow.openDevTools();
+	//mainWindow.openDevTools();
 });
