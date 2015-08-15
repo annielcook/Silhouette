@@ -11,6 +11,10 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 	$urlRouterProvider.otherwise('/');
 });
 
-app.run(['$state', function ($state) {
-   $state.transitionTo('login');
+app.run(['$state', '$rootScope', function ($state, $rootScope) {
+	$state.go('login')
+
+
+
+
 }])
