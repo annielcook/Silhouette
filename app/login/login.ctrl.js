@@ -12,7 +12,4 @@ app.controller('LoginCtrl', function (Auth, $scope, $state, $rootScope) {
 			console.log('error logging in', e)
 		})
   };
-	$scope.goToSignup = function(){
-		$state.go('signup')
-	}
 })
