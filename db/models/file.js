@@ -21,7 +21,7 @@ FileSchema.plugin(crate, {
     }
   }),
   fields: {
-    file: { }
+    file: {}
   }
 })
 
