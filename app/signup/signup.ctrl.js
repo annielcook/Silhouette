@@ -11,8 +11,8 @@ app.controller('SignupCtrl', function (Auth, $scope, $state, $rootScope) {
 			console.log('Successful login!')
 			$state.go('home')
 		})
-		// .catch (function (e) {
-		// 	console.log('error logging in', e)
-		// })
+		.catch (function (e) {
+			console.log('error logging in', e)
+		})
 	}
 })

@@ -27,10 +27,8 @@ var passwordMatches = function (testpass, userpass, salt) {
 app.factory('Auth', function ( $rootScope) {
 	return {
 		login: function (credentials) {
-			console.log('here')
 			return users.findOne({email: credentials.email})
 			.then(function (user) {
-				console.log('user: ', user)
 				if(user && passwordMatches(credentials.password, user.password, user.salt)) {
 	        //@@ should we establish session here?
 	        $rootScope.currentUser = user;
@@ -43,20 +41,21 @@ app.factory('Auth', function ( $rootScope) {
 			})
 		},
 		signup: function(userInfo){
-			var newUser = new User(userInfo);
-			return newUser.save(function (err) {
-				if (err) return err;
-				return newUser.save();
+			return users.findOne({email: userInfo.email})
+			.then(function (findings) {
+				if(findings === null) {
+					var newUser = new User(userInfo);
+					return newUser.save(function (err) {
+						if (err) return err;
+						return newUser.save();
+					})
+				} else {
+					var err = new Error('User with that email already exists!')
+					err.status = 401;
+					throw err;
+				}
+
 			})
-			// return users.insert(userInfo, function (err, result) {
-			// 	console.log('result: ', result)
-			// 	return result;
-			// })
 		}
-			// .then(function (user) {
-			// 	$rootScope.currentUser = user;
-		 //    console.log("user: ", user)
-		 //    return user;
-			// })
 	}
 })
