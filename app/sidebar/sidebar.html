@@ -1,16 +1,16 @@
 <ul class="sidebar-nav">
 	<li class="sidebar-brand">
-		<a href="#"><h1>Silhouette</h1></a>
+		<a ui-sref="loggedIn.fileManager"><h1>Silhouette</h1></a>
 	</li>
 	<li>
-		<i ui-sref="account" class="fa fa-3x fa-user"></i>
+		<a ui-sref="loggedIn.fileManager"><i class="fa fa-3x fa-files-o"></i></a>
 	</li>
 	<li>
-		<i ui-sref="file-manager" class="fa fa-3x fa-files-o"></i>
+		<a ui-sref="loggedIn.account"><i  class="fa fa-3x fa-user"></i></a>
 	</li>
 	<li>
-		<i ui-sref="social" class="fa fa-3x fa-users"></i>
-	</li>
+		<a ui-sref="loggedIn.social"><i class="fa fa-3x fa-users"></i>
+	</li></a>
 	<li>
 		<button ng-click="logout()" class="btn btn-default">Logout</button>
 	</li>

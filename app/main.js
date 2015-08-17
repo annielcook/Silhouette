@@ -14,6 +14,58 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 app.run(['$state', '$rootScope', function ($state, $rootScope) {
 	$state.go('login')
 }])
+app.directive('customOnChange', function() {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeHandler = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeHandler);
+    }
+  };
+});
+var mongoose = require('mongoose');
+
+app.controller('LoggedInCtrl', function ($scope, $state, LoggedInFactory) {
+  
+  $scope.hello = "Hello Anna";
+
+  $scope.uploadFile = LoggedInFactory.uploadFile;
+
+})
+
+app.factory('LoggedInFactory', function(){
+  return{
+    uploadFile :function(event){
+      var file = event.target.files;
+      console.log('files', file);
+    }
+  }
+})
+
+app.config(function ($stateProvider) {
+	$stateProvider.state('loggedIn', {
+		url: '/loggedIn',
+		templateUrl: 'file://'+__dirname+'/app/loggedIn/loggedIn.html',
+		controller: 'LoggedInCtrl',
+		resolve: {
+			currentUser: function ($rootScope) {
+				return $rootScope.currentUser;
+			}
+		}
+	})
+	.state('loggedIn.account', {
+		url: '/account',
+		templateUrl: __dirname + '/app/loggedIn/account.html'
+	})
+	.state('loggedIn.fileManager', {
+		url: '/file-manager',
+		templateUrl: __dirname + '/app/loggedIn/fileManager.html'
+	})
+	.state('loggedIn.social', {
+		url: '/social',
+		templateUrl: __dirname + '/app/loggedIn/social.html'
+	})
+})
 'use strict'
 var Crypto = require('crypto')
 
@@ -84,7 +136,7 @@ app.controller('LoginCtrl', function (Auth, $scope, $state, $rootScope) {
 		.then(function (loggedInUser) {
 			$rootScope.currentUser = userInfo.email;
 			console.log('Successful login!')
-			$state.go('home')
+			$state.go('loggedIn.fileManager')
 		})
 		.catch (function (e) {
 			console.log('error logging in', e)
@@ -98,41 +150,6 @@ app.config(function ($stateProvider) {
 		url: '/login',
 		templateUrl: 'file://'+__dirname+'/app/login/login.html',
 		controller: 'LoginCtrl'
-	})
-})
-app.directive('customOnChange', function() {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var onChangeHandler = scope.$eval(attrs.customOnChange);
-      element.bind('change', onChangeHandler);
-    }
-  };
-});
-var mongoose = require('mongoose');
-
-app.controller('HomeCtrl', function ($scope, $state, HomeFactory) {
-  
-  $scope.hello = "Hello Anna";
-
-  $scope.uploadFile = HomeFactory.uploadFile;
-
-})
-
-app.factory('HomeFactory', function($http){
-  return{
-    uploadFile :function(event){
-      var file = event.target.files;
-      console.log('files', file);
-    }
-  }
-})
-
-app.config(function ($stateProvider) {
-	$stateProvider.state('home', {
-		url: '/home',
-		templateUrl: 'file://'+__dirname+'/app/home/home.html',
-		controller: 'HomeCtrl'
 	})
 })
 'use strict'

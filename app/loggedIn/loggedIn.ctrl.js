@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 
-app.controller('HomeCtrl', function ($scope, $state, HomeFactory) {
+app.controller('LoggedInCtrl', function ($scope, $state, LoggedInFactory) {
   
   $scope.hello = "Hello Anna";
 
-  $scope.uploadFile = HomeFactory.uploadFile;
+  $scope.uploadFile = LoggedInFactory.uploadFile;
 
 })
 
-app.factory('HomeFactory', function($http){
+app.factory('LoggedInFactory', function(){
   return{
     uploadFile :function(event){
       var file = event.target.files;
