@@ -3,8 +3,8 @@ var mongoose = require('mongoose');
 var crypto = require('crypto')
 
 var schema = new mongoose.Schema ({
-	firstname: String,
-	lastname: String,
+	firstName: String,
+	lastName: String,
 	email: {type: String, unique: true, required: true},
 	password: String,
 	salt: String,
