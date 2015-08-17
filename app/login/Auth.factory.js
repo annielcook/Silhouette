@@ -1,6 +1,10 @@
 'use strict'
 var Crypto = require('crypto')
+
 require(__dirname + '/db/models/user');
+
+
+//@@ do we need sessions -- we think no because its not a browser app
 
 //@@ should we be making a new db connection here of exporting?
 var databaseURI = 'mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette';
@@ -28,7 +32,7 @@ app.factory('Auth', function ( $rootScope) {
 			.then(function (user) {
 				if(user && passwordMatches(credentials.password, user.password, user.salt)) {
 	        //@@ should we establish session here?
-	        $rootScope.currentUser = user;
+	        $rootScope.currentUser = user.email;
 	        return user;
 				} else {
 					var err = new Error('Not Authenticated')

@@ -7,15 +7,16 @@ var fs = require('fs');
 var File = mongoose.model('File');
 var User = mongoose.model('User');
 
-app.controller('HomeCtrl', function ($scope, $state, HomeFactory) {
+app.controller('LoggedInCtrl', function ($scope, $state, LoggedInFactory) {
   
   $scope.hello = "Hello Anna";
 
-  $scope.uploadFile = HomeFactory.uploadFile;
+  $scope.uploadFile = LoggedInFactory.uploadFile;
 
 })
 
-app.factory('HomeFactory', function($rootScope){
+
+app.factory('LoggedInFactory', function(){
   return{
     uploadFile :function(event){
       var file = event.target.files[0];

@@ -3,28 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Electron boilerplate</title>
+		<!--external CSS dependencies-->
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="index.css">
+		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<!--local CSS dependencies-->
+		<link rel="stylesheet" href="styles/css/index.css">
+
+		<!--external JS dependencies-->
 		<script src="node_modules/angular/angular.min.js"></script>
 		<script src="node_modules/ui-router/angular-ui-router.js"></script>
+
+		<!--local JS dependencies-->
 		<script src="app/main.js"></script>
-		<script src="app/login/login.ctrl.js"></script>
-		<script src="app/login/login.state.js"></script>
-		<script src="app/home/home.ctrl.js"></script>
-			<script src="app/home/customOnChangeDirective.js"></script>
-		<script src="app/home/home.state.js"></script>
-		<script src="app/signup/signup.ctrl.js"></script>
-		<script src="app/signup/signup.state.js"></script>
-		<script src="app/login/Auth.factory.js"></script>
 	</head>
+
 	<body ng-app="silhouette">
-		<div class="container">
-			<ui-view></ui-view>
-<!-- 			<header>
-				<h1>Electron boilerplate</h1>
-			</header>
-			<section class="main"></section>
-			<footer></footer> -->
-		</div>
+		<ui-view></ui-view>
 	</body>
 </html>

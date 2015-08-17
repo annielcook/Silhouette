@@ -16,7 +16,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore=dist --prune --asar --all --version=0.30.0"
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore=dist --prune --asar --all --version=0.30.0",
+    "postinstall": "gulp build"
   },
   "files": [
     "index.js",
@@ -33,13 +34,21 @@
     "electron-debug": "^0.1.1",
     "express": "^4.13.3",
     "gridfs-stream": "^1.1.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.4",
     "mongodb": "^2.0.40",
     "mongoose": "^4.1.2",
     "mongoose-crate": "^1.0.10",
     "mongoose-crate-s3": "^1.1.3",
     "nedb": "^1.1.3",
+    "node-sass-middleware": "^0.9.0",
     "nodemon": "^1.4.1",
     "path": "^0.11.14",
+    "run-sequence": "^1.1.2",
+    "serve-static": "^1.10.0",
     "ui-router": "0.0.1"
   },
   "devDependencies": {

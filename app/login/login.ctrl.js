@@ -6,7 +6,7 @@ app.controller('LoginCtrl', function (Auth, $scope, $state, $rootScope) {
 		.then(function (loggedInUser) {
 			$rootScope.currentUser = userInfo.email;
 			console.log('Successful login!')
-			$state.go('home')
+			$state.go('loggedIn.fileManager')
 		})
 		.catch (function (e) {
 			console.log('error logging in', e)

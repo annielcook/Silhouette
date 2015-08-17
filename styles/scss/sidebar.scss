@@ -1,0 +1,23 @@
+.sidebar-nav {
+	background-color: #d3d3d3;
+	left: 0;
+	height: 100%;
+	overflow-y: auto;
+	position: fixed;
+	width: 200px;
+
+	h1 {
+		font-family: 'Lobster', cursive;
+	}
+
+	li {
+		text-align: center;
+		padding: 20px 0;
+
+	}
+}
+
+ul {
+	list-style-type: none;
+	padding: 0
+}
