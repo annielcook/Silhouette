@@ -1,6 +1,5 @@
 'use strict'
 var mongoose = require('mongoose');
-var envkeys = require('./EnvKeys');
 
 var FileSchema = new mongoose.Schema({
     name: String,
