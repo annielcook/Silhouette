@@ -16,7 +16,7 @@ app.controller('LoggedInCtrl', function ($scope, $state, LoggedInFactory) {
 })
 
 
-app.factory('LoggedInFactory', function(){
+app.factory('LoggedInFactory', function($rootScope){
   return{
     uploadFile :function(event){
       var file = event.target.files[0];
@@ -28,7 +28,12 @@ app.factory('LoggedInFactory', function(){
         console.log('createdFile:', createdFile);
         return User.findOneAndUpdate({email: $rootScope.currentUser}, {$push: {files: createdFile} }, {new : true})
       })
-      .then(null, next);
+      // .then(function(){
+      //   console.log('resolved that shit!')
+      // })
+       .then(null, function (err) {
+        throw err;
+       });
     }
   }
 })
