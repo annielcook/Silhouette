@@ -1,15 +1,12 @@
 'use strict'
 var Crypto = require('crypto')
-
+require(__dirname + '/db/models/user');
 
 //@@ should we be making a new db connection here of exporting?
- var databaseURI = 'mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette';
-var mongoose = require('mongoose')
+var databaseURI = 'mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette';
+var mongoose = require('mongoose');
 var db = mongoose.connect(databaseURI).connection;
-
-var users = db.collection('users')
-
-var User = require(__dirname + '/db/models/user')
+var User = mongoose.model('User');
 
 //@@ these are duplicates from models/user.js -- how can i share between these files
 var encryptPassword = function(plainText, salt) {
@@ -27,7 +24,7 @@ var passwordMatches = function (testpass, userpass, salt) {
 app.factory('Auth', function ( $rootScope) {
 	return {
 		login: function (credentials) {
-			return users.findOne({email: credentials.email})
+			return User.findOne({email: credentials.email})
 			.then(function (user) {
 				if(user && passwordMatches(credentials.password, user.password, user.salt)) {
 	        //@@ should we establish session here?
@@ -41,7 +38,7 @@ app.factory('Auth', function ( $rootScope) {
 			})
 		},
 		signup: function(userInfo){
-			return users.findOne({email: userInfo.email})
+			return User.findOne({email: userInfo.email})
 			.then(function (findings) {
 				if(findings === null) {
 					var newUser = new User(userInfo);
