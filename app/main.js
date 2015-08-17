@@ -13,8 +13,4 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 
 app.run(['$state', '$rootScope', function ($state, $rootScope) {
 	$state.go('login')
-
-
-
-
 }])
