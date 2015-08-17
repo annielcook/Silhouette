@@ -1,8 +1,11 @@
 'use strict'
 
-app.controller('LoginCtrl', function (Auth, $scope, $state, $rootScope) {
-	$scope.loginUser = function (userInfo) {
-		Auth.login(userInfo)
+app.controller('SignupCtrl', function (Auth, $scope, $state, $rootScope) {
+	$scope.signupUser = function (userInfo) {
+		Auth.signup(userInfo)
+		.then(function () {
+			return Auth.login(userInfo);
+		})
 		.then(function (loggedInUser) {
 			$rootScope.currentUser = userInfo.email;
 			console.log('Successful login!')
@@ -11,5 +14,5 @@ app.controller('LoginCtrl', function (Auth, $scope, $state, $rootScope) {
 		.catch (function (e) {
 			console.log('error logging in', e)
 		})
-  };
+	}
 })
