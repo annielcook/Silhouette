@@ -14,74 +14,6 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 app.run(['$state', '$rootScope', function ($state, $rootScope) {
 	$state.go('login')
 }])
-app.directive('customOnChange', function() {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var onChangeHandler = scope.$eval(attrs.customOnChange);
-      element.bind('change', onChangeHandler);
-    }
-  };
-});
-var mongoose = require('mongoose');
-// var databaseURI = 'mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette';
-// var db = mongoose.connect(databaseURI).connection;
-require(__dirname + '/db/models/file');
-require(__dirname + '/db/models/user');
-var fs = require('fs');
-var File = mongoose.model('File');
-var User = mongoose.model('User');
-
-app.controller('LoggedInCtrl', function ($scope, $state, LoggedInFactory) {
-  
-  $scope.hello = "Hello Anna";
-
-  $scope.uploadFile = LoggedInFactory.uploadFile;
-
-})
-
-
-app.factory('LoggedInFactory', function(){
-  return{
-    uploadFile :function(event){
-      var file = event.target.files[0];
-      console.log('files', file);
-      var data = fs.readFileSync(file.path, 'utf8');
-      File.create({'name': file.name, 'content': data, 'path': file.path})
-      .then(function(createdFile){
-        // console.log('file', file);
-        console.log('createdFile:', createdFile);
-        return User.findOneAndUpdate({email: $rootScope.currentUser}, {$push: {files: createdFile} }, {new : true})
-      })
-      .then(null, next);
-    }
-  }
-})
-
-app.config(function ($stateProvider) {
-	$stateProvider.state('loggedIn', {
-		url: '/loggedIn',
-		templateUrl: 'file://'+__dirname+'/app/loggedIn/loggedIn.html',
-		controller: 'LoggedInCtrl',
-		resolve: {
-			currentUser: function ($rootScope) {
-				return $rootScope.currentUser;
-			}
-		}
-	})
-	.state('loggedIn.account', {
-		url: '/account',
-		templateUrl: __dirname + '/app/loggedIn/account.html'
-	})
-	.state('loggedIn.fileManager', {
-		url: '/file-manager',
-		templateUrl: __dirname + '/app/loggedIn/fileManager.html'
-	})
-	.state('loggedIn.social', {
-		url: '/social',
-		templateUrl: __dirname + '/app/loggedIn/social.html'
-	})
-})
 'use strict'
 var Crypto = require('crypto')
 
@@ -166,6 +98,74 @@ app.config(function ($stateProvider) {
 		url: '/login',
 		templateUrl: 'file://'+__dirname+'/app/login/login.html',
 		controller: 'LoginCtrl'
+	})
+})
+app.directive('customOnChange', function() {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeHandler = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeHandler);
+    }
+  };
+});
+var mongoose = require('mongoose');
+// var databaseURI = 'mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette';
+// var db = mongoose.connect(databaseURI).connection;
+require(__dirname + '/db/models/file');
+require(__dirname + '/db/models/user');
+var fs = require('fs');
+var File = mongoose.model('File');
+var User = mongoose.model('User');
+
+app.controller('LoggedInCtrl', function ($scope, $state, LoggedInFactory) {
+  
+  $scope.hello = "Hello Anna";
+
+  $scope.uploadFile = LoggedInFactory.uploadFile;
+
+})
+
+
+app.factory('LoggedInFactory', function(){
+  return{
+    uploadFile :function(event){
+      var file = event.target.files[0];
+      console.log('files', file);
+      var data = fs.readFileSync(file.path, 'utf8');
+      File.create({'name': file.name, 'content': data, 'path': file.path})
+      .then(function(createdFile){
+        // console.log('file', file);
+        console.log('createdFile:', createdFile);
+        return User.findOneAndUpdate({email: $rootScope.currentUser}, {$push: {files: createdFile} }, {new : true})
+      })
+      .then(null, next);
+    }
+  }
+})
+
+app.config(function ($stateProvider) {
+	$stateProvider.state('loggedIn', {
+		url: '/loggedIn',
+		templateUrl: 'file://'+__dirname+'/app/loggedIn/loggedIn.html',
+		controller: 'LoggedInCtrl',
+		resolve: {
+			currentUser: function ($rootScope) {
+				return $rootScope.currentUser;
+			}
+		}
+	})
+	.state('loggedIn.account', {
+		url: '/account',
+		templateUrl: __dirname + '/app/loggedIn/account.html'
+	})
+	.state('loggedIn.fileManager', {
+		url: '/file-manager',
+		templateUrl: __dirname + '/app/loggedIn/fileManager.html'
+	})
+	.state('loggedIn.social', {
+		url: '/social',
+		templateUrl: __dirname + '/app/loggedIn/social.html'
 	})
 })
 'use strict'
