@@ -25,6 +25,7 @@ app.directive('customOnChange', function() {
 });
 var mongoose = require('mongoose');
 
+
 app.controller('LoggedInCtrl', function ($scope, $state, LoggedInFactory) {
   
   $scope.hello = "Hello Anna";
@@ -34,6 +35,7 @@ app.controller('LoggedInCtrl', function ($scope, $state, LoggedInFactory) {
 })
 
 app.factory('LoggedInFactory', function(){
+
   return{
     uploadFile :function(event){
       var file = event.target.files;
@@ -43,6 +45,7 @@ app.factory('LoggedInFactory', function(){
 })
 
 app.config(function ($stateProvider) {
+
 	$stateProvider.state('loggedIn', {
 		url: '/loggedIn',
 		templateUrl: 'file://'+__dirname+'/app/loggedIn/loggedIn.html',
