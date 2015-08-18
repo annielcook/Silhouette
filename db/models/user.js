@@ -9,12 +9,8 @@ var schema = new mongoose.Schema ({
 	password: String,
 	salt: String,
   dateJoined: {type: Date, default: Date.now},
-<<<<<<< HEAD
-	files: [{type: mongoose.Schema.Types.ObjectId, ref:'File'}]
-=======
+	files: [{type: mongoose.Schema.Types.ObjectId, ref:'File'}],
   filePreferences: [String],
-	files: [{type: mongoose.Schema.Types.ObjectId, ref:'file'}]
->>>>>>> master
 })
 
 var generateSalt = function() {
