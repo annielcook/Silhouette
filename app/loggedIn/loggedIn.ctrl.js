@@ -7,26 +7,42 @@ var fs = require('fs');
 var File = mongoose.model('File');
 var User = mongoose.model('User');
 
-app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory, AccountEditFactory, $rootScope) {
+app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, $rootScope) {
 
-  $scope.uploadFile = FileManagerFactory.uploadFile;
+  // $scope.uploadFile = FileManagerFactory.uploadFile;
 
   $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;
 
-  // $scope.user = currentUser
-
   // retrieves current user's files
-  User.find({email: $rootScope.currentUser.email})
-  .populate('files')
-  .then(function(user){
-    return user[0].files})
-  .then(function(files){
-    $scope.files = files
-    $scope.$digest()
-  })
-  .then(null, function(error){
-    console.log(error)
-  })
+  $scope.retrieveAllFiles = function (){
+    return User.find({email: $rootScope.currentUser.email})
+    .populate('files')
+    .then(function(user){
+      return user[0].files})
+    .then(function(files){
+      $scope.files = files
+      $scope.$digest()
+    })
+    .then(null, function(error){
+      console.log(error)
+    })
+  }
+  $scope.retrieveAllFiles()
+
+  $scope.uploadFile = function(event){
+    var file = event.target.files[0];
+    var data = fs.readFileSync(file.path, 'utf8');
+    File.create({'name': file.name, 'content': data, 'path': file.path})
+    .then(function(createdFile){
+      return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$push: {files: createdFile} }, {new : true})
+    })
+    .then(function(){
+      $scope.retrieveAllFiles()
+    })
+    .then(null, function (err) {
+      throw err;
+    });
+  }
 
   $scope.fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.npm folder', '.zshrc', '.oh-my-zsh', '.nvm'];
   $scope.filePrefs = [];
@@ -52,18 +68,21 @@ app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory, Acc
 })
 
 
-app.factory('FileManagerFactory', function($rootScope){
-  return{
-    uploadFile :function(event){
-      var file = event.target.files[0];
-      var data = fs.readFileSync(file.path, 'utf8');
-      File.create({'name': file.name, 'content': data, 'path': file.path})
-      .then(function(createdFile){
-        return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$push: {files: createdFile} }, {new : true})
-      })
-      .then(null, function (err) {
-        throw err;
-      });
-    }
-  }
-})
+// app.factory('FileManagerFactory', function($rootScope){
+//   // return{
+//   //   uploadFile :function(event){
+//   //     var file = event.target.files[0];
+//   //     var data = fs.readFileSync(file.path, 'utf8');
+//   //     File.create({'name': file.name, 'content': data, 'path': file.path})
+//   //     .then(function(createdFile){
+//   //       return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$push: {files: createdFile} }, {new : true})
+//   //     })
+//   //     .then(function(){
+//   //       retrieveAllFiles()
+//   //     })
+//   //     .then(null, function (err) {
+//   //       throw err;
+//   //     });
+//   //   }
+//   // }
+// })
