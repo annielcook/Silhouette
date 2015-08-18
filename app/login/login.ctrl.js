@@ -4,7 +4,6 @@ app.controller('LoginCtrl', function (Auth, $scope, $state, $rootScope) {
 	$scope.loginUser = function (userInfo) {
 		Auth.login(userInfo)
 		.then(function (loggedInUser) {
-			$rootScope.currentUser = userInfo.email;
 			console.log('Successful login!')
 			$state.go('loggedIn.fileManager')
 		})

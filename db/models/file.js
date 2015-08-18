@@ -5,7 +5,7 @@ var FileSchema = new mongoose.Schema({
     name: String,
     content: String,
     path: String,
-    date: String
+    date: {type: Date, default: Date.now}
 });
 
 

@@ -32,7 +32,7 @@ app.factory('Auth', function ( $rootScope) {
 			.then(function (user) {
 				if(user && passwordMatches(credentials.password, user.password, user.salt)) {
 	        //@@ should we establish session here?
-	        $rootScope.currentUser = user.email;
+	        $rootScope.currentUser = user;
 	        return user;
 				} else {
 					var err = new Error('Not Authenticated')
