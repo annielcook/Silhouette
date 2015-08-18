@@ -3,4 +3,5 @@
 <h3>Last name: {{currentUser.lastName}}</h3>
 <h3>Email: {{currentUser.email}}</h3>
 <h3>Date joined: {{currentUser.dateJoined | date:'MM/dd/yyyy'}}</h3>
-<ui-view></ui-view>
+<button ui-sref="loggedIn.accountEdit" class="btn btn-default">Edit Account</button>
+
