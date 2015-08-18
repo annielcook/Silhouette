@@ -7,12 +7,11 @@ app.controller('SignupCtrl', function (Auth, $scope, $state, $rootScope) {
 			return Auth.login(userInfo);
 		})
 		.then(function (loggedInUser) {
-			$rootScope.currentUser = userInfo.email;
-			console.log('Successful login!')
-			$state.go('loggedIn.fileSelector')
+			console.log('Successful login!');
+			$state.go('loggedIn.fileSelector');
 		})
 		.catch (function (e) {
-			console.log('error logging in', e)
+			console.log('error logging in', e);
 		})
 	}
 })
