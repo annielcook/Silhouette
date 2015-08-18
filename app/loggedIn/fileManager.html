@@ -4,4 +4,10 @@
     <label for="exampleInputFile">File input</label>
     <input type="file" id="exampleInputFile" custom-on-change="uploadFile">
   <p class="help-block">Example block-level help text here.</p>
+  <div ng-repeat="file in files">
+  	<div>
+		<i class="fa fa-3x fa-file-text-o"></i>
+		<p>{{file.name}}</p>
+	</div>
+  </div>
 </div>

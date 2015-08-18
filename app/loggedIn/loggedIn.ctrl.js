@@ -7,10 +7,27 @@ var fs = require('fs');
 var File = mongoose.model('File');
 var User = mongoose.model('User');
 
-app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory, AccountEditFactory) {
+app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory, AccountEditFactory, $rootScope) {
 
   $scope.uploadFile = FileManagerFactory.uploadFile;
+
   $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;
+
+  // $scope.user = currentUser
+
+  // retrieves current user's files
+  User.find({email: $rootScope.currentUser.email})
+  .populate('files')
+  .then(function(user){
+    return user[0].files})
+  .then(function(files){
+    $scope.files = files
+    $scope.$digest()
+  })
+  .then(null, function(error){
+    console.log(error)
+  })
+
   $scope.fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.npm folder', '.zshrc', '.oh-my-zsh', '.nvm'];
   $scope.filePrefs = [];
   $scope.addFilePreference = function(filename) {

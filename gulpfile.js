@@ -23,7 +23,7 @@ gulp.task('buildCSS', function () {
 })
 
 gulp.task('buildJS', function () {
-	return gulp.src([__dirname + '/app/app.js', __dirname + '/app/*/*.js'])
+	return gulp.src([__dirname + '/app/app.js', __dirname + '/app/*/*.js', __dirname + '/app/*/*/*.js'])
 	.pipe(plumber())
 	.pipe(concat('main.js'))
 	.pipe(gulp.dest(__dirname + '/app'))
