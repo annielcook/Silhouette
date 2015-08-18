@@ -7,9 +7,9 @@ var fs = require('fs');
 var File = mongoose.model('File');
 var User = mongoose.model('User');
 
-app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory) {
+app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory, $rootScope) {
   
-  $scope.hello = "Hello Anna";
+  $scope.hello = "Hello " + $rootScope.currentUser;
 
   $scope.uploadFile = FileManagerFactory.uploadFile;
 
