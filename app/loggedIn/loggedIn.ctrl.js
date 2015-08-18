@@ -54,6 +54,17 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, $ro
       $scope.filePrefs.splice(fileIndex, 1);
     }
    }
+  $scope.addFilePrefToUser = function(){
+    console.log('inside addFilePrefToUser fxn');
+    $rootScope.currentUser.filePreferences = $scope.filePrefs;
+    console.log('about to save changes!');
+    AccountEditFactory.saveUserChanges();
+    //child process that finds entered files and reads them
+    //adds them to user schema
+    //sets up child process to track
+    $state.go('loggedIn.fileManager');
+  } 
+
 })
 
 
