@@ -1,0 +1,6 @@
+<h3>Select the files that you would like to track</h3>
+<div ng-repeat="option in fileOptions">
+	<div class="checkbox">
+		<label><input type="checkbox" ng-model="blah" ng-change="addFilePreference('{{option}}')"/>{{option}}</label>
+	</div>
+</div>
