@@ -1,4 +1,6 @@
 <h1>Account Settings</h1>
+<h3>First name: {{currentUser.firstName}}</h3>
+<h3>Last name: {{currentUser.lastName}}</h3>
 <h3>Email: {{currentUser.email}}</h3>
-<button ng-click="updateEmail()" class="btn btn-default">Update Email</button>
-<button ng-click="updatePassword()" class="btn btn-default">Update Password</button>
+<h3>Date joined: {{currentUser.dateJoined | date:'MM/dd/yyyy'}}</h3>
+<ui-view></ui-view>

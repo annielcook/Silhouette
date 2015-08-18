@@ -1,7 +1,7 @@
 
 app.config(function ($stateProvider) {
 	$stateProvider.state('loggedIn', {
-		url: '/loggedIn',
+		//url: '/loggedIn',
 		templateUrl: 'file://'+__dirname+'/app/loggedIn/loggedIn.html',
 		controller: 'LoggedInCtrl',
 		resolve: {
@@ -11,15 +11,19 @@ app.config(function ($stateProvider) {
 		}
 	})
 	.state('loggedIn.account', {
-		url: '/account',
+		//url: '/account',
 		templateUrl: __dirname + '/app/loggedIn/account.html'
 	})
 	.state('loggedIn.fileManager', {
-		url: '/file-manager',
+		//url: '/file-manager',
 		templateUrl: __dirname + '/app/loggedIn/fileManager.html'
 	})
 	.state('loggedIn.social', {
-		url: '/social',
+		//url: '/social',
 		templateUrl: __dirname + '/app/loggedIn/social.html'
+	})
+	.state('loggedIn.account.buttons', {
+		//url: '/social',
+		templateUrl: __dirname + '/app/loggedIn/accountButtons.html'
 	})
 })
