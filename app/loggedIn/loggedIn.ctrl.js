@@ -11,7 +11,16 @@ app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory, Acc
 
   $scope.uploadFile = FileManagerFactory.uploadFile;
   $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;
-  // $scope.user = currentUser
+  $scope.fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.npm folder', '.zshrc', '.oh-my-zsh', '.nvm'];
+  $scope.filePrefs = [];
+  $scope.addFilePreference = function(filename) {
+    var fileIndex = $scope.filePrefs.indexOf(filename);
+    if(fileIndex === -1){
+      $scope.filePrefs.push(filename);
+    } else {
+      $scope.filePrefs.splice(fileIndex, 1);
+    }
+   }
 })
 
 

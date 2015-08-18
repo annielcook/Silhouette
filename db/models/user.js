@@ -9,6 +9,7 @@ var schema = new mongoose.Schema ({
 	password: String,
 	salt: String,
   dateJoined: {type: Date, default: Date.now},
+  filePreferences: [String],
 	files: [{type: mongoose.Schema.Types.ObjectId, ref:'file'}]
 })
 

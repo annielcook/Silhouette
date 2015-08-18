@@ -16,4 +16,7 @@ app.config(function ($stateProvider) {
 	.state('loggedIn.accountEdit', {
 		templateUrl: __dirname + '/app/loggedIn/accountEdit.html'
 	})
+	.state('loggedIn.fileSelector', {
+		templateUrl: __dirname + '/app/loggedIn/fileSelector.html'
+	})
 })
