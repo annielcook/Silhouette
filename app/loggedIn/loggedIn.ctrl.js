@@ -7,12 +7,13 @@ var fs = require('fs');
 var File = mongoose.model('File');
 var User = mongoose.model('User');
 
-app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory, $rootScope) {
+app.controller('LoggedInCtrl', function ($scope, $state, FileManagerFactory, AccountEditFactory, $rootScope) {
   
   $scope.hello = "Hello " + $rootScope.currentUser;
 
   $scope.uploadFile = FileManagerFactory.uploadFile;
-
+  $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;
+  // $scope.user = currentUser
 })
 
 
@@ -20,20 +21,14 @@ app.factory('FileManagerFactory', function($rootScope){
   return{
     uploadFile :function(event){
       var file = event.target.files[0];
-      console.log('files', file);
       var data = fs.readFileSync(file.path, 'utf8');
       File.create({'name': file.name, 'content': data, 'path': file.path})
       .then(function(createdFile){
-        // console.log('file', file);
-        console.log('createdFile:', createdFile);
-        return User.findOneAndUpdate({email: $rootScope.currentUser}, {$push: {files: createdFile} }, {new : true})
+        return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$push: {files: createdFile} }, {new : true})
       })
-      // .then(function(){
-      //   console.log('resolved that shit!')
-      // })
-       .then(null, function (err) {
+      .then(null, function (err) {
         throw err;
-       });
+      });
     }
   }
 })

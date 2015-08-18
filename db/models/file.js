@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var FileSchema = new mongoose.Schema({
     name: String,
     content: String,
-    path: String
+    path: String,
+    date: {type: Date, default: Date.now}
 });
 
 

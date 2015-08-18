@@ -8,6 +8,7 @@ var schema = new mongoose.Schema ({
 	email: {type: String, unique: true, required: true},
 	password: String,
 	salt: String,
+  dateJoined: {type: Date, default: Date.now},
 	files: [{type: mongoose.Schema.Types.ObjectId, ref:'file'}]
 })
 
