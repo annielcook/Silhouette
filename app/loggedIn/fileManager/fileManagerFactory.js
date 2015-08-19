@@ -2,7 +2,6 @@ var File = mongoose.model('File');
 var User = mongoose.model('User');
 var fs = require('fs');
 
-
 app.factory('FileManagerFactory', function($rootScope){
   return{  
     addFile: function(event){
