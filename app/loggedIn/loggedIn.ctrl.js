@@ -15,7 +15,7 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
   // retrieves current user's files
   $scope.retrieveAllFiles = function(){
     $scope.files = FileManagerFactory.getAllFiles;
-    $scope.$digest()
+    $scope.$digest();
   }
 
   //display all files upon loading

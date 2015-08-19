@@ -5,18 +5,18 @@ app.config(function ($stateProvider) {
 		controller: 'LoggedInCtrl',
 	})
 	.state('loggedIn.account', {
-		templateUrl: __dirname + '/app/loggedIn/account.html'
+		templateUrl: __dirname + '/app/loggedIn/account/account.html'
 	})
 	.state('loggedIn.fileManager', {
-		templateUrl: __dirname + '/app/loggedIn/fileManager.html'
+		templateUrl: __dirname + '/app/loggedIn/fileManager/fileManager.html'
 	})
 	.state('loggedIn.social', {
 		templateUrl: __dirname + '/app/loggedIn/social.html'
 	})
 	.state('loggedIn.accountEdit', {
-		templateUrl: __dirname + '/app/loggedIn/accountEdit.html'
+		templateUrl: __dirname + '/app/loggedIn/account/accountEdit.html'
 	})
 	.state('loggedIn.fileSelector', {
-		templateUrl: __dirname + '/app/loggedIn/fileSelector.html'
+		templateUrl: __dirname + '/app/loggedIn/fileSelector/fileSelector.html'
 	})
 })
