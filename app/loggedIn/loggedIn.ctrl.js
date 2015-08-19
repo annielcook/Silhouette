@@ -53,10 +53,14 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
 
   $scope.getFileFromUser = function(){
     console.log('inside child fxn');
-    var child = spawn("fs.readfile", [process.env["HOME"]+'/.bash_profile', 'child'])
-    child.stdout.on('data', function(data){
+    //loop through file prefs from $rootScope.currentUser
+    var child = spawn("cat", [process.env["HOME"]+'/.bash_profile', 'child'])
+    var fileData = child.stdout.on('data', function(data){
       console.log('A child has been spawned here \n, heres the data: ', data.toString())
+      return data.toString();
     })
+    //call factory fxn with fileData
+    //Create a new file object
   }
 
 })
