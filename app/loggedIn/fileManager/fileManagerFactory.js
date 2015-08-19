@@ -1,3 +1,5 @@
+var File = mongoose.model('File');
+var User = mongoose.model('User');
 
 app.factory('FileManagerFactory', function($rootScope){
   return{  
@@ -16,6 +18,8 @@ app.factory('FileManagerFactory', function($rootScope){
       return User.findOne({email: $rootScope.currentUser.email})
       .populate('files')
       .then(function(user){
+        console.log("user: ", user)
+        console.log("user.files: ", user.files)
         return user.files
       })
       .then(null, function(error){
