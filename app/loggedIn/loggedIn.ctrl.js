@@ -14,17 +14,22 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
 
   // retrieves current user's files
   $scope.retrieveAllFiles = function(){
-    $scope.files = FileManagerFactory.getAllFiles;
-    $scope.$digest();
-  }
+    // $scope.files = FileManagerFactory.getAllFiles()
+    FileManagerFactory.getAllFiles()
+    .then(function(files){
+      $scope.files = files
+      $scope.$digest()
+      console.log("$scope.files: ", $scope.files)
+    });
+    }
 
   //display all files upon loading
   $scope.retrieveAllFiles()
 
   //upload a file and update the files displayed
   $scope.uploadFile = function(){
-    FileManagerFactory.addFile;
-    $scope.retrieveAllFiles;
+    FileManagerFactory.addFile();
+    $scope.retrieveAllFiles();
   }
   
   var fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.npm folder', '.zshrc', '.oh-my-zsh', '.nvm'];
