@@ -5,9 +5,16 @@ var fs = require('fs');
 
 app.factory('FileManagerFactory', function($rootScope){
   return{  
-    addFile: function(event){
-      var file = event.target.files[0];
-      var data = fs.readFileSync(file.path, 'utf8');
+    addFile: function(event, fileObject){
+      var file, data;
+      if(event){
+        file = event.target.files[0];
+        data = fs.readFileSync(file.path, 'utf8');
+      }else{
+        // console.log('fileObject', fileObject);
+        file = fileObject;
+        data = fileObject.content;
+      }
       return File.create({'name': file.name, 'content': data, 'path': file.path})
       .then(function(createdFile){
         return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$push: {files: createdFile} }, {new : true})

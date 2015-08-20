@@ -56,7 +56,6 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
       .then(function(user){
         $scope.retrieveAllFiles();
       })
-      return data.toString();
     })
   }
 
@@ -65,44 +64,43 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
       $scope.updateFile(file)
     })
   }
-
+  //get file preferences from user upon signup
   $scope.addFilePrefToUser = function(){
     $rootScope.currentUser.filePreferences = $scope.filePrefs;
-    console.log('about to save changes!');
-    console.log('$scope.filePrefs', $scope.filePrefs);
     AccountEditFactory.saveUserChanges();
-    //child process that finds entered files and reads them
-    //adds them to user schema
-    //sets up child process to track
-
+    //child process that reads files from user 
     $scope.getFileFromUser();
+    //go to file manager state
     $state.go('loggedIn.fileManager');
   } 
 
   $scope.getFileFromUser = function(){
-    console.log('inside child fxn');
-    //loop through file prefs from $rootScope.currentUser
-    // console.log('$rootScope.currentUser', $rootScope.currentUser);
     var filePrefs = $rootScope.currentUser.filePreferences;
-    // console.log('filePrefs', filePrefs);
-
     $scope.fileData = [];
-
+    var filePaths = [];
     filePrefs.forEach(function(pref, ind){
-      filePrefs[ind] = process.env["HOME"]+ '/' + pref;
+      filePaths[ind] = process.env["HOME"]+ '/' + pref;
     })
 
     var child;
-    while(filePrefs.length){
-      child = spawn("cat", [filePrefs.pop()])
+    filePaths.forEach(function(file, index){
+      child = spawn("cat", [file])
       child.stdout.on('data', function(data){
-          $scope.fileData.push(data.toString());
+          $scope.fileData.push({'name': filePrefs[index], 'content':data.toString(), 'path': filePaths[index]});
           console.log("scope.filedata inside while loop stringified", $scope.fileData.toString()); 
       })
-    }
+    })
 
+    //listen for end of child process
+    //add file to user schema and file schema
     child.on('close', function(){
       console.log("scope.filedata", $scope.fileData);
+      $scope.fileData.forEach(function(fileObj){
+        FileManagerFactory.addFile(null, fileObj)
+        .then(function(user){
+          $scope.retrieveAllFiles();
+        })
+      })
     })
 
   }
