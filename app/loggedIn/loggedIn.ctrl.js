@@ -26,17 +26,27 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
 
   //upload a file and update the files displayed
   $scope.uploadFile = function(event){
+<<<<<<< HEAD
+    FileManagerFactory.addFile(event);
+    $scope.retrieveAllFiles();
+=======
 
     FileManagerFactory.addFile(event)
     .then(function(user){
       $scope.retrieveAllFiles();
     })
+>>>>>>> master
   }
   
  $scope.fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.zshrc'];
  $scope.filePrefs = [];
   $scope.addFilePreference = function(filename){
     $scope.filePrefs = FileManagerFactory.addFilePrefs(filename, $scope.filePrefs);
+  }
+
+  $scope.removeFile = function(file){
+    console.log("file id to be removed: ", file.id)
+    FileManagerFactory.deleteFile(file.id)
   }
 
   $scope.addFilePrefToUser = function(){
