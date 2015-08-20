@@ -40,10 +40,14 @@ app.factory('FileManagerFactory', function($rootScope){
     },
     deleteFile: function(fileId){
       console.log("file in factory: ", fileId)
-      File.findOne({ id: fileId })
+      // console.log("typeof fileId: ", typeof fileId)
+      return File.findById(fileId)
+      .remove()
       .then(function(file){
-        console.log("in .then")
-        console.log("file in .then: ", file)
+        return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$pull: {files: fileId} }, {new : true})
+      })
+      .then(null, function(error){
+        console.log(error)
       })
     }
  }
