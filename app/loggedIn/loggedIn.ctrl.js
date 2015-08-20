@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
-require(__dirname + '/db/models/file');
-require(__dirname + '/db/models/user');
+// require(__dirname + '/db/models/file');
+// require(__dirname + '/db/models/user');
 var fs = require('fs');
 var File = mongoose.model('File');
 var User = mongoose.model('User');
 var spawn = require('child_process').spawn;
 // var exec = require('child-process-promise').exec;
 
-app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
+window.thisApp.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
 
   //
   $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;

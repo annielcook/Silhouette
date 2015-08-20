@@ -1,9 +1,9 @@
 'use strict'
 
-app.config(function ($stateProvider) {
+window.thisApp.config(function ($stateProvider) {
 	$stateProvider.state('login', {
 		url: '/login',
-		templateUrl: 'file://'+__dirname+'/app/login/login.html',
+		templateUrl: __dirname +'/login.html',
 		controller: 'LoginCtrl'
 	})
 })

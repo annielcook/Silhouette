@@ -19,7 +19,4 @@ startDbPromise.then(function () {
 	console.log('MongoDb connection opened. Yay!');
 })
 
-module.exports = startDbPromise,
-
-
-
+module.exports = startDbPromise

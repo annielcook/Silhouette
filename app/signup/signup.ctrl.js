@@ -1,6 +1,6 @@
 'use strict'
-
-app.controller('SignupCtrl', function (Auth, $scope, $state, $rootScope) {
+console.log('ctrl', window.thisApp)
+window.thisApp.controller('SignupCtrl', function (Auth, $scope, $state, $rootScope) {
 	$scope.signupUser = function (userInfo) {
 		Auth.signup(userInfo)
 		.then(function () {

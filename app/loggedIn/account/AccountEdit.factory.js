@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
-require(__dirname + '/db/models/user');
+//require(__dirname + '/db/models/user');
 var User = mongoose.model('User');
 
-app.factory('AccountEditFactory', function($rootScope){
+window.thisApp.factory('AccountEditFactory', function($rootScope){
   return{
      saveUserChanges:function(){
         console.log('current User', $rootScope.currentUser);

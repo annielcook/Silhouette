@@ -1,9 +1,10 @@
 var fs = require('fs');
+var mongoose = require('mongoose')
 var File = mongoose.model('File');
 var User = mongoose.model('User');
-var fs = require('fs');
 
-app.factory('FileManagerFactory', function($rootScope){
+
+window.thisApp.factory('FileManagerFactory', function($rootScope){
   return{  
     addFile: function(event, fileObject){
       var file, data;
