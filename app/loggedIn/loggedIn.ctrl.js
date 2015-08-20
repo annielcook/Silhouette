@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
 require(__dirname + '/db/models/file');
 require(__dirname + '/db/models/user');
-var fs = require('fs');
+// var fs = require('fs');
 var File = mongoose.model('File');
 var User = mongoose.model('User');
-var spawn = require('child_process').spawn;
-// var exec = require('child-process-promise').exec;
+// var spawn = require('child_process').spawn;
+var Promise = require('bluebird');
+var fs = Promise.promisifyAll(require("fs"));
 
 app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
 
-  //
   $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;
 
   // retrieves current user's files
@@ -76,30 +76,43 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
     var filePrefs = $rootScope.currentUser.filePreferences;
     $scope.fileData = [];
     var filePaths = [];
+   
     filePrefs.forEach(function(pref, ind){
       filePaths[ind] = process.env["HOME"]+ '/' + pref;
     })
 
-    var child;
-    filePaths.forEach(function(file, index){
-      child = spawn("cat", [file])
-      child.stdout.on('data', function(data){
-          $scope.fileData.push({'name': filePrefs[index], 'content':data.toString(), 'path': filePaths[index]});
-          console.log("scope.filedata inside while loop stringified", $scope.fileData.toString()); 
-      })
+    Promise.map(filePaths, function(path){
+      return fs.readFileAsync(path, "utf8");
+    })
+    .then(function(content){
+      return Promise.all(content)
+    })
+    .then(function(content){
+      $scope.fileData = content;
+      console.log('$scope.fileData', $scope.fileData);
     })
 
-    //listen for end of child process
-    //add file to user schema and file schema
-    child.on('close', function(){
-      console.log("scope.filedata", $scope.fileData);
-      $scope.fileData.forEach(function(fileObj){
-        FileManagerFactory.addFile(null, fileObj)
-        .then(function(user){
-          $scope.retrieveAllFiles();
-        })
-      })
-    })
+    // var readFile = function(filePath){ 
+    //   return new Promise(function(resolve,reject){
+    //     fs.readFile(filePath, function(err,data){
+    //       if(err){ 
+    //         reject(err)
+    //       } else{ resolve(data)}
+    //     })
+    //   })
+    // }
+
+    // filePaths.map(function(filePath, index){
+    //   var fileData = readFile(filePath);
+    //   $scope.fileData.push({'name': filePrefs[index], 'content': data.toString(), 'path': filePath});
+    // })
+
+    // Promise.all(readFile, function(contents){
+    //   console.log('contents', contents);
+    // })
+    // .then(function(data){
+    //   console.log('data');
+    // })
 
   }
 
