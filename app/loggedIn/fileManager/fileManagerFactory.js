@@ -3,7 +3,6 @@ var File = mongoose.model('File');
 var User = mongoose.model('User');
 var fs = require('fs');
 
-
 app.factory('FileManagerFactory', function($rootScope){
   return{  
     addFile: function(event){
@@ -30,8 +29,7 @@ app.factory('FileManagerFactory', function($rootScope){
         console.log(error)
       })
     },
-    addFilePrefs: function(filename){
-      var filePrefs = [];
+    addFilePrefs: function(filename, filePrefs){
       var fileIndex = filePrefs.indexOf(filename);
       if(fileIndex === -1){
         filePrefs.push(filename);
