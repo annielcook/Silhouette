@@ -95,9 +95,9 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
     var child;
     while(filePrefs.length){
       child = spawn("cat", [filePrefs.pop()])
-      var fileData = child.stdout.on('data', function(data){
-          // console.log("scope.filedata", $scope.fileData); this happens three times ???????
+      child.stdout.on('data', function(data){
           $scope.fileData.push(data.toString());
+          console.log("scope.filedata inside while loop stringified", $scope.fileData.toString()); 
       })
     }
 
