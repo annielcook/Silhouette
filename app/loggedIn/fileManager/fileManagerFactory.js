@@ -51,7 +51,6 @@ app.factory('FileManagerFactory', function($rootScope){
       })
     },
     changeFile: function(file){
-      console.log("file in factory: ", file)
       return File.findById(file.id)
       .then(function(foundFile){
         foundFile.content = file.content
