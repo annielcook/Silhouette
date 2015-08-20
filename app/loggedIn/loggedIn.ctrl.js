@@ -5,6 +5,7 @@ var Promise = require("bluebird");
 var fs = Promise.promisifyAll(require("fs"));
 var File = mongoose.model('File');
 var User = mongoose.model('User');
+var join = Promise.join;
 // var spawn = require('child_process').spawn;
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
@@ -98,39 +99,22 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
       filePaths[ind] = process.env["HOME"]+ '/' + pref;
     })
 
-    Promise.map(filePaths, function(path){
-      return fs.readFileAsync(path, "utf8");
-    })
-    .then(function(content){
-      return Promise.all(content)
+    Promise.map(filePaths, function(path, index){
+      return Promise.all([fs.readFileAsync(path, "utf8"), path, filePrefs[index]])
     })
     .then(function(content){
       $scope.fileData = content;
+      $scope.fileData.forEach(function(fileArray){
+        console.log('fileArray', fileArray);
+        FileManagerFactory.addFile(null, fileArray)
+        .then(function(createdUser){
+          console.log('createdUser', createdUser);
+          $scope.retrieveAllFiles();
+        })
+      })
       console.log('$scope.fileData', $scope.fileData);
     })
-
-    // var readFile = function(filePath){ 
-    //   return new Promise(function(resolve,reject){
-    //     fs.readFile(filePath, function(err,data){
-    //       if(err){ 
-    //         reject(err)
-    //       } else{ resolve(data)}
-    //     })
-    //   })
-    // }
-
-    // filePaths.map(function(filePath, index){
-    //   var fileData = readFile(filePath);
-    //   $scope.fileData.push({'name': filePrefs[index], 'content': data.toString(), 'path': filePath});
-    // })
-
-    // Promise.all(readFile, function(contents){
-    //   console.log('contents', contents);
-    // })
-    // .then(function(data){
-    //   console.log('data');
-    // })
-
+    
   }
 
 })
