@@ -27,16 +27,11 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
 
   //upload a file and update the files displayed
   $scope.uploadFile = function(event){
-<<<<<<< HEAD
-    FileManagerFactory.addFile(event);
-    $scope.retrieveAllFiles();
-=======
 
     FileManagerFactory.addFile(event)
     .then(function(user){
       $scope.retrieveAllFiles();
     })
->>>>>>> master
   }
   
   var fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.npm folder', '.zshrc', '.oh-my-zsh', '.nvm'];
