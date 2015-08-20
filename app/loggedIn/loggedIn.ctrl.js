@@ -48,14 +48,11 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
   }
 
   $scope.updateFile = function(file){
-    var child = spawn("cat", [file.path, 'child'])
-    child.stdout.on('data', function(data){
-      file.content = data.toString()
-      file.date = new Date()
-      FileManagerFactory.changeFile(file)
-      .then(function(user){
-        $scope.retrieveAllFiles();
-      })
+    file.content = fs.readFileSync(file.path, 'utf8').toString();
+    file.date = new Date();
+    FileManagerFactory.changeFile(file)
+    .then(function(user){
+      $scope.retrieveAllFiles();
     })
   }
 
