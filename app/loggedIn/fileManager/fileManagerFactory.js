@@ -3,7 +3,6 @@ var File = mongoose.model('File');
 var User = mongoose.model('User');
 var fs = require('fs');
 
-
 app.factory('FileManagerFactory', function($rootScope){
   return{  
     addFile: function(event){
@@ -30,8 +29,7 @@ app.factory('FileManagerFactory', function($rootScope){
         console.log(error)
       })
     },
-    addFilePrefs: function(filename){
-      var filePrefs = [];
+    addFilePrefs: function(filename, filePrefs){
       var fileIndex = filePrefs.indexOf(filename);
       if(fileIndex === -1){
         filePrefs.push(filename);
@@ -42,10 +40,14 @@ app.factory('FileManagerFactory', function($rootScope){
     },
     deleteFile: function(fileId){
       console.log("file in factory: ", fileId)
-      File.findOne({ id: fileId })
+      // console.log("typeof fileId: ", typeof fileId)
+      return File.findById(fileId)
+      .remove()
       .then(function(file){
-        console.log("in .then")
-        console.log("file in .then: ", file)
+        return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$pull: {files: fileId} }, {new : true})
+      })
+      .then(null, function(error){
+        console.log(error)
       })
     }
  }
