@@ -30,8 +30,7 @@ app.factory('FileManagerFactory', function($rootScope){
         console.log(error)
       })
     },
-    addFilePrefs: function(filename){
-      var filePrefs = [];
+    addFilePrefs: function(filename, filePrefs){
       var fileIndex = filePrefs.indexOf(filename);
       if(fileIndex === -1){
         filePrefs.push(filename);

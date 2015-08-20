@@ -18,7 +18,6 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
     .then(function(files){
       $scope.files = files
       $scope.$digest()
-      console.log("$scope.files: ", $scope.files)
     });
     }
 
@@ -34,19 +33,21 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
     })
   }
   
- $scope.fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.npm folder', '.zshrc', '.oh-my-zsh', '.nvm'];
-  
-  $scope.addFilePreference = function(){
-    $scope.filePrefs = FileManagerFactory.addFilePrefs();
+ $scope.fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.zshrc'];
+ $scope.filePrefs = [];
+  $scope.addFilePreference = function(filename){
+    $scope.filePrefs = FileManagerFactory.addFilePrefs(filename, $scope.filePrefs);
   }
 
   $scope.addFilePrefToUser = function(){
     $rootScope.currentUser.filePreferences = $scope.filePrefs;
     console.log('about to save changes!');
+    console.log('$scope.filePrefs', $scope.filePrefs);
     AccountEditFactory.saveUserChanges();
     //child process that finds entered files and reads them
     //adds them to user schema
     //sets up child process to track
+
     $scope.getFileFromUser();
     $state.go('loggedIn.fileManager');
   } 
@@ -54,6 +55,9 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
   $scope.getFileFromUser = function(){
     console.log('inside child fxn');
     //loop through file prefs from $rootScope.currentUser
+    console.log('$rootScope.currentUser', $rootScope.currentUser);
+    var filePrefs = $rootScope.currentUser.filePreferences;
+    console.log('filePrefs', filePrefs);
     var child = spawn("cat", [process.env["HOME"]+'/.bash_profile', 'child'])
     var fileData = child.stdout.on('data', function(data){
       console.log('A child has been spawned here \n, heres the data: ', data.toString())
