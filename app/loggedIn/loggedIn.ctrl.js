@@ -47,7 +47,6 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
   }
 
   $scope.updateFile = function(file){
-    console.log("file: ", file)
     var child = spawn("cat", [file.path, 'child'])
     child.stdout.on('data', function(data){
       file.content = data.toString()
@@ -56,8 +55,13 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
       .then(function(user){
         $scope.retrieveAllFiles();
       })
-      console.log("file in child process: ", file)
       return data.toString();
+    })
+  }
+
+  $scope.updateAll = function(){
+    $scope.files.forEach(function(file){
+      $scope.updateFile(file)
     })
   }
 
