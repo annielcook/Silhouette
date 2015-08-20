@@ -1,20 +1,18 @@
 var mongoose = require('mongoose');
-// require(__dirname + '/db/models/file');
-// require(__dirname + '/db/models/user');
-var fs = require('fs');
+
 var File = mongoose.model('File');
 var User = mongoose.model('User');
-var spawn = require('child_process').spawn;
-// var exec = require('child-process-promise').exec;
+var join = Promise.join;
+// var spawn = require('child_process').spawn;
+var Promise = require('bluebird');
+var fs = Promise.promisifyAll(require("fs"));
 
 window.thisApp.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
 
-  //
   $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;
 
   // retrieves current user's files
   $scope.retrieveAllFiles = function(){
-    // $scope.files = FileManagerFactory.getAllFiles()
     FileManagerFactory.getAllFiles()
     .then(function(files){
       $scope.files = files
@@ -48,20 +46,34 @@ window.thisApp.controller('LoggedInCtrl', function ($scope, $state, AccountEditF
   }
 
   $scope.updateFile = function(file){
-    var child = spawn("cat", [file.path, 'child'])
-    child.stdout.on('data', function(data){
-      file.content = data.toString()
-      file.date = new Date()
-      FileManagerFactory.changeFile(file)
-      .then(function(user){
-        $scope.retrieveAllFiles();
-      })
+    file.content = fs.readFileSync(file.path, 'utf8').toString();
+    file.date = new Date();
+    FileManagerFactory.changeFile(file)
+    .then(function(user){
+      $scope.retrieveAllFiles();
     })
   }
 
   $scope.updateAll = function(){
     $scope.files.forEach(function(file){
-      $scope.updateFile(file)
+      $scope.updateFile(file);
+    })
+  }
+
+  $scope.downloadFile = function(file){
+    return fs.writeFileAsync(file.path, file.content)
+    .then(function(){
+      console.log("file was written");
+    })
+    .then(null, function(error){
+      console.log(error);
+    })
+  }
+
+  $scope.downloadAllFiles = function(){
+    console.log("$scope.files: ", $scope.files)
+    $scope.files.forEach(function(file){
+      $scope.downloadFile(file);
     })
   }
   
@@ -79,31 +91,27 @@ window.thisApp.controller('LoggedInCtrl', function ($scope, $state, AccountEditF
     var filePrefs = $rootScope.currentUser.filePreferences;
     $scope.fileData = [];
     var filePaths = [];
+   
     filePrefs.forEach(function(pref, ind){
       filePaths[ind] = process.env["HOME"]+ '/' + pref;
     })
 
-    var child;
-    filePaths.forEach(function(file, index){
-      child = spawn("cat", [file])
-      child.stdout.on('data', function(data){
-          $scope.fileData.push({'name': filePrefs[index], 'content':data.toString(), 'path': filePaths[index]});
-          console.log("scope.filedata inside while loop stringified", $scope.fileData.toString()); 
-      })
+    Promise.map(filePaths, function(path, index){
+      return Promise.all([fs.readFileAsync(path, "utf8"), path, filePrefs[index]])
     })
-
-    //listen for end of child process
-    //add file to user schema and file schema
-    child.on('close', function(){
-      console.log("scope.filedata", $scope.fileData);
-      $scope.fileData.forEach(function(fileObj){
-        FileManagerFactory.addFile(null, fileObj)
-        .then(function(user){
+    .then(function(content){
+      $scope.fileData = content;
+      $scope.fileData.forEach(function(fileArray){
+        console.log('fileArray', fileArray);
+        FileManagerFactory.addFile(null, fileArray)
+        .then(function(createdUser){
+          console.log('createdUser', createdUser);
           $scope.retrieveAllFiles();
         })
       })
+      console.log('$scope.fileData', $scope.fileData);
     })
-
+    
   }
 
 })
