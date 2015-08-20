@@ -49,6 +49,18 @@ app.factory('FileManagerFactory', function($rootScope){
       .then(null, function(error){
         console.log(error)
       })
+    },
+    changeFile: function(file){
+      console.log("file in factory: ", file)
+      return File.findById(file.id)
+      .then(function(foundFile){
+        foundFile.content = file.content
+        foundFile.date = file.date
+        return foundFile.save()
+      })
+      .then(null, function(error){
+        console.log(error)
+      })
     }
- }
+  }
 })
