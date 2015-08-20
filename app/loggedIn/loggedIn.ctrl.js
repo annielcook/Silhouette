@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 require(__dirname + '/db/models/file');
 require(__dirname + '/db/models/user');
-// var fs = require('fs');
+var Promise = require("bluebird");
+var fs = Promise.promisifyAll(require("fs"));
 var File = mongoose.model('File');
 var User = mongoose.model('User');
 // var spawn = require('child_process').spawn;
@@ -14,7 +15,6 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
 
   // retrieves current user's files
   $scope.retrieveAllFiles = function(){
-    // $scope.files = FileManagerFactory.getAllFiles()
     FileManagerFactory.getAllFiles()
     .then(function(files){
       $scope.files = files
@@ -58,7 +58,17 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
 
   $scope.updateAll = function(){
     $scope.files.forEach(function(file){
-      $scope.updateFile(file)
+      $scope.updateFile(file);
+    })
+  }
+
+  $scope.downloadFile = function(file){
+    return fs.writeFileAsync(file.path, file.content)
+    .then(function(){
+      console.log("file was written")
+    })
+    .then(null, function(error){
+      console.log(error)
     })
   }
   
