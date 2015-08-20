@@ -6,8 +6,9 @@
   <p class="help-block">Example block-level help text here.</p>
   <div ng-repeat="file in files">
   	<div>
-  		<i class="fa fa-3x fa-file-text-o"></i> <button class="btn btn-default btn-xs">Update</button><button ng-click="removeFile(file)" class="btn btn-default btn-xs">Stop Tracking</button>
+  		<i class="fa fa-3x fa-file-text-o"></i> <button ng-click="updateFile(file)" class="btn btn-default btn-xs">Update</button><button ng-click="removeFile(file)" class="btn btn-default btn-xs">Stop Tracking</button>
   		<p>{{file.name}}</p>
+      <p>{{file.date}}</p>
   	</div>
   </div>
 </div>
