@@ -64,6 +64,7 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
       $scope.updateFile(file)
     })
   }
+  
   //get file preferences from user upon signup
   $scope.addFilePrefToUser = function(){
     $rootScope.currentUser.filePreferences = $scope.filePrefs;
