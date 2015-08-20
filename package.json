@@ -30,10 +30,12 @@
   "dependencies": {
     "angular": "^1.4.4",
     "bluebird": "^2.9.34",
+    "bootstrap": "^3.3.5",
     "child-process-promise": "^1.1.0",
     "crypto": "0.0.3",
     "electron-debug": "^0.1.1",
     "express": "^4.13.3",
+    "font-awesome": "^4.4.0",
     "gridfs-stream": "^1.1.1",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
