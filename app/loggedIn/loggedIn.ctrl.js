@@ -42,6 +42,28 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
   $scope.removeFile = function(file){
     console.log("file id to be removed: ", file.id)
     FileManagerFactory.deleteFile(file.id)
+    .then(function(user){
+      $scope.retrieveAllFiles();
+    })
+  }
+
+  $scope.updateFile = function(file){
+    var child = spawn("cat", [file.path, 'child'])
+    child.stdout.on('data', function(data){
+      file.content = data.toString()
+      file.date = new Date()
+      FileManagerFactory.changeFile(file)
+      .then(function(user){
+        $scope.retrieveAllFiles();
+      })
+      return data.toString();
+    })
+  }
+
+  $scope.updateAll = function(){
+    $scope.files.forEach(function(file){
+      $scope.updateFile(file)
+    })
   }
 
   $scope.addFilePrefToUser = function(){
