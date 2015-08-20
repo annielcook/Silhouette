@@ -4,7 +4,8 @@ require(__dirname + '/db/models/user');
 var fs = require('fs');
 var File = mongoose.model('File');
 var User = mongoose.model('User');
-var spawn = require('child_process').spawn
+var spawn = require('child_process').spawn;
+// var exec = require('child-process-promise').exec;
 
 app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
 
@@ -26,16 +27,10 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
 
   //upload a file and update the files displayed
   $scope.uploadFile = function(event){
-<<<<<<< HEAD
-    FileManagerFactory.addFile(event);
-    $scope.retrieveAllFiles();
-=======
-
     FileManagerFactory.addFile(event)
     .then(function(user){
       $scope.retrieveAllFiles();
     })
->>>>>>> master
   }
   
  $scope.fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.zshrc'];
@@ -65,16 +60,29 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
   $scope.getFileFromUser = function(){
     console.log('inside child fxn');
     //loop through file prefs from $rootScope.currentUser
-    console.log('$rootScope.currentUser', $rootScope.currentUser);
+    // console.log('$rootScope.currentUser', $rootScope.currentUser);
     var filePrefs = $rootScope.currentUser.filePreferences;
-    console.log('filePrefs', filePrefs);
-    var child = spawn("cat", [process.env["HOME"]+'/.bash_profile', 'child'])
-    var fileData = child.stdout.on('data', function(data){
-      console.log('A child has been spawned here \n, heres the data: ', data.toString())
-      return data.toString();
+    // console.log('filePrefs', filePrefs);
+
+    $scope.fileData = [];
+
+    filePrefs.forEach(function(pref, ind){
+      filePrefs[ind] = process.env["HOME"]+ '/' + pref;
     })
-    //call factory fxn with fileData
-    //Create a new file object
+
+    var child;
+    while(filePrefs.length){
+      child = spawn("cat", [filePrefs.pop()])
+      var fileData = child.stdout.on('data', function(data){
+          // console.log("scope.filedata", $scope.fileData); this happens three times ???????
+          $scope.fileData.push(data.toString());
+      })
+    }
+
+    child.on('close', function(){
+      console.log("scope.filedata", $scope.fileData);
+    })
+
   }
 
 })
