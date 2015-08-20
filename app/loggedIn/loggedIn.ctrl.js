@@ -65,10 +65,17 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
   $scope.downloadFile = function(file){
     return fs.writeFileAsync(file.path, file.content)
     .then(function(){
-      console.log("file was written")
+      console.log("file was written");
     })
     .then(null, function(error){
-      console.log(error)
+      console.log(error);
+    })
+  }
+
+  $scope.downloadAllFiles = function(){
+    console.log("$scope.files: ", $scope.files)
+    $scope.files.forEach(function(file){
+      $scope.downloadFile(file);
     })
   }
   
