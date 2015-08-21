@@ -88,37 +88,38 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
     $rootScope.currentUser.filePreferences = $scope.filePrefs;
     AccountEditFactory.saveUserChanges();
     //child process that reads files from user 
-    $scope.getFileFromUser();
+    $scope.getFilePaths();
     //go to file manager state
     $state.go('loggedIn.fileManager');
   } 
 
-  $scope.getFileFromUser = function(){
-    var filePrefs = $rootScope.currentUser.filePreferences;
+  $scope.getFilePaths = function(){
+  $scope.filePaths = [];
+  $scope.filePrefs = $rootScope.currentUser.filePreferences;
     $scope.fileData = [];
-    var filePaths = [];
    
-    filePrefs.forEach(function(pref, ind){
-      filePaths[ind] = process.env["HOME"]+ '/' + pref;
+    $scope.filePrefs.forEach(function(pref, ind){
+      $scope.filePaths[ind] = process.env["HOME"]+ '/' + pref;
     })
+    
+    $scope.addFilesToUser();
+  }
 
-    Promise.map(filePaths, function(path, index){
-      return Promise.all([fs.readFileAsync(path, "utf8"), path, filePrefs[index]])
+  $scope.addFilesToUser = function(){
+     Promise.map($scope.filePaths, function(path, index){
+      return Promise.all([fs.readFileAsync(path, "utf8"), path, $scope.filePrefs[index]])
     })
     .then(function(content){
       $scope.fileData = content;
       $scope.fileData.forEach(function(fileArray){
-        console.log('fileArray', fileArray);
         FileManagerFactory.addFile(null, fileArray)
         .then(function(createdUser){
-          console.log('createdUser', createdUser);
-          $scope.retrieveAllFiles();
+          $scope.retrieveAllFiles()
         })
       })
-      console.log('$scope.fileData', $scope.fileData);
     })
-    
   }
+
 
 })
 
