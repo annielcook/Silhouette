@@ -29,7 +29,7 @@ window.thisApp.controller('FileSelectorCtrl', function(FileManagerFactory, $scop
     //child process that reads files from user 
     $scope.getFileFromUser();
     //go to file manager state
-    $state.go('loggedIn.fileManager');
+    $state.go('loggedIn.packageSelector');
   } 
 
   $scope.getFileFromUser = function($rootScope, FileManagerFactory){
