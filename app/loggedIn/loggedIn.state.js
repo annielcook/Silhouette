@@ -7,7 +7,8 @@ window.thisApp.config(function ($stateProvider) {
 		templateUrl: __dirname + '/account/account.html'
 	})
 	.state('loggedIn.fileManager', {
-		templateUrl: __dirname + '/fileManager/fileManager.html'
+		templateUrl: __dirname + '/fileManager/fileManager.html',
+		controller: 'fileCtrl'
 	})
 	.state('loggedIn.social', {
 		templateUrl: __dirname + '/social/social.html'
