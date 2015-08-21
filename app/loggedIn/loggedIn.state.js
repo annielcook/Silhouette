@@ -15,4 +15,8 @@ window.thisApp.config(function ($stateProvider) {
 	.state('loggedIn.fileSelector', {
 		templateUrl: __dirname + '/files/fileSelector/fileSelector.html',
 	})
+	.state('loggedIn.packageSelector', {
+		templateUrl: __dirname + '/packages/packageSelector/packageSelector.html',
+		controller: 'packageCtrl'
+	})
 })

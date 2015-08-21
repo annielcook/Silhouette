@@ -1,0 +1,7 @@
+<h3>Select the files that you would like to track</h3>
+<div ng-repeat="option in packageOptions">
+	<div class="checkbox">
+		<label><input type="checkbox" ng-model="placeHolder" ng-change="addPackagePreference('{{option}}')"/>{{option}}</label>
+	</div>
+</div>
+<button class="btn btn-default" ng-click="addPackagePrefToUser()">Continue</button>
