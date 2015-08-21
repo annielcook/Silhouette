@@ -10,13 +10,11 @@ window.thisApp.config(function ($stateProvider) {
 		templateUrl: __dirname + '/fileManager/fileManager.html',
 		controller: 'fileCtrl'
 	})
-	.state('loggedIn.social', {
-		templateUrl: __dirname + '/social/social.html'
-	})
 	.state('loggedIn.accountEdit', {
 		templateUrl: __dirname + '/account/accountEdit.html'
 	})
 	.state('loggedIn.fileSelector', {
-		templateUrl: __dirname + '/fileSelector/fileSelector.html'
+		templateUrl: __dirname + '/fileSelector/fileSelector.html',
+		controller: 'fileCtrl'
 	})
 })
