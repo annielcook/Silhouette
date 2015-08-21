@@ -27,10 +27,18 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, FileManagerFactor
 
   $scope.removeFile = function(file){
     console.log("file id to be removed: ", file.id)
+    $scope.showPreviewPanel = false;
     FileManagerFactory.deleteFile(file.id)
     .then(function(user){
       $scope.retrieveAllFiles();
     })
+  }
+
+  $scope.previewFile = function(file){
+    if (!$scope.showPreviewPanel || file != $scope.fileBeingPreviewed) $scope.showPreviewPanel = true;
+    else $scope.showPreviewPanel = false;
+    $scope.fileBeingPreviewed = file;
+    console.log("file: ", file)
   }
 
   $scope.updateFile = function(file){
