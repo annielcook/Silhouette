@@ -39,12 +39,11 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
     $scope.filePrefs = FileManagerFactory.addFilePrefs(filename, $scope.filePrefs);
   }
 
-  $scope.removeFile = function(file){
-    console.log("file id to be removed: ", file.id)
-    FileManagerFactory.deleteFile(file.id)
-    .then(function(user){
-      $scope.retrieveAllFiles();
-    })
+  $scope.previewFile = function(file){
+    if (!$scope.showPreviewPanel || file != $scope.fileBeingPreviewed) $scope.showPreviewPanel = true;
+    else $scope.showPreviewPanel = false;
+    $scope.fileBeingPreviewed = file;
+    console.log("file: ", file)
   }
 
   $scope.updateFile = function(file){
@@ -59,6 +58,15 @@ app.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, Fil
   $scope.updateAll = function(){
     $scope.files.forEach(function(file){
       $scope.updateFile(file);
+    })
+  }
+
+  $scope.removeFile = function(file){
+    console.log("file id to be removed: ", file.id)
+    $scope.showPreviewPanel = false;
+    FileManagerFactory.deleteFile(file.id)
+    .then(function(user){
+      $scope.retrieveAllFiles();
     })
   }
 
