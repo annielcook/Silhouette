@@ -22,25 +22,14 @@ gulp.task('buildCSS', function () {
 	.pipe(gulp.dest(__dirname + '/styles/css'))
 })
 
-gulp.task('buildJS', function () {
-	return gulp.src([__dirname + '/app/app.js', __dirname + '/app/*/*.js', __dirname + '/app/*/*/*.js'])
-	.pipe(plumber())
-	.pipe(concat('main.js'))
-	.pipe(gulp.dest(__dirname + '/app'))
-})
-
 gulp.task('build', function () {
-  runSeq(['buildJS', 'buildCSS']);
+  runSeq(['buildCSS']);
 });
 
 gulp.task('default', function () {
 
     livereload.listen();
     gulp.start('build');
-
-    gulp.watch('app/*/*.js', function () {
-        runSeq('buildJS', 'reload');
-    });
 
     gulp.watch('styles/scss/**', function () {
         runSeq('buildCSS', 'reloadCSS');
