@@ -2,6 +2,7 @@
  <div class="form-group">
   <div>Hello {{currentUser.firstName}}</div>
     <label for="exampleInputFile">File input</label>
+    <pre>{{files}}</pre>
     <input type="file" id="exampleInputFile" custom-on-change="uploadFile">
   <p class="help-block">Example block-level help text here.</p>
   <div ng-repeat="file in files">
