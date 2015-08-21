@@ -1,22 +1,27 @@
-
-app.config(function ($stateProvider) {
+window.thisApp.config(function ($stateProvider) {
 	$stateProvider.state('loggedIn', {
-		templateUrl: 'file://'+__dirname+'/app/loggedIn/loggedIn.html',
-		controller: 'LoggedInCtrl',
+		templateUrl: __dirname + '/loggedIn.html',
+		controller: function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
+		  $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;
+		}
 	})
 	.state('loggedIn.account', {
-		templateUrl: __dirname + '/app/loggedIn/account/account.html'
+		templateUrl: __dirname + '/account/account.html'
 	})
 	.state('loggedIn.fileManager', {
-		templateUrl: __dirname + '/app/loggedIn/fileManager/fileManager.html'
-	})
-	.state('loggedIn.social', {
-		templateUrl: __dirname + '/app/loggedIn/social.html'
+		templateUrl: __dirname + '/files/fileManager/fileManager.html',
+		controller: 'FileManagerCtrl'
 	})
 	.state('loggedIn.accountEdit', {
-		templateUrl: __dirname + '/app/loggedIn/account/accountEdit.html'
+		templateUrl: __dirname + '/account/accountEdit.html'
 	})
 	.state('loggedIn.fileSelector', {
-		templateUrl: __dirname + '/app/loggedIn/fileSelector/fileSelector.html'
+		templateUrl: __dirname + '/files/fileSelector/fileSelector.html',
+		controller: 'fileCtrl',
+		controller: 'FileSelectorCtrl'
+	})
+	.state('loggedIn.packageSelector', {
+		templateUrl: __dirname + '/packages/packageSelector/packageSelector.html',
+		controller: 'packageCtrl'
 	})
 })

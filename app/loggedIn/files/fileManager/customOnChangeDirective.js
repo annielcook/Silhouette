@@ -1,4 +1,4 @@
-app.directive('customOnChange', function() {
+window.thisApp.directive('customOnChange', function() {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {

@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('LoginCtrl', function (Auth, $scope, $state, $rootScope) {
+window.thisApp.controller('LoginCtrl', function (Auth, $scope, $state, $rootScope) {
 	$scope.loginUser = function (userInfo) {
 		Auth.login(userInfo)
 		.then(function (loggedInUser) {

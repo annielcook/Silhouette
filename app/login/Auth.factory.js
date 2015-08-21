@@ -1,15 +1,6 @@
 'use strict'
 var Crypto = require('crypto')
-
-require(__dirname + '/db/models/user');
-
-
-//@@ do we need sessions -- we think no because its not a browser app
-
-//@@ should we be making a new db connection here of exporting?
-var databaseURI = 'mongodb://silhouette:silhouette1506@ds031893.mongolab.com:31893/silhouette';
 var mongoose = require('mongoose');
-var db = mongoose.connect(databaseURI).connection;
 var User = mongoose.model('User');
 
 //@@ these are duplicates from models/user.js -- how can i share between these files
@@ -25,7 +16,7 @@ var passwordMatches = function (testpass, userpass, salt) {
 }
 
 
-app.factory('Auth', function ( $rootScope) {
+window.thisApp.factory('Auth', function ( $rootScope) {
 	return {
 		login: function (credentials) {
 			return User.findOne({email: credentials.email})

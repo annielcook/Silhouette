@@ -1,9 +1,9 @@
 'use strict'
-
-app.config(function ($stateProvider) {
+console.log('signup state')
+window.thisApp.config(function ($stateProvider) {
 	$stateProvider.state('signup', {
 		url: '/signup',
-		templateUrl: 'file://'+__dirname+'/app/signup/signup.html',
+		templateUrl: __dirname +'/signup.html',
 		controller: 'SignupCtrl'
 	})
 })
