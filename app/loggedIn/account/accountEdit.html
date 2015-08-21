@@ -24,7 +24,7 @@
 		<label>Confirm password: </label>
 		<input name="confirmPassword" ng-model="currentUser.confirmPassword" ng-pattern="currentUser.password" type="password" ></input>
 	</div>
-	<button type="submit" ui-sref="loggedIn.account" class="btn btn-default">Save</button>
+	<button type="submit" class="btn btn-default">Save</button>
 </form>
 <span ng-show="editAccountForm.confirmEmail.$error.pattern">Make sure emails match</span>
 <span ng-show="editAccountForm.confirmPassword.$error.pattern">Make sure emails match</span>
