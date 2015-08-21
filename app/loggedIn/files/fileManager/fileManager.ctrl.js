@@ -6,7 +6,7 @@ var fs = Promise.promisifyAll(require("fs"));
 
 window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
 
-    //upload a file and update the files displayed
+  //upload a file and update the files displayed
   $scope.uploadFile = function(event){
     FileManagerFactory.addFile(event)
     .then(function(user){

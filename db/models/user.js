@@ -11,7 +11,8 @@ var schema = new mongoose.Schema ({
   dateJoined: {type: Date, default: Date.now},
 	files: [{type: mongoose.Schema.Types.ObjectId, ref:'File'}],
   filePreferences: [String],
-  packages: [{type: mongoose.Schema.Types.ObjectId, ref:'Package'}]
+  packages: [{type: mongoose.Schema.Types.ObjectId, ref:'Package'}],
+  applicationPreferences: [String]
 })
 
 var generateSalt = function() {
