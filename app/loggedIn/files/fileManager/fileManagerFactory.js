@@ -12,7 +12,7 @@ window.thisApp.factory('FileManagerFactory', function($rootScope){
         file = event.target.files[0];
         file.data = fs.readFileSync(file.path, 'utf8');
       }else{
-        console.log('file', file);
+        // console.log('file', file);
         file.data = file[0];
         file.path = file[1];
         file.name = file[2];
@@ -32,6 +32,7 @@ window.thisApp.factory('FileManagerFactory', function($rootScope){
       return User.findOne({email: $rootScope.currentUser.email})
       .populate('files')
       .then(function(user){
+        console.log('user.files in get all files:', user.files)
         return user.files
       })
       .then(null, function(error){
