@@ -1,7 +1,7 @@
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
 
-window.thisApp.controller('PackageCtrl', function ($scope, $state, $rootScope, AccountEditFactory, PackageFactory) {
+window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $rootScope, AccountEditFactory, PackageFactory) {
 	$scope.packageOptions = ['npm', 'brew'];
 	$scope.packagePrefs = [];
 
@@ -18,7 +18,7 @@ window.thisApp.controller('PackageCtrl', function ($scope, $state, $rootScope, A
 	//go to app selector state
 
 
-	var getModulePaths = function (name) {
+	$scope.getModulePaths = function (name) {
 		var path;
 		if(name === 'brew') {
 			path = '/usr/local/Cellar';
@@ -28,31 +28,33 @@ window.thisApp.controller('PackageCtrl', function ($scope, $state, $rootScope, A
 		return path;
 	}
 
-	var getAllModules = function () {
+	$scope.getAllModules = function () {
+		$scope.packageNames = [];
 		Promise.map($scope.packagePrefs, function (name) {
-			var path = getModulePaths(name);
+			var path = $scope.getModulePaths(name);
 			return Promise.all([name, path, fs.readdirAsync(path)])
 		})
 		.then(function (arrOfArraysOfModules){
-			PackageFactory.createPackages(arrOfArraysOfModules)
+			return PackageFactory.createPackages(arrOfArraysOfModules)
 		})
-		// $scope.packagePrefs.forEach(function (pref){
-		// 	var path = getModulePath(pref);
-
-		// 	Promise.map()
-		// })
+		.then(function(user){
+			return Promise.all(
+				user.packages.map(function(model){
+					console.log('model', model);
+					$scope.packageNames.push(model)
+			}))
+		})
+		.then(function(){
+			console.log('packageNames in get All Modules', $scope.packageNames);
+			$state.go('loggedIn.packageManager', {'packageNames': JSON.stringify($scope.packageNames.map(function(arr){
+				console.log('arr.modules', arr.modules)
+				return arr.modules;
+				})) 
+			})
+		})
+		.then(null, function(err){
+    		console.error('Error', err);
+     })
 	}
-
-
-	//add packages to user packagePreferences as a array of strings
-	//build paths to these packages
-	//create new package objects
-	//read directories into object
-	$scope.main = function () {
-		getAllModules();
-
-	}
-
-
 
 })
