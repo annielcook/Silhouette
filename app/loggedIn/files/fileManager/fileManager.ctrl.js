@@ -12,8 +12,8 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
   $scope.retrieveAllFiles = function(){
     FileManagerFactory.getAllFiles()
     .then(function(files){
-      $scope.files = files
-      $scope.$digest()
+      $scope.files = files;
+      $scope.$digest();
     });
   }
 

@@ -9,6 +9,10 @@ window.thisApp.config(function ($stateProvider) {
 	.state('loggedIn.fileManager', {
 		templateUrl: __dirname + '/files/fileManager/fileManager.html',
 	})
+	.state('loggedIn.applicationManager', {
+		templateUrl: __dirname + '/applications/applicationManager/applicationManager.html',
+		controller: 'ApplicationCtrl'
+	})
 	.state('loggedIn.accountEdit', {
 		templateUrl: __dirname + '/account/accountEdit.html'
 	})
