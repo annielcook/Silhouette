@@ -1,2 +1,3 @@
-require(__dirname + '/package.ctrl.js')
+require(__dirname + '/packageSelector')
 require(__dirname + '/packageFactory.js')
+require(__dirname + '/packageManager')

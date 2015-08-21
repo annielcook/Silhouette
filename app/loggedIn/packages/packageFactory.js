@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
 var Package = mongoose.model('Package');
 var User = mongoose.model('User');
+var Promise = require('bluebird');
 
 window.thisApp.factory('PackageFactory', function($rootScope){
   return{
@@ -14,22 +15,17 @@ window.thisApp.factory('PackageFactory', function($rootScope){
       return packagePrefs;
     },
     createPackages: function (arrOfArrs){
-    	arrOfArrs.forEach(function(arr) {
-    		Package.create(
+    	return Promise.all(arrOfArrs.map(function(arr) {
+    		return Package.create(
     			{'name': arr[0],
-    			    			'path': arr[1],
-    			    			'modules': arr[2]}
+    			 'path': arr[1],
+    			 'modules': arr[2]}
     		)
-    		.then(function (packageObj) {
-    			return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$push: {packages: packageObj}}, {new: true})
+        }))
+    		.then(function (arrayOfPackageObjs) {
+    			return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: arrayOfPackageObjs}}, {new: true})
+                .populate('packages')
     		})
-    		.then(function (user) {
-    			console.log('THIS IS THE USER: ', user)
-    		})
-    		.then(null, function(err){
-    			throw err;
-    		})
-    	})
     }
 
   }
