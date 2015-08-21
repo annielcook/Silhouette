@@ -13,7 +13,6 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
     FileManagerFactory.getAllFiles()
     .then(function(files){
       $scope.files = files
-      console.log('$scope.files', $scope.files);
       $scope.$digest()
     });
   }
@@ -36,7 +35,6 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
   }
 
   $scope.removeFile = function(file){
-    console.log("file id to be removed: ", file.id)
     $scope.showPreviewPanel = false;
     FileManagerFactory.deleteFile(file.id)
     .then(function(user){
@@ -48,7 +46,6 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
     if (!$scope.showPreviewPanel || file != $scope.fileBeingPreviewed) $scope.showPreviewPanel = true;
     else $scope.showPreviewPanel = false;
     $scope.fileBeingPreviewed = file;
-    console.log("file: ", file)
   }
 
   $scope.updateFile = function(file){
@@ -69,7 +66,6 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
   $scope.downloadFile = function(file){
     return fs.writeFileAsync(file.path, file.content)
     .then(function(){
-      console.log("file was written");
     })
     .then(null, function(error){
       console.log(error);
@@ -77,7 +73,6 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
   }
 
   $scope.downloadAllFiles = function(){
-    console.log("$scope.files: ", $scope.files)
     $scope.files.forEach(function(file){
       $scope.downloadFile(file);
     })

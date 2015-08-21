@@ -32,7 +32,6 @@ window.thisApp.factory('FileManagerFactory', function($rootScope){
       return User.findOne({email: $rootScope.currentUser.email})
       .populate('files')
       .then(function(user){
-        console.log('user.files in get all files:', user.files)
         return user.files
       })
       .then(null, function(error){
@@ -49,8 +48,6 @@ window.thisApp.factory('FileManagerFactory', function($rootScope){
       return filePrefs;
     },
     deleteFile: function(fileId){
-      console.log("file in factory: ", fileId)
-      // console.log("typeof fileId: ", typeof fileId)
       return File.findById(fileId)
       .remove()
       .then(function(file){
