@@ -1,7 +1,9 @@
 window.thisApp.config(function ($stateProvider) {
 	$stateProvider.state('loggedIn', {
 		templateUrl: __dirname + '/loggedIn.html',
-		controller: 'LoggedInCtrl',
+		controller: function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
+		  $scope.saveAccountChanges = AccountEditFactory.saveUserChanges;
+		}
 	})
 	.state('loggedIn.account', {
 		templateUrl: __dirname + '/account/account.html'
