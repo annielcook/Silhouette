@@ -56,7 +56,7 @@ window.thisApp.controller('FileSelectorCtrl', function(AccountEditFactory, FileM
       $scope.fileData.forEach(function(fileArray){
         FileManagerFactory.addFile(null, fileArray)
         .then(function(createdUser){
-          $scope.retrieveAllFiles();
+          $scope.retrieveAllFiles(); 
         })
       })
     })
