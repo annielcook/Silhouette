@@ -7,9 +7,12 @@ window.thisApp.controller('PackageManagerCtrl', function ($scope, $state, $rootS
   $scope.getPackageInfo = function(){
   	PackageFactory.getPackages()
   	.then(function(packages){
-  		//$scope.packageArr = packages;
-  		// console.log('$scope.packageArr', packages);
-		  $scope.moduleSelections = {'npm': packages[0].modules, 'brew': packages[1].modules};
+      $scope.moduleSelections = {};
+        console.log('packages', packages)
+        _.each(packages, function(packageItem){
+         console.log('inside each package', packageItem)
+        $scope.moduleSelections[packageItem.name] = packageItem.modules;
+       })
 		  $scope.moduleOptions = _.clone($scope.moduleSelections, true)
   		$scope.$digest();
   	})
@@ -30,7 +33,7 @@ window.thisApp.controller('PackageManagerCtrl', function ($scope, $state, $rootS
     console.log('Module Selections: ', $scope.moduleSelections)
   	PackageFactory.updatePackages($scope.moduleSelections)
   	.then(function (user) {
-  		console.log('updated user: ', user)
+  		// console.log('updated user: ', user.packages[0].modules)
 	  	$state.go('loggedIn.applicationSelector');
   	})
   	.then(null, function (err) {

@@ -53,6 +53,7 @@ window.thisApp.factory('PackageFactory', function($rootScope){
              }))
              .then(function(arrayOfPackageObjs){
                return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: arrayOfPackageObjs}}, {new: true})
+               // .populate('packages');
              })
     }
 
