@@ -1,3 +1,3 @@
 require(__dirname + '/packageSelector')
 require(__dirname + '/packageFactory.js')
-require(__dirname + '/packageManager')
+require(__dirname + '/moduleSelector')

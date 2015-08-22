@@ -30,8 +30,8 @@ window.thisApp.config(function ($stateProvider) {
 		templateUrl: __dirname + '/applications/applicationSelector/applicationSelector.html',
 		controller: 'ApplicationSelectorCtrl'
 	})
-	.state('loggedIn.packageManager', {
-		templateUrl: __dirname + '/packages/packageManager/packageManager.html',
+	.state('loggedIn.moduleSelector', {
+		templateUrl: __dirname + '/packages/moduleSelector/moduleSelector.html',
 		controller: 'PackageManagerCtrl',
 		params:  ['packageNames']
 	})
