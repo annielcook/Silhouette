@@ -1,11 +1,15 @@
 <div>
-	<h3>You probably have applications that you use all the time. We can track the applications that you use regularly, so that when you get a new computer, we can install these applications for you.</h3>
-	<br/>
-	<p>Do you want to track any of the following application?</p>
+	<h3>We have analyzed the applications on your computer, and the following applications are available to track. Select the ones that you would like to track.</h3>
+	<div ng-repeat="yourApp in appsAvailableInCask">
+		<div class="checkbox">
+			<label><input type="checkbox" ng-model="placeHolder" ng-change="addAppPreference('{{yourApp}}')">{{yourApp}}</label>
+		</div>
+	</div>
+	<!-- <h3>Select the additional apps you would like to track.</h3>
 	<div ng-repeat="app in appOptions">
 		<div class="checkbox">
 			<label><input type="checkbox" ng-model="placeHolder" ng-change="addAppPreference('{{app}}')">{{app}}</label>
 		</div>
-	</div>
+	</div> -->
 	<button class="btn btn-default" ng-click="addAllAppsToUser()">Continue</button>
 </div>

@@ -3,10 +3,10 @@ var User = mongoose.model('User');
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
 
-window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationManagerFactory) {
+window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory) {
 
 	$scope.uploadBrewCask = function(){
-		ApplicationManagerFactory.uploadCurrentCask()
+		ApplicationFactory.uploadCurrentCask()
 		.then(function(apps){
 			$scope.apps = apps;
 			$scope.$digest();
@@ -14,7 +14,7 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 	}
 
 	$scope.uploadFinderApps = function(){
-		$scope.finderApps = ApplicationManagerFactory.uploadFinderInstalled()
+		$scope.finderApps = ApplicationFactory.uploadFinderInstalled()
 	}
 
 })
