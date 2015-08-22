@@ -37,7 +37,7 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 		.then(function(apps){
 			console.log("apps from factory: ", apps)
 			$scope.$digest();
-			$state.go('loggedIn.packageSelector');
+			$state.go('loggedIn.home');
 		});
 	}
 })

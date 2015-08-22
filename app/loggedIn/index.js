@@ -1,4 +1,5 @@
 require(__dirname + '/files')
+require(__dirname + '/home')
 require(__dirname + '/packages')
 require(__dirname + '/applications')
 require(__dirname + '/account')
