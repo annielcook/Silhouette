@@ -1,0 +1,7 @@
+<h1>Module Manager</h1>
+<div ng-repeat="package in packages">
+	<h3>{{package.name}}</h3>
+	<div ng-repeat="modules in package">
+		<p>{{module}}</p>
+	</div>
+</div>
