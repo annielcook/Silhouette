@@ -10,14 +10,6 @@ window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $root
 		$scope.packagePrefs = PackageFactory.addPackagePrefs(packagename, $scope.packagePrefs);
 	}
 
-	//go through preferences on scope
-	//get file paths
-	//call fs.readdir to get modules for each pref
-	//create preference object for each (name, path, modules)
-	//update user in database
-	//go to app selector state
-
-
 	$scope.getModulePaths = function (name) {
 		var path;
 		if(name === 'brew') {
@@ -38,7 +30,6 @@ window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $root
 			return PackageFactory.createPackages(arrOfArraysOfModules)
 		})
 		.then(function(user){
-			console.log('user with/without packages', user);
 			!user.packages.length ? $state.go('loggedIn.applicationSelector') : $state.go('loggedIn.packageManager')
 		})
 		.then(null, function(err){

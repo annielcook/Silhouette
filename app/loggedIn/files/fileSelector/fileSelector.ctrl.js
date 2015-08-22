@@ -3,6 +3,8 @@ var fs = Promise.promisifyAll(require("fs"));
 
 window.thisApp.controller('FileSelectorCtrl', function ($scope, FileManagerFactory, AccountEditFactory, $rootScope, $state) {
 
+  $scope.checked = true;
+
   var addFilesToUser = function(){
     Promise.map($scope.filePaths, function(path, index){
       return Promise.all([fs.readFileAsync(path, "utf8"), path, $scope.filePrefs[index]])
@@ -29,15 +31,19 @@ window.thisApp.controller('FileSelectorCtrl', function ($scope, FileManagerFacto
     
     addFilesToUser();
   }
-  $scope.filePrefs = [];
+  $scope.filePrefs = ['.bashrc', '.bash_profile', '.gitconfig', '.zshrc'];
 	$scope.fileOptions = ['.bashrc', '.bash_profile', '.gitconfig', '.zshrc'];
 	$scope.addFilePreference = function(filename){
+    console.log('$scope.filePrefs before toggle', $scope.filePrefs);
     $scope.filePrefs = FileManagerFactory.addFilePrefs(filename, $scope.filePrefs);
+    console.log('$scope.filePrefs after toggle', $scope.filePrefs);
   }
     //get file preferences from user upon signup
   $scope.addFilePrefToUser = function(){
+    console.log('files to save to user ', $scope.filePrefs);
     $rootScope.currentUser.filePreferences = $scope.filePrefs;
     AccountEditFactory.saveUserChanges();
+    // console.log('updated user in files:', $rootScope.currentUser);
     getFilePaths();
     //go to file manager state
     $state.go('loggedIn.packageSelector');
