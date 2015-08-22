@@ -37,8 +37,9 @@ window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $root
 		.then(function (arrOfArraysOfModules){
 			return PackageFactory.createPackages(arrOfArraysOfModules)
 		})
-		.then(function(){
-			$state.go('loggedIn.packageManager');
+		.then(function(user){
+			console.log('user with/without packages', user);
+			!user.packages.length ? $state.go('loggedIn.applicationSelector') : $state.go('loggedIn.packageManager')
 		})
 		.then(null, function(err){
     		console.error('Error', err);

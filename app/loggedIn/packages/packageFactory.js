@@ -1,8 +1,8 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 var Package = mongoose.model('Package');
 var User = mongoose.model('User');
 var Promise = require('bluebird');
-var _ = require('lodash')
+var _ = require('lodash');
 
 window.thisApp.factory('PackageFactory', function($rootScope){
   return{
@@ -33,9 +33,6 @@ window.thisApp.factory('PackageFactory', function($rootScope){
               return user.packages;
              })
     },
-    //objects, one npm, one brew
-    //toggle the modules associated with each
-    //RETURN OBJ looks like {npm: ["skjdf", "sldf"],brew: ["lkjdf"]}
     toggleModuleSelections: function(packageName, moduleName, modulePrefs) {
       var modIndex = modulePrefs[packageName].indexOf(moduleName);
       if (modIndex === -1) {
