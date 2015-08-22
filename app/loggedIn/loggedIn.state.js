@@ -35,5 +35,9 @@ window.thisApp.config(function ($stateProvider) {
 		controller: 'PackageManagerCtrl',
 		params:  ['packageNames']
 	})
+	.state('loggedIn.home', {
+		templateUrl: __dirname + '/home/home.html',
+		controller: 'HomeCtrl'
+	})
 
 }) 

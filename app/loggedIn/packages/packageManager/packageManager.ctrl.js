@@ -26,12 +26,12 @@ window.thisApp.controller('PackageManagerCtrl', function ($scope, $state, $rootS
   	 //  console.log('Module Options: ', $scope.moduleOptions)
   }
 
-  $scope.saveModulePrefs = function () {
+  $scope.saveModulePrefs = function(){
     console.log('Module Selections: ', $scope.moduleSelections)
   	PackageFactory.updatePackages($scope.moduleSelections)
   	.then(function (user) {
   		console.log('updated user: ', user)
-	  	//$state.go('loggedIn.applicationSelector');
+	  	$state.go('loggedIn.applicationSelector');
   	})
   	.then(null, function (err) {
   		console.error('Error: ', err)
