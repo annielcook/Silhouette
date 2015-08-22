@@ -16,7 +16,7 @@ window.thisApp.factory('PackageFactory', function($rootScope){
       return packagePrefs;
     },
     createPackages: function (arrOfArrs){
-    	return Promise.all(arrOfArrs.map(function(arr) {
+    	return Promise.all(_.map(arrOfArrs, function(arr) {
     		return Package.create(
     			{'name': arr[0],
     			 'modules': arr[1]}
@@ -37,21 +37,23 @@ window.thisApp.factory('PackageFactory', function($rootScope){
     //toggle the modules associated with each
     //RETURN OBJ looks like {npm: ["skjdf", "sldf"],brew: ["lkjdf"]}
     toggleModuleSelections: function(packageName, moduleName, modulePrefs) {
-      console.log('module prefs: ', modulePrefs)
       var modIndex = modulePrefs[packageName].indexOf(moduleName);
-      console.log('module pref before toggle: ', modulePrefs)
-
       if (modIndex === -1) {
         modulePrefs[packageName].push(moduleName)
       } else {
         modulePrefs[packageName].splice(modIndex, 1)
       }
-      console.log('module pref after toggle: ', modulePrefs)
       return modulePrefs;
     },
     //update after user selects/unselects pacakges in package manager
     updatePackages: function (modulePrefs){
-      return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: modulePrefs}}, {new: true})
+      //get modulePrefs in format that schema accepts
+     return Promise.all( _.map(modulePrefs, function(module, key){
+              return Package.create( {'name': key, 'modules': module} )
+             }))
+             .then(function(arrayOfPackageObjs){
+               return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: arrayOfPackageObjs}}, {new: true})
+             })
     }
 
   }

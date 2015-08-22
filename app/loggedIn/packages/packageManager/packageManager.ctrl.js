@@ -8,7 +8,7 @@ window.thisApp.controller('PackageManagerCtrl', function ($scope, $state, $rootS
   	PackageFactory.getPackages()
   	.then(function(packages){
   		//$scope.packageArr = packages;
-  		console.log('$scope.packageArr', packages);
+  		// console.log('$scope.packageArr', packages);
 		  $scope.moduleSelections = {'npm': packages[0].modules, 'brew': packages[1].modules};
 		  $scope.moduleOptions = _.clone($scope.moduleSelections, true)
   		$scope.$digest();
@@ -22,11 +22,12 @@ window.thisApp.controller('PackageManagerCtrl', function ($scope, $state, $rootS
 
   $scope.addModulePreference = function(packageName, module){
   	 $scope.moduleSelections = PackageFactory.toggleModuleSelections(packageName, module, $scope.moduleSelections);
-  	 console.log('Module Selections: ', $scope.moduleSelections)
-  	  console.log('Module Options: ', $scope.moduleOptions)
+  	 // console.log('Module Selections: ', $scope.moduleSelections)
+  	 //  console.log('Module Options: ', $scope.moduleOptions)
   }
 
   $scope.saveModulePrefs = function () {
+    console.log('Module Selections: ', $scope.moduleSelections)
   	PackageFactory.updatePackages($scope.moduleSelections)
   	.then(function (user) {
   		console.log('updated user: ', user)
