@@ -32,26 +32,12 @@ window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $root
 		// $scope.packageInfo = [];
 		Promise.map($scope.packagePrefs, function (name) {
 			var path = $scope.getModulePaths(name);
-			return Promise.all([name, path, fs.readdirAsync(path)])
+			return Promise.all([name, fs.readdirAsync(path)])
 		})
 		.then(function (arrOfArraysOfModules){
 			return PackageFactory.createPackages(arrOfArraysOfModules)
 		})
-		// .then(function(user){
-		// 	return Promise.all(
-		// 		user.packages.map(function(model){
-		// 			console.log('model', model);
-		// 			// $scope.packageInfo.push(model)
-		// 	}))
-		// })
 		.then(function(){
-			// console.log('packageInfo in get All Modules', $scope.packageInfo);
-			// var packageInfo = JSON.stringify($scope.packageInfo.map(function(arr){
-			// 	console.log('arr', arr)
-			// 	return [arr.name, arr.modules];
-			// 	}))
-			// console.log('package info: ', packageInfo)
-			// $state.go('loggedIn.packageManager', {'packageInfo': packageInfo});
 			$state.go('loggedIn.packageManager');
 		})
 		.then(null, function(err){
