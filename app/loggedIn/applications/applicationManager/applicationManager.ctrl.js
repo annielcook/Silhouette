@@ -5,16 +5,41 @@ var fs = Promise.promisifyAll(require("fs"));
 
 window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory) {
 
-	$scope.uploadBrewCask = function(){
-		ApplicationFactory.uploadCurrentCask()
+	$scope.updateCurrentApps = function(){
+		return 	ApplicationFactory.retrieveCurrentApps()
 		.then(function(apps){
-			$scope.apps = apps;
+			$scope.currentCask = apps;
+			$scope.$digest();
+		})
+	}
+
+
+	$scope.uploadBrewCask = function(){
+		var cask = fs.readdirSync("/opt/homebrew-cask/Caskroom")
+		ApplicationFactory.updateCurrentCask(cask)
+		.then(function(apps){
+			$scope.currentCask = apps;
+			console.log("current cask updated")
 			$scope.$digest();
 		});
 	}
 
 	$scope.uploadFinderApps = function(){
-		$scope.finderApps = ApplicationFactory.uploadFinderInstalled()
+		var finderApps = ApplicationFactory.uploadFinderInstalled()
+		var appsToAdd = ApplicationFactory.availableApps(finderApps);
+		ApplicationFactory.updateCurrentCask(appsToAdd)
+		.then(function(apps){
+			$scope.currentCask = apps;
+			console.log("current cask updated")
+			$scope.$digest();
+		});
+	}
+
+	$scope.removeApp = function(app){
+		ApplicationFactory.deleteApp(app)
+    .then(function(user){
+      $scope.updateCurrentApps();
+    })
 	}
 
 })
