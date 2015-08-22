@@ -1,0 +1,1 @@
+require(__dirname + '/moduleSelector.ctrl.js')
