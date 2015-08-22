@@ -2,8 +2,9 @@ var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
 
 window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, ApplicationFactory, $rootScope, $state) {
-	$scope.finderApps = ApplicationFactory.uploadFinderInstalled()
-	$scope.appsAvailableInCask = ApplicationFactory.availableApps($scope.finderApps)
+	$scope.finderApps = ApplicationFactory.uploadFinderInstalled();
+	$scope.appsAvailableInCask = ApplicationFactory.availableApps($scope.finderApps);
+	$scope.appsInCurrentCask = fs.readdirSync("/opt/homebrew-cask/Caskroom");
 
 	// $scope.appOptions = function(){
 	// 	console.log("from factory: ", ApplicationFactory.optionals($scope.appsAvailableInCask))

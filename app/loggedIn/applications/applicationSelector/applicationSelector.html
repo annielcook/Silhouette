@@ -1,8 +1,13 @@
 <div>
 	<h3>We have analyzed the applications on your computer, and the following applications are available to track. Select the ones that you would like to track.</h3>
-	<div ng-repeat="yourApp in appsAvailableInCask">
+	<div ng-repeat="app in appsAvailableInCask">
 		<div class="checkbox">
-			<label><input type="checkbox" ng-model="placeHolder" ng-change="addAppPreference('{{yourApp}}')">{{yourApp}}</label>
+			<label><input type="checkbox" ng-model="placeHolder" ng-change="addAppPreference('{{app}}')">{{app}}</label>
+		</div>
+	</div>
+	<div ng-repeat="caskApp in appsInCurrentCask">
+		<div class="checkbox">
+			<label><input type="checkbox" ng-model="placeHolder" ng-change="addAppPreference('{{caskApp}}')">{{caskApp}}</label>
 		</div>
 	</div>
 	<!-- <h3>Select the additional apps you would like to track.</h3>
