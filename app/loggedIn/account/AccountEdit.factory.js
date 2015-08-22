@@ -5,7 +5,10 @@ var User = mongoose.model('User');
 window.thisApp.factory('AccountEditFactory', function($rootScope){
   return{
      saveUserChanges:function(){
-        User.findByIdAndUpdate($rootScope.currentUser.id, {$set: $rootScope.currentUser}, {new:true})
+        return User.findByIdAndUpdate($rootScope.currentUser.id, {$set: $rootScope.currentUser}, {new:true})
+        .then(function(user){
+          console.log('updated user in files:', user.filePreferences);
+        })
         .then(null, function(err){
           throw err;
         });
