@@ -24,8 +24,23 @@ window.thisApp.factory('PackageFactory', function($rootScope){
         }))
     		.then(function (arrayOfPackageObjs) {
     			return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: arrayOfPackageObjs}}, {new: true})
-                .populate('packages')
     		})
+    },
+    getPackages: function(){
+      return User.findOne({email: $rootScope.currentUser.email})
+             .populate('packages')
+             .then(function(user){
+              return user.packages;
+             })
+    },
+    addPackageSelections: function(packagename, packageSelections){
+        var packageIndex = packageSelections.indexOf(packagename);
+        if(packageIndex === -1){
+          packageSelections.push(packagename);
+        } else {
+          packageSelections.splice(packageIndex, 1);
+        }
+        return packageSelections;
     }
 
   }

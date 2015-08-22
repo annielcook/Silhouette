@@ -29,7 +29,7 @@ window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $root
 	}
 
 	$scope.getAllModules = function () {
-		$scope.packageNames = [];
+		// $scope.packageInfo = [];
 		Promise.map($scope.packagePrefs, function (name) {
 			var path = $scope.getModulePaths(name);
 			return Promise.all([name, path, fs.readdirAsync(path)])
@@ -37,20 +37,22 @@ window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $root
 		.then(function (arrOfArraysOfModules){
 			return PackageFactory.createPackages(arrOfArraysOfModules)
 		})
-		.then(function(user){
-			return Promise.all(
-				user.packages.map(function(model){
-					console.log('model', model);
-					$scope.packageNames.push(model)
-			}))
-		})
+		// .then(function(user){
+		// 	return Promise.all(
+		// 		user.packages.map(function(model){
+		// 			console.log('model', model);
+		// 			// $scope.packageInfo.push(model)
+		// 	}))
+		// })
 		.then(function(){
-			console.log('packageNames in get All Modules', $scope.packageNames);
-			$state.go('loggedIn.packageManager', {'packageNames': JSON.stringify($scope.packageNames.map(function(arr){
-				console.log('arr.modules', arr.modules)
-				return arr.modules;
-				})) 
-			})
+			// console.log('packageInfo in get All Modules', $scope.packageInfo);
+			// var packageInfo = JSON.stringify($scope.packageInfo.map(function(arr){
+			// 	console.log('arr', arr)
+			// 	return [arr.name, arr.modules];
+			// 	}))
+			// console.log('package info: ', packageInfo)
+			// $state.go('loggedIn.packageManager', {'packageInfo': packageInfo});
+			$state.go('loggedIn.packageManager');
 		})
 		.then(null, function(err){
     		console.error('Error', err);
