@@ -1,7 +1,19 @@
 <h1>Module Manager</h1>
-<div ng-repeat="package in packages">
-	<h3>{{package.name}}</h3>
-	<div ng-repeat="modules in package">
-		<p>{{module}}</p>
-	</div>
+<div class="moduleManager" ng-repeat="package in packages">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>{{package.name}}</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<div class="buttonwrapper">
+				<tr class="module" ng-repeat="module in package.modules" >
+						<td>{{module}}</td>
+						<td><button class="uninstall btn btn-sm">uninstall</button></td>
+				</tr>
+		 </div>
+		</tbody>
+	</table>
 </div>

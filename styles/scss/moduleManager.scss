@@ -1,0 +1,12 @@
+.uninstall {
+	display: none;
+}
+
+.module:hover{
+	background-color: #f6f6f6;
+	display: inline-block;
+	.uninstall{
+		display: inline-block;
+		background-color: white;
+	}
+}
