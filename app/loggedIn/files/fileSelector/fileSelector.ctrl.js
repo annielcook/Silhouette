@@ -40,7 +40,7 @@ window.thisApp.controller('FileSelectorCtrl', function ($scope, FileManagerFacto
     AccountEditFactory.saveUserChanges();
     getFilePaths();
     //go to file manager state
-    $state.go('loggedIn.packageSelector');
+    $state.go('loggedIn.applicationSelector');
   } 
 
 })
