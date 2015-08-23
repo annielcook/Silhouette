@@ -1,39 +1,25 @@
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
 
-window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, ApplicationSelectorFactory, $rootScope, $state) {
-	$scope.appOptions = [
-		'alfred',
-		'caffeine',
-		'cheatsheet',
-		'chrome-devtools',
-		'chromecast',
-		'dropbox',
-		'firefox',
-		'flux',
-		'gimp',
-		'google-chrome',
-		'iterm2',
-		'kindle',
-		'macvim',
-		'rdio',
-		'robomongo', 
-		'skype',
-		'slack',
-		'spotify',
-		'sublime-text',
-		'virtualbox',
-		'vlc'
-	];
+window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, ApplicationFactory, $rootScope, $state) {
+	$scope.finderApps = ApplicationFactory.uploadFinderInstalled();
+	$scope.appsAvailableInCask = ApplicationFactory.availableApps($scope.finderApps);
+	$scope.appsInCurrentCask = fs.readdirSync("/opt/homebrew-cask/Caskroom");
+
+	// $scope.appOptions = function(){
+	// 	console.log("from factory: ", ApplicationFactory.optionals($scope.appsAvailableInCask))
+	// 	return ApplicationFactory.optionals($scope.appsAvailableInCask)
+	// }
+
 	$scope.appPrefs = [];
 
 	$scope.addAppPreference = function(appName){
-		$scope.appPrefs = ApplicationSelectorFactory.addAppPrefs(appName, $scope.appPrefs);
+		$scope.appPrefs = ApplicationFactory.addAppPrefs(appName, $scope.appPrefs);
 		console.log("app prefs: ", $scope.appPrefs)
 	}
 
 	$scope.addAllAppsToUser = function(){
-		ApplicationSelectorFactory.addAppsToUser($scope.appPrefs)
+		ApplicationFactory.addAppsToUser($scope.appPrefs)
 		.then(function(apps){
 			console.log("apps from factory: ", apps)
 			$scope.$digest();
