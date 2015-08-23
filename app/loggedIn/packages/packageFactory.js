@@ -52,7 +52,30 @@ window.thisApp.factory('PackageFactory', function($rootScope){
                return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: arrayOfPackageObjs}}, {new: true})
                // .populate('packages');
              })
-    }
+    },
+    removeModule: function (packageName, module) {
+      //on the user there is a package field that looks like 
+      //[{name: npm, modules: ['blah']},{name:brew, modules: ['also','blah']}]
+      //find user
+      //get package id
+      //findOneAndUpdate on package
 
+      return User.findOne({email: $rootScope.currentUser.email}).populate('packages')
+      .then(function (user) {
+        var packageToUpdate = _.filter(user.packages, function (packageObj){
+          return (packageObj.name === packageName)
+        })
+        var newModuleArr = _.filter(packageToUpdate[0]['modules'], function (oneModule){
+          return oneModule !== module
+        })
+        return Package.findByIdAndUpdate(packageToUpdate[0]._id, {$set: {modules: newModuleArr}}, {new:true})
+        .then(function (pack) {
+          return pack;
+        })
+        .then(function(){
+          return User.findOne({email: $rootScope.currentUser.email}).populate('packages')
+        })
+      })
+    }
   }
 })
