@@ -3,7 +3,7 @@ var fs = Promise.promisifyAll(require("fs"));
 
 window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $rootScope, AccountEditFactory, PackageFactory) {
 	$scope.packageOptions = ['npm', 'brew'];
-	$scope.packagePrefs = [];
+	$scope.packagePrefs = ['npm', 'brew'];
 
 	//handles the toggle on the package selector state
 	$scope.addPackagePreference = function(packagename){

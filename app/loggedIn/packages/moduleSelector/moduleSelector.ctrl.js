@@ -1,9 +1,6 @@
 var _ = require('lodash');
 
 window.thisApp.controller('PackageManagerCtrl', function ($scope, $state, $rootScope, AccountEditFactory, PackageFactory) {
-  // console.log('State params package info: ',$stateParams.packageInfo)
-  //$scope.packageArr = JSON.parse($stateParams.packageInfo);
-  //console.log('scope.packageArr',  $scope.packageArr);
   $scope.getPackageInfo = function(){
   	PackageFactory.getPackages()
   	.then(function(packages){
@@ -22,7 +19,7 @@ window.thisApp.controller('PackageManagerCtrl', function ($scope, $state, $rootS
   $scope.checked=true;
 
 
-
+  //handles the toggle on the module selector state
   $scope.addModulePreference = function(packageName, module){
   	 $scope.moduleSelections = PackageFactory.toggleModuleSelections(packageName, module, $scope.moduleSelections);
   }
