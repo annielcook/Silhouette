@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-window.thisApp.controller('PackageManagerCtrl', function ($scope, $state, $rootScope, AccountEditFactory, PackageFactory) {
+window.thisApp.controller('ModuleSelectorCtrl', function ($scope, $state, $rootScope, AccountEditFactory, PackageFactory) {
   $scope.getPackageInfo = function(){
   	PackageFactory.getPackages()
   	.then(function(packages){
