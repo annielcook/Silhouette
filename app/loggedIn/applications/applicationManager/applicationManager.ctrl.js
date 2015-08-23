@@ -12,6 +12,8 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 			$scope.$digest();
 		})
 	}
+	
+	$scope.updateCurrentApps()
 
 
 	$scope.uploadBrewCask = function(){

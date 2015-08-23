@@ -9,7 +9,6 @@ var optionalApps = [ 'alfred', 'caffeine', 'cheatsheet', 'chrome-devtools', 'chr
 window.thisApp.factory('ApplicationFactory', function($rootScope){
   return{
   	updateCurrentCask: function(newApps){
-  		// var cask = fs.readdirSync("/opt/homebrew-cask/Caskroom");
   		return User.findOne({email: $rootScope.currentUser.email})
   		.then(function(user){
   			user.applicationPreferences.push.apply(user.applicationPreferences, newApps);
@@ -41,6 +40,7 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       })
       return availableAndHas
     },
+    // // display options that have not been chosen
     // optionals: function(listOfApps){
     //   var optionalToDisplay = [];
     //   console.log("optionalApps: ", optionalApps)
