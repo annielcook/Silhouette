@@ -5,6 +5,7 @@ window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $root
 	$scope.packageOptions = ['npm', 'brew'];
 	$scope.packagePrefs = ['npm', 'brew'];
 
+  $scope.checked = true;
 	//handles the toggle on the package selector state
 	$scope.addPackagePreference = function(packagename){
 		$scope.packagePrefs = PackageFactory.addPackagePrefs(packagename, $scope.packagePrefs);
@@ -37,12 +38,13 @@ window.thisApp.controller('PackageSelectorCtrl', function ($scope, $state, $root
 		.then(function (arrOfArraysOfModules){
 			return PackageFactory.createPackages(arrOfArraysOfModules)
 		})
-		.then(function(){
-			$state.go('loggedIn.moduleSelector');
+		.then(function(user){
+			console.log('user with/without packages', user);
+			!user.packages.length ? $state.go('loggedIn.applicationSelector') : $state.go('loggedIn.moduleManager')
 		})
 		.then(null, function(err){
     		console.error('Error', err);
-     })
-	}
+   })
 
+  };
 })

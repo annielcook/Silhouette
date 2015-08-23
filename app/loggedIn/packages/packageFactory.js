@@ -24,6 +24,9 @@ window.thisApp.factory('PackageFactory', function($rootScope){
         }))
     		.then(function (arrayOfPackageObjs) {
     			return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: arrayOfPackageObjs}}, {new: true})
+          .then(function(user){
+            return user;
+          })
     		})
     },
     getPackages: function(){

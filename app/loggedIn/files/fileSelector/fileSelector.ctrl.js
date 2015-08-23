@@ -51,9 +51,9 @@ window.thisApp.controller('FileSelectorCtrl', function ($scope, FileManagerFacto
   }
 
 	$scope.addFilePreference = function(filename){
-    console.log('$scope.filePrefs before toggle', $scope.filePrefs);
+    // console.log('$scope.filePrefs before toggle', $scope.filePrefs);
     $scope.filePrefs = FileManagerFactory.addFilePrefs(filename, $scope.filePrefs);
-    console.log('$scope.filePrefs after toggle', $scope.filePrefs);
+    // console.log('$scope.filePrefs after toggle', $scope.filePrefs);
   }
     //get file preferences from user upon signup
   $scope.addFilePrefToUser = function(){
