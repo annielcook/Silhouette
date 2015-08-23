@@ -32,7 +32,7 @@ window.thisApp.config(function ($stateProvider) {
 	})
 	.state('loggedIn.moduleSelector', {
 		templateUrl: __dirname + '/packages/moduleSelector/moduleSelector.html',
-		controller: 'ModuleSelectorrCtrl'
+		controller: 'ModuleSelectorCtrl'
 	})
 	.state('loggedIn.moduleManager', {
 		templateUrl: __dirname + '/packages/moduleManager/moduleManager.html',

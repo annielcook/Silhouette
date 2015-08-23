@@ -33,6 +33,7 @@ window.thisApp.factory('PackageFactory', function($rootScope){
       return User.findOne({email: $rootScope.currentUser.email})
              .populate('packages')
              .then(function(user){
+              console.log('getting packages for user in factory:', user);
               return user.packages;
              })
     },
