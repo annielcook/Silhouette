@@ -1,13 +1,12 @@
 <div>
 	<h1>Application Manager</h1>
 	<div>
-		<button ng-click="uploadBrewCask()" class="btn btn-default btn-xs">Upload Brew Cask</button>
-		<h4>Applications Currently in Brew Cask:</h4>
-		{{apps}}
-	</div>
-	<div>
-		<button ng-click="uploadFinderApps()" class="btn btn-default btn-xs">Upload Application Names from Finder</button>
-		<h4>Applications Currently in Finder:</h4>
-		{{finderApps}}
+		<h4>Applications Currently Being Tracked:</h4>
+		<div ng-repeat="app in currentCask">
+			<i class="fa fa-3x fa-file-code-o"></i><button ng-click="removeApp(app)" class="btn btn-default btn-xs">Stop Tracking</button>
+			<p>{{app}}</p>
+		</div>
+		{{appsAvailableInCask}}
+		<button ng-click="uploadBrewCask()" class="btn btn-default btn-xs">Update Apps from Brew Cask</button><button ng-click="uploadFinderApps()" class="btn btn-default btn-xs">Update Apps from Finder</button>
 	</div>
 </div>

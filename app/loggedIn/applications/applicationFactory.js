@@ -8,11 +8,10 @@ var optionalApps = [ 'alfred', 'caffeine', 'cheatsheet', 'chrome-devtools', 'chr
 
 window.thisApp.factory('ApplicationFactory', function($rootScope){
   return{
-  	uploadCurrentCask: function(){
-  		var cask = fs.readdirSync("/opt/homebrew-cask/Caskroom");
+  	updateCurrentCask: function(newApps){
   		return User.findOne({email: $rootScope.currentUser.email})
   		.then(function(user){
-  			user.applicationPreferences.push.apply(user.applicationPreferences, cask);
+  			user.applicationPreferences.push.apply(user.applicationPreferences, newApps);
   			var appPrefs = _.uniq(user.applicationPreferences);
   			return appPrefs;
   		})
@@ -26,6 +25,13 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
         throw err;
       });		
   	},
+    deleteApp: function(app){
+      return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$pull: {applicationPreferences: app} }, {new : true})
+      .then(null, function(error){
+        console.log(error)
+      })
+    },
+    
     availableApps: function(finderApps){
       var availableAndHas = [];
       finderApps.forEach(function(app){
@@ -34,6 +40,7 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       })
       return availableAndHas
     },
+    // // display options that have not been chosen
     // optionals: function(listOfApps){
     //   var optionalToDisplay = [];
     //   console.log("optionalApps: ", optionalApps)
@@ -70,6 +77,17 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       .then(null, function (err) {
         throw err;
       });
+    },
+    retrieveCurrentApps: function(){
+      return User.findOne({email: $rootScope.currentUser.email})
+      .then(function(user){
+        return user.applicationPreferences
+      })
+      .then(null, function (err) {
+        throw err;
+      });
     }
   }
 })
+
+
