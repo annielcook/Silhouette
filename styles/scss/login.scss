@@ -1,0 +1,26 @@
+.beforeLoggedIn {
+	background-color:#337AB7;
+	height:100vh;
+
+	h1 {
+		font-family: 'Lobster', cursive;
+		margin-left: 38%;
+		font-size: 70px;
+		color: #D3D3D3;
+	}
+
+	&.login {
+		padding-top: 15%;
+	}
+
+	&.signup {
+		padding-top: 15%;
+	}
+	.container {
+		width: 50%;
+		border: 1px solid #D3D3D3;
+		border-radius: 25px;
+		background-color: #D3D3D3;
+		padding: 25px;
+	}
+}
