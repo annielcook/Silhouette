@@ -1,12 +1,30 @@
-.uninstall {
-	display: none;
+.moduleManager {
+
+	table {
+		width: 80%;
+	}
+
+	button {
+		float: right;
+		margin-left: 15px;
+		display: none;
+	}
+
+	tr:hover {
+		button {
+			display: block;
+		}
+	}
+
+
 }
 
-.module:hover{
-	background-color: #f6f6f6;
-	display: inline-block;
-	.uninstall{
-		display: inline-block;
-		background-color: white;
-	}
-}
+
+// .module:hover{
+// 	background-color: #f6f6f6;
+// 	display: inline-block;
+// 	.uninstall .removeModule{
+// 		display: inline-block;
+// 		background-color: white;
+// 	}
+// }

@@ -9,6 +9,7 @@ window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootSc
 	})
 
 	$scope.removeModule = function (packageName, module) {
+		//call factory function to remove from user
 		PackageFactory.removeModule(packageName, module)
 		.then(function () {
 			PackageFactory.getPackages()
@@ -24,17 +25,7 @@ window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootSc
 		var cmd = packageName + ' uninstall ' + module;
 		exec(cmd, function (err, stdout, stderr) {
 			if(err) return console.log('Error ', err);
-			//call factory function to remove from user
 			return $scope.removeModule(packageName, module);
-
-			// PackageFactory.removeModule(packageName, module)
-			// .then(function () {
-			// 	PackageFactory.getPackages()
-			// 	.then(function(thePackages) {
-			// 		$scope.packages = thePackages;
-			// 		$scope.$digest();
-			// 	})
-			// })
 		})
 	}
 

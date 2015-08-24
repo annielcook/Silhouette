@@ -29,15 +29,16 @@ ul {
   height: 250px;
   border: 1px solid #8599A7; }
 
-.uninstall {
+.moduleManager table {
+  width: 80%; }
+
+.moduleManager button {
+  float: right;
+  margin-left: 15px;
   display: none; }
 
-.module:hover {
-  background-color: #f6f6f6;
-  display: inline-block; }
-  .module:hover .uninstall {
-    display: inline-block;
-    background-color: white; }
+.moduleManager tr:hover button {
+  display: block; }
 
 html,
 body {
