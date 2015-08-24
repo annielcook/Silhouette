@@ -45,7 +45,16 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
       })
      },
     installAllApps: function(){
-
+      ApplicationFactory.retrieveCurrentApps()
+      .then(function(apps){
+        console.log('installing this app!!!')
+        _.each(apps, function(app){
+          ApplicationFactory.installApp(app);
+        })
+      })
+      .then(null, function(err){
+        console.error('error:', err);
+      })
     }
   }
 })
