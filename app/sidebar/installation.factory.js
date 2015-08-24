@@ -6,7 +6,7 @@ var _ = require('lodash');
 var fs = Promise.promisifyAll(require("fs"));
 var exec = require('child_process').exec;
 
-window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactory, FileManagerFactory){
+window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactory, FileManagerFactory, ApplicationFactory){
   return{
     installAllPackages: function(){
       PackageFactory.getPackages()
@@ -22,7 +22,7 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
         })      
       })
      },
-     installAllFiles: function(){
+    installAllFiles: function(){
       console.log('installing files!');
       FileManagerFactory.getAllFiles()
       .then(function(files){
@@ -43,6 +43,18 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
       .then(null, function(err){
         console.error('Error', err);
       })
-     }
+     },
+    installAllApps: function(){
+      ApplicationFactory.retrieveCurrentApps()
+      .then(function(apps){
+        console.log('installing this app!!!')
+        _.each(apps, function(app){
+          ApplicationFactory.installApp(app);
+        })
+      })
+      .then(null, function(err){
+        console.error('error:', err);
+      })
+    }
   }
 })
