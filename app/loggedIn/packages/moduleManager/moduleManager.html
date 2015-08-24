@@ -1,5 +1,4 @@
 <h1>Module Manager</h1>
-<button class=" btn btn-default" ng-click="installAll()">Install All</button>
 <div class="moduleManager" ng-repeat="package in packages">
 	<table class="table table-hover">
 		<thead>
@@ -13,9 +12,10 @@
 				<tr class="module" ng-repeat="module in package.modules" >
 						<td>{{module}}</td>
 						<td></td>
-						<td><button class="btn btn-xs" ng-click="uninstall(package.name, module)">uninstall</button><button class="btn btn-xs" ng-click="removeModule(package.name, module)">remove</button><button class=" btn btn-xs" ng-click="install(package.name, module)">install</button></td>
+						<td><button class="btn btn-xs" ng-click="removeModule(package.name, module)">remove</button><button class="btn btn-xs" ng-click="uninstall(package.name, module)">uninstall</button><button class=" btn btn-xs" ng-click="install(package.name, module)">install</button></td>
 				</tr>
 		 </div>
 		</tbody>
 	</table>
 </div>
+<button class=" btn btn-default" ng-click="installAll()">Install All</button>
