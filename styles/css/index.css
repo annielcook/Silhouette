@@ -60,6 +60,25 @@ ul {
 .moduleManager tr:hover button {
   display: block; }
 
+.beforeLoggedIn {
+  background-color: #337AB7;
+  height: 100vh; }
+  .beforeLoggedIn h1 {
+    font-family: 'Lobster', cursive;
+    margin-left: 38%;
+    font-size: 70px;
+    color: #D3D3D3; }
+  .beforeLoggedIn.login {
+    padding-top: 15%; }
+  .beforeLoggedIn.signup {
+    padding-top: 15%; }
+  .beforeLoggedIn .container {
+    width: 50%;
+    border: 1px solid #D3D3D3;
+    border-radius: 25px;
+    background-color: #D3D3D3;
+    padding: 25px; }
+
 html,
 body {
   padding: 0;
