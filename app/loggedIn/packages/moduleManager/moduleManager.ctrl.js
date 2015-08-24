@@ -1,7 +1,7 @@
 var _ = require('lodash')
 var exec = require('child_process').exec
 
-window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootScope, PackageFactory){
+window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootScope, PackageFactory, InstallationFactory){
 	PackageFactory.getPackages()
 	.then(function(thePackages) {
 		$scope.packages = thePackages;
@@ -40,16 +40,16 @@ window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootSc
 	}
 
 	$scope.installAll = function () {
-		$scope.packages.forEach(function (pack) {
-			pack.modules.forEach(function (mod) {
-				var cmd = pack.name + ' install ' + mod;
-				exec(cmd, function (err, stdout, stderr) {
-					if(err) return console.log('Error ', err);
-					console.log(pack.name + ' has been successfully installed!')
-				})
-			})
-		})
-
+		// $scope.packages.forEach(function (pack) {
+		// 	pack.modules.forEach(function (mod) {
+		// 		var cmd = pack.name + ' install ' + mod;
+		// 		exec(cmd, function (err, stdout, stderr) {
+		// 			if(err) return console.log('Error ', err);
+		// 			console.log(pack.name + ' has been successfully installed!')
+		// 		})
+		// 	})
+		// })
+		InstallationFactory.installAllPackages();
 	}
 
 

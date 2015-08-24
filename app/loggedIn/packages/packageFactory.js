@@ -58,12 +58,6 @@ window.thisApp.factory('PackageFactory', function($rootScope){
              })
     },
     removeModule: function (packageName, module) {
-      //on the user there is a package field that looks like 
-      //[{name: npm, modules: ['blah']},{name:brew, modules: ['also','blah']}]
-      //find user
-      //get package id
-      //findOneAndUpdate on package
-
       return User.findOne({email: $rootScope.currentUser.email}).populate('packages')
       .then(function (user) {
         var packageToUpdate = _.filter(user.packages, function (packageObj){
