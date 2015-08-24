@@ -4,7 +4,7 @@ var User = mongoose.model('User');
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
 
-window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
+window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope, InstallationFactory) {
 
   //upload a file and update the files displayed
   $scope.uploadFile = function(event){
@@ -31,8 +31,6 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
 
   $scope.downloadFile = function(file){
     return fs.writeFileAsync(file.path, file.content)
-    .then(function(){
-    })
     .then(null, function(error){
       console.log(error);
     })
@@ -53,9 +51,8 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
   }
 
   $scope.downloadAllFiles = function(){
-    $scope.files.forEach(function(file){
-      $scope.downloadFile(file);
-    })
+    console.log('button clicked!');
+    InstallationFactory.installAllFiles();
   }
 
 
