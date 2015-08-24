@@ -6,18 +6,52 @@
 	position: fixed;
 	width: 200px;
 
+	a{
+		text-decoration: none;
+	}
 	h1 {
 		font-family: 'Lobster', cursive;
 	}
 
 	li {
 		text-align: center;
-		padding: 20px 0;
+		padding: 10px 0;
 
 	}
-}
+	.active { 
+	  background-color: #BFBFBF;
+		p {
+			visibility: visible;
+			display: block;
+		}
+	}
 
+	p {
+		visibility: hidden;
+	}
+
+	li:hover {
+		p {
+			visibility: visible;
+			display: block;
+		}
+	}
+
+	.magic {
+		margin-top: 45px;
+		background-color: #337AB7;
+		p {
+			visibility: visible;
+			display: block;
+		}
+		i, p {
+			color: #d3d3d3;
+		}
+	}
+}
 ul {
 	list-style-type: none;
 	padding: 0
 }
+
+

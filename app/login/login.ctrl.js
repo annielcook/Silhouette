@@ -5,7 +5,7 @@ window.thisApp.controller('LoginCtrl', function (Auth, $scope, $state, $rootScop
 		Auth.login(userInfo)
 		.then(function (loggedInUser) {
 			console.log('Successful login!')
-			$state.go('loggedIn.fileManager')
+			$state.go('loggedIn.home')
 		})
 		.catch (function (e) {
 			console.log('error logging in', e)

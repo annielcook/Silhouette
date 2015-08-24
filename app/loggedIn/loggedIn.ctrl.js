@@ -6,6 +6,7 @@ var fs = Promise.promisifyAll(require("fs"));
 
 window.thisApp.controller('LoggedInCtrl', function ($scope, $state, AccountEditFactory, FileManagerFactory, $rootScope) {
 
+
   // retrieves current user's files
   $scope.retrieveAllFiles = function(){
     FileManagerFactory.getAllFiles()
