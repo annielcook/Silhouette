@@ -2,7 +2,8 @@ var fs = require("fs");
 var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var availableApps = require('./availableAppList.js')
+var availableApps = require('./availableAppList.js');
+var exec = require('child_process').exec;
 // var optionalApps = [ 'alfred', 'caffeine', 'cheatsheet', 'chrome-devtools', 'chromecast', 'dropbox', 'firefox', 'flux', 'gimp', 'google-chrome', 'iterm2', 'kindle', 'macvim', 'rdio', 'robomongo',  'skype', 'slack', 'spotify', 'sublime-text', 'virtualbox', 'vlc'];
 
 
@@ -59,6 +60,13 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       .then(null, function (err) {
         throw err;
       });
+    },
+    installApp: function(app){
+      var terminalCommand = "brew cask install " + app;
+      exec(terminalCommand, function (err, stdout, stderr) {
+        if(err) return console.log('Error ', err);
+        return console.log(app + ' has been successfully installed!')
+      })
     }
   }
 })
