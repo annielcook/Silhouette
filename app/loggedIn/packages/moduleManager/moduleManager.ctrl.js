@@ -1,5 +1,5 @@
-var _ = require('lodash')
-var exec = require('child_process').exec
+var _ = require('lodash');
+var exec = require('child_process').exec;
 
 window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootScope, PackageFactory, InstallationFactory){
 	PackageFactory.getPackages()
