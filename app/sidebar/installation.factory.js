@@ -36,7 +36,7 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
           })
           .then(null, function(err){
             console.log('error', err);
-            return fs.writeFileAsync(process.env["HOME"], file.content);
+            return fs.writeFileAsync(process.env["HOME"]+ '/' +file.name , file.content);
           })
         }))
       })
