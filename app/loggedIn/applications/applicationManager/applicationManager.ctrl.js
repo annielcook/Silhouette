@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
+var exec = require('child_process').exec;
 
 window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory) {
 
@@ -39,9 +40,17 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 
 	$scope.removeApp = function(app){
 		ApplicationFactory.deleteApp(app)
-    .then(function(user){
-      $scope.updateCurrentApps();
-    })
+	    .then(function(user){
+	      $scope.updateCurrentApps();
+	    })
+	}
+
+	$scope.installApp = function(app){
+		var terminalCommand = "brew cask install " + app;
+		exec(terminalCommand, function (err, stdout, stderr) {
+			if(err) return console.log('Error ', err);
+			return console.log(app + ' has been successfully installed!')
+		})
 	}
 
 })
