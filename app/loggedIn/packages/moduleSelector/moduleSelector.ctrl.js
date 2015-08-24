@@ -5,9 +5,7 @@ window.thisApp.controller('ModuleSelectorCtrl', function ($scope, $state, $rootS
   	PackageFactory.getPackages()
   	.then(function(packages){
       $scope.moduleSelections = {};
-        console.log('packages', packages)
         _.each(packages, function(packageItem){
-         console.log('inside each package', packageItem)
         $scope.moduleSelections[packageItem.name] = packageItem.modules;
        })
 		  $scope.moduleOptions = _.clone($scope.moduleSelections, true)
@@ -28,7 +26,6 @@ window.thisApp.controller('ModuleSelectorCtrl', function ($scope, $state, $rootS
     console.log('Module Selections: ', $scope.moduleSelections)
   	PackageFactory.updatePackages($scope.moduleSelections)
   	.then(function (user) {
-  		// console.log('updated user: ', user.packages[0].modules)
 	  	$state.go('loggedIn.applicationSelector');
   	})
   	.then(null, function (err) {
