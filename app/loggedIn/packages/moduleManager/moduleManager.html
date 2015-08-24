@@ -11,6 +11,7 @@
 			<div>
 				<tr class="module" ng-repeat="module in package.modules" >
 						<td>{{module}}</td>
+						<td><button class="stopTracking btn btn-sm" ng-click="removeModule(package.name, module)">remove</button></td>
 						<td><button class="uninstall btn btn-sm" ng-click="uninstall(package.name, module)">uninstall</button></td>
 				</tr>
 		 </div>
