@@ -3,6 +3,7 @@ var Package = mongoose.model('Package');
 var User = mongoose.model('User');
 var Promise = require('bluebird');
 var _ = require('lodash');
+var exec = require('child_process').exec;
 
 window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactory){
   return{
