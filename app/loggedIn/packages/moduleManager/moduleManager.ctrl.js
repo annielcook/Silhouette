@@ -40,15 +40,6 @@ window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootSc
 	}
 
 	$scope.installAll = function () {
-		// $scope.packages.forEach(function (pack) {
-		// 	pack.modules.forEach(function (mod) {
-		// 		var cmd = pack.name + ' install ' + mod;
-		// 		exec(cmd, function (err, stdout, stderr) {
-		// 			if(err) return console.log('Error ', err);
-		// 			console.log(pack.name + ' has been successfully installed!')
-		// 		})
-		// 	})
-		// })
 		InstallationFactory.installAllPackages();
 	}
 
