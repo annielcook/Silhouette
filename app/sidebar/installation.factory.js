@@ -29,12 +29,12 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
         Promise.all(_.map(files, function(file){
           console.log('installing file with writeFileAsync', file);
           var folderPath = file.path.slice(0, file.path.lastIndexOf('/'));
+          console.log('folderpath', folderPath);
           return fs.lstatAsync(folderPath)
           .then(function(lstatObj){
             console.log('lstatObj', lstatObj);
             return fs.writeFileAsync(file.path, file.content);
-          })
-          .then(null, function(err){
+          }, function(err){
             console.log('error', err);
             return fs.writeFileAsync(process.env["HOME"]+ '/' +file.name , file.content);
           })
