@@ -31,11 +31,12 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
           var folderPath = file.path.slice(0, file.path.lastIndexOf('/'));
           return fs.lstatAsync(folderPath)
           .then(function(lstatObj){
+            return fs.writeFileAsync(file.path, file.content);
             console.log('lstatObj', lstatObj);
-           fs.writeFileAsync(process.env["HOME"], file.content);
           })
           .then(null, function(err){
-               return fs.writeFileAsync(file.path, file.content);
+            console.log('error', err);
+            return fs.writeFileAsync(process.env["HOME"], file.content);
           })
         }))
       })
