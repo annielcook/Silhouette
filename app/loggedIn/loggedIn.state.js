@@ -4,19 +4,19 @@ window.thisApp.config(function ($stateProvider) {
 		controller: 'LoggedInCtrl',
 	})
 	.state('loggedIn.account', {
-		templateUrl: __dirname + '/account/account.html'
+		templateUrl: __dirname + '/account/account.html',
 	})
 	.state('loggedIn.fileManager', {
 		templateUrl: __dirname + '/files/fileManager/fileManager.html',
-		controller: 'FileManagerCtrl'
+		controller: 'FileManagerCtrl',
 	})
 	.state('loggedIn.applicationManager', {
 		templateUrl: __dirname + '/applications/applicationManager/applicationManager.html',
-		controller: 'ApplicationCtrl'
+		controller: 'ApplicationCtrl',
 	})
 	.state('loggedIn.accountEdit', {
 		templateUrl: __dirname + '/account/accountEdit.html',
-		controller: 'AccountCtrl'
+		controller: 'AccountCtrl',
 	})
 	.state('loggedIn.fileSelector', {
 		templateUrl: __dirname + '/files/fileSelector/fileSelector.html',
@@ -31,16 +31,15 @@ window.thisApp.config(function ($stateProvider) {
 		controller: 'ApplicationSelectorCtrl'
 	})
 	.state('loggedIn.moduleSelector', {
-		templateUrl: __dirname + '/packages/moduleSelector/moduleSelector.html',
-		controller: 'ModuleSelectorCtrl'
+		templateUrl: __dirname + '/packages/moduleSelector/moduleSelector.html'
 	})
 	.state('loggedIn.moduleManager', {
 		templateUrl: __dirname + '/packages/moduleManager/moduleManager.html',
-		controller: 'ModuleManagerCtrl'
+		controller: 'ModuleManagerCtrl',
 	})
 	.state('loggedIn.home', {
 		templateUrl: __dirname + '/home/home.html',
-		controller: 'HomeCtrl'
+		controller: 'HomeCtrl',
 	})
 
 }) 

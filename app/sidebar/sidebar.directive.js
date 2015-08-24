@@ -12,3 +12,17 @@ window.thisApp.directive('sidebar', function ($rootScope, $state) {
 		}
 	}
 })
+
+window.thisApp.directive('isActive', function () {
+	return {
+		restrict: 'A',
+		link: function (scope, element, attrs) {
+			element.bind('click', function () {
+				console.log('angular.element(this): ', angular.element(this))
+				console.log('this: ', this)
+				element.parent().children().removeClass('active');
+				element.toggleClass('active');
+			})
+		}
+	}
+})

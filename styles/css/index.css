@@ -5,11 +5,31 @@
   overflow-y: auto;
   position: fixed;
   width: 200px; }
+  .sidebar-nav a {
+    text-decoration: none; }
   .sidebar-nav h1 {
     font-family: 'Lobster', cursive; }
   .sidebar-nav li {
     text-align: center;
-    padding: 20px 0; }
+    padding: 10px 0; }
+  .sidebar-nav .active {
+    background-color: #BFBFBF; }
+    .sidebar-nav .active p {
+      visibility: visible;
+      display: block; }
+  .sidebar-nav p {
+    visibility: hidden; }
+  .sidebar-nav li:hover p {
+    visibility: visible;
+    display: block; }
+  .sidebar-nav .magic {
+    margin-top: 45px;
+    background-color: #337AB7; }
+    .sidebar-nav .magic p {
+      visibility: visible;
+      display: block; }
+    .sidebar-nav .magic i, .sidebar-nav .magic p {
+      color: #d3d3d3; }
 
 ul {
   list-style-type: none;
