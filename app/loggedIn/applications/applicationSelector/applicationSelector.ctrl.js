@@ -7,13 +7,20 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 	$scope.displayAppList = function(){
 		$scope.finderApps = ApplicationFactory.uploadFinderInstalled();
 		$scope.appsAvailableInCask = ApplicationFactory.availableApps($scope.finderApps);
-		$scope.appsInCurrentCask = fs.readdirSync("/opt/homebrew-cask/Caskroom");
-
 		$scope.appPrefs = []
+
+		// check if brew cask storage directory exists before reading it
+		var stat = fs.statSync("/opt/homebrew-cask/Caskroom");
+		if ( stat.isDirectory() ) {
+			$scope.appsInCurrentCask = fs.readdirSync("/opt/homebrew-cask/Caskroom");
+			$scope.appsInCurrentCask.forEach(function(app){
+				$scope.appPrefs.push(app)
+			})
+		}
+
 		$scope.appsAvailableInCask.forEach(function(app){
 			$scope.appPrefs.push(app)
 		})
-		$scope.appPrefs.push.apply($scope.appPrefs, $scope.appsInCurrentCask)
 	}
 	$scope.displayAppList()
 
