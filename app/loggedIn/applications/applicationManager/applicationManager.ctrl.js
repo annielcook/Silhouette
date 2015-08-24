@@ -3,6 +3,7 @@ var User = mongoose.model('User');
 var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
 var exec = require('child_process').exec;
+var _ = require('lodash');
 
 window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory) {
 
@@ -16,24 +17,15 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 	
 	$scope.updateCurrentApps()
 
-
-	$scope.uploadBrewCask = function(){
-		var cask = fs.readdirSync("/opt/homebrew-cask/Caskroom")
-		ApplicationFactory.updateCurrentCask(cask)
-		.then(function(apps){
-			$scope.currentCask = apps;
-			console.log("current cask updated")
-			$scope.$digest();
-		});
-	}
-
-	$scope.uploadFinderApps = function(){
+	$scope.syncAppsFromComputer = function(){
 		var finderApps = ApplicationFactory.uploadFinderInstalled()
-		var appsToAdd = ApplicationFactory.availableApps(finderApps);
-		ApplicationFactory.updateCurrentCask(appsToAdd)
+		var caskApps = ApplicationFactory.uploadCaskInstalled()
+		var chosenApps = _.uniq(finderApps.concat(caskApps))
+		console.log("chosenApps: ", chosenApps)
+		ApplicationFactory.addAppsToUser(chosenApps)
 		.then(function(apps){
-			$scope.currentCask = apps;
-			console.log("current cask updated")
+			console.log("apps from factory: ", apps)
+			$scope.updateCurrentApps();
 			$scope.$digest();
 		});
 	}
