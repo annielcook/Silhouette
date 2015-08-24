@@ -32,8 +32,11 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
           return fs.lstatAsync(folderPath)
           .then(function(lstatObj){
             console.log('lstatObj', lstatObj);
-             return lstatObj.isDirectory() ? fs.writeFileAsync(file.path, file.content)   : fs.writeFileAsync(process.env["HOME"], file.content) ;
-          })   
+           fs.writeFileAsync(process.env["HOME"], file.content);
+          })
+          .then(null, function(err){
+               return fs.writeFileAsync(file.path, file.content);
+          })
         }))
       })
       .then(null, function(err){
