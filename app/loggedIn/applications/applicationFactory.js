@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var availableApps = require('./availableAppList.js');
 var exec = require('child_process').exec;
+
 // var optionalApps = [ 'alfred', 'caffeine', 'cheatsheet', 'chrome-devtools', 'chromecast', 'dropbox', 'firefox', 'flux', 'gimp', 'google-chrome', 'iterm2', 'kindle', 'macvim', 'rdio', 'robomongo',  'skype', 'slack', 'spotify', 'sublime-text', 'virtualbox', 'vlc'];
 
 
@@ -18,14 +19,28 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
     },
 
   	uploadFinderInstalled: function(){
-  		var finderApps = fs.readdirSync("/Applications")
-      var finder = []
-      finderApps.forEach(function(app){
-        var formatted = app.replace(/\.app$/gi, "").replace(/\s/gi, "-").toLowerCase()
-        var indexOfMatch = availableApps.indexOf(formatted);
-        if (indexOfMatch != -1) finder.push(availableApps[indexOfMatch]);
-      })
-  		return finder
+      // var availableApps = exec("brew cask search", function (err, stdout, stderr) {
+      //   if(err) return console.log('Error ', err);
+      //   // console.log("stdout: ", stdout)
+      //   var rawOut = stdout
+      //   // var formattedOut = stdout.split(", ")
+      //   var formattedOut = "[" + rawOut.substr(15, rawOut.length - 1).replace(/\n/gi, ", ").replace("==> Partial matches", "") + "]"
+      //   console.log("formattedOut: ", formattedOut)
+      //   console.log("typeof formattedOut: ", typeof formattedOut)
+      //   return formattedOut
+
+      //   // return stdout
+        
+      // })
+      var finderApps = fs.readdirSync("/Applications")
+        var finder = []
+        finderApps.forEach(function(app){
+          var formatted = app.replace(/\.app$/gi, "").replace(/\s/gi, "-").toLowerCase()
+          var indexOfMatch = availableApps.indexOf(formatted);
+          if (indexOfMatch != -1) finder.push(availableApps[indexOfMatch]);
+        })
+        return finder
+  		
   	},
     uploadCaskInstalled: function(){
       // check if brew cask storage directory exists before reading it
