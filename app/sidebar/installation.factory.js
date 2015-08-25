@@ -12,10 +12,10 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
      PackageFactory.getPackages()
       .then(function(thePackages) {
         console.log('inside get packages . then')
-          var global = "";
-          (pack.name === 'npm') ? (global = ' -g') : (global = '');
           console.log('global', global);
         thePackages.forEach(function (pack) {
+          var global = "";
+          (pack.name === 'npm') ? (global = ' -g') : (global = '');
           pack.modules.forEach(function (mod) {
             var cmd = pack.name + global + ' install ' + mod;
             exec(cmd, function (err, stdout, stderr) {
