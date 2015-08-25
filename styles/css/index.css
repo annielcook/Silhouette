@@ -1,35 +1,41 @@
 .sidebar-nav {
-  background-color: #d3d3d3;
+  background-color: #337AB7;
   left: 0;
   height: 100%;
   overflow-y: auto;
   position: fixed;
   width: 200px; }
+  .sidebar-nav i, .sidebar-nav p {
+    color: white; }
   .sidebar-nav a {
     text-decoration: none; }
   .sidebar-nav h1 {
-    font-family: 'Lobster', cursive; }
+    font-family: 'Lobster', cursive;
+    color: white; }
   .sidebar-nav li {
     text-align: center;
     padding: 10px 0; }
   .sidebar-nav .active {
-    background-color: #BFBFBF; }
+    background-color: white; }
     .sidebar-nav .active p {
       visibility: visible;
-      display: block; }
+      display: block;
+      color: #337AB7; }
+    .sidebar-nav .active i {
+      color: #337AB7; }
   .sidebar-nav p {
     visibility: hidden; }
   .sidebar-nav li:hover p {
     visibility: visible;
     display: block; }
   .sidebar-nav .magic {
-    margin-top: 45px;
-    background-color: #337AB7; }
+    margin-top: 137px;
+    border-top: 2px solid white; }
     .sidebar-nav .magic p {
       visibility: visible;
       display: block; }
     .sidebar-nav .magic i, .sidebar-nav .magic p {
-      color: #d3d3d3; }
+      color: white; }
 
 ul {
   list-style-type: none;
@@ -67,7 +73,7 @@ ul {
     font-family: 'Lobster', cursive;
     margin-left: 38%;
     font-size: 70px;
-    color: #D3D3D3; }
+    color: white; }
   .beforeLoggedIn.login {
     padding-top: 15%; }
   .beforeLoggedIn.signup {
