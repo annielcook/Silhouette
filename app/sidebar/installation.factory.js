@@ -18,12 +18,14 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
       var checkInstalls = [
         '/Applications/Xcode.app',
         '/usr/local/Cellar',
-        '/usr/local/bin/node'
+        '/usr/local/Cellar/brew-cask',
+        '/usr/local/bin/node',
       ]
 
       var commands = [
         'xcode-select --install', 
         'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"',
+        'brew install brew-cask',
         'export PATH="/usr/local/bin:$PATH"',
         'brew install node']
 
@@ -39,7 +41,7 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
           console.log('error: ', err)
           console.log('pushing to need to install: ', commands[index])
           needToInstall.push(commands[index]);
-          (index === 2) ? needToInstall.push(commands[3]) : console.log('pushed two commands');
+          (index === 3) ? needToInstall.push(commands[4]) : console.log('pushed two commands');
         })
       }))
       .then(function (){
