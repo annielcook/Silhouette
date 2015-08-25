@@ -22,6 +22,7 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 
 			console.log("$scope.appPrefs: ", $scope.appPrefs)
 			console.log("$scope.appPreferences: ", $scope.appPreferences)
+			$scope.$digest()
 		});
 		
 	}
