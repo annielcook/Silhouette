@@ -40,7 +40,7 @@ window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootSc
 	}
 
 	$scope.installAll = function () {
-		InstallationFactory.installAllPackages();
+		// InstallationFactory.installAllPackages();
 	}
 
 

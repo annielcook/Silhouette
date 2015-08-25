@@ -1,6 +1,9 @@
 'use strict'
+var Promise = require('bluebird');
+var _ = require('lodash');
 
-window.thisApp.directive('sidebar', function ($rootScope, $state, PackageFactory, FileManagerFactory, ApplicationFactory) {
+
+window.thisApp.directive('sidebar', function ($rootScope, $state, InstallationFactory) {
 	return {
 		restrict: 'E',
 		templateUrl: __dirname + '/sidebar.html',
@@ -11,7 +14,12 @@ window.thisApp.directive('sidebar', function ($rootScope, $state, PackageFactory
 			}
 			//call install all for files, packages, and apps
 			$scope.setUpEnv = function(){
-
+				// InstallationFactory.installAllFiles
+				// .then(function(){
+				// 	return InstallationFactory.installAllPackages;
+				// })
+				// .then(function(){})
+					
 			}
 		}
 	}
