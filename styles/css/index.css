@@ -111,4 +111,5 @@ header h1 {
   padding: 0; }
 
 .main-container {
-  margin-left: 250px; }
+  margin-left: 250px;
+  margin-top: 10px; }
