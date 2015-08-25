@@ -22,10 +22,8 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 			var finderApps = apps
 			var caskApps = ApplicationFactory.uploadCaskInstalled()
 			var chosenApps = _.uniq(finderApps.concat(caskApps))
-			console.log("chosenApps: ", chosenApps)
 			ApplicationFactory.addAppsToUser(chosenApps)
 			.then(function(apps){
-				console.log("apps from factory: ", apps)
 				$scope.updateCurrentApps();
 				$scope.$digest();
 			});
@@ -45,7 +43,6 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 	}
 
 	$scope.installAllApps = function(){
-		console.log('installing all apps!!');
 		InstallationFactory.installAllApps();
 	}
 

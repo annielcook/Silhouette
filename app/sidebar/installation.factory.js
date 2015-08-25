@@ -57,7 +57,6 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
             var cmd = pack.name + global + ' install ' + mod;
             exec(cmd, function (err, stdout, stderr) {
               if(err) return console.log('Error ', err);
-              console.log(mod + ' has been successfully installed!')
             })
           })
         })      

@@ -3,10 +3,8 @@ window.thisApp.controller('InstallationCheckCtrl', function ($scope, $state, Ins
 	console.log('$state.params: ', $state.params);
 
 		$scope.checkUserInstalled = function () {
-			console.log('i have been called!')
 			InstallationFactory.preInstallCheck()
 			.then(function (needToInstall) {
-				console.log('needtoinstall: ', needToInstall)
 				!needToInstall.length ? $state.go('loggedIn.moduleManager') : $state.go('loggedIn.installationCheck', {needToInstall : needToInstall})
 			})
 
