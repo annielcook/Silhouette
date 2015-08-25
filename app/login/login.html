@@ -3,17 +3,17 @@
 	<div class="container">
 		<form ng-submit="loginUser(user) && loginForm.$valid" name="loginForm" novalidate>
 		  <div class="form-group">
-		    <input required type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="user.email">
+		    <input required type="email" name="email" class="form-control input-lg" id="exampleInputEmail1" placeholder="Email" ng-model="user.email">
 		     <span class="error" ng-show="loginForm.email.$invalid && loginForm.email.$touched"> Please enter e-mail in correct format
         </span>
 		  </div>
 		  <div class="form-group">
-		    <input required type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" ng-model="user.password">
+		    <input required type="password" class="form-control input-lg" id="exampleInputPassword1" name="password" placeholder="Password" ng-model="user.password">
 		     <span class="error" ng-show="loginForm.$submitted"> Password and e-mail combination are invalid
         </span>
 		  </div>
-		  <button type="submit" class="btn btn-default">Submit</button>
-		  <button ui-sref="signup" class="btn btn-default">Sign Up</button>
+		  <button type="submit" class="btn btn-default btn-lg">Submit</button>
+		  <button ui-sref="signup" class="btn btn-default btn-lg">Sign Up</button>
 		</form>
 	</div>
 </div>

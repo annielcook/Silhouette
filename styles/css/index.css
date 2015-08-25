@@ -6,36 +6,38 @@
   position: fixed;
   width: 200px; }
   .sidebar-nav i, .sidebar-nav p {
-    color: white; }
+    color: #FFFFFF; }
   .sidebar-nav a {
     text-decoration: none; }
   .sidebar-nav h1 {
     font-family: 'Lobster', cursive;
-    color: white; }
+    color: #FFFFFF; }
   .sidebar-nav li {
     text-align: center;
     padding: 10px 0; }
   .sidebar-nav .active {
-    background-color: white; }
+    background-color: #337AB7;
+    -moz-box-shadow: inset 0 0 6px 3px rgba(42, 95, 171, 0.56);
+    -webkit-box-shadow: inset 0 0 6px 3px rgba(42, 95, 171, 0.56); }
     .sidebar-nav .active p {
       visibility: visible;
       display: block;
-      color: #337AB7; }
+      color: #FFFFFF; }
     .sidebar-nav .active i {
-      color: #337AB7; }
+      color: #FFFFFF; }
   .sidebar-nav p {
     visibility: hidden; }
   .sidebar-nav li:hover p {
     visibility: visible;
     display: block; }
   .sidebar-nav .magic {
-    margin-top: 137px;
-    border-top: 2px solid white; }
+    margin-top: 250px;
+    border-top: 2px solid #FFFFFF; }
     .sidebar-nav .magic p {
       visibility: visible;
       display: block; }
     .sidebar-nav .magic i, .sidebar-nav .magic p {
-      color: white; }
+      color: #FFFFFF; }
 
 ul {
   list-style-type: none;
@@ -68,16 +70,13 @@ ul {
 
 .beforeLoggedIn {
   background-color: #337AB7;
-  height: 100vh; }
+  height: 100vh;
+  padding-top: 15%; }
   .beforeLoggedIn h1 {
     font-family: 'Lobster', cursive;
-    margin-left: 38%;
-    font-size: 70px;
+    margin-left: 37%;
+    font-size: 94px;
     color: white; }
-  .beforeLoggedIn.login {
-    padding-top: 15%; }
-  .beforeLoggedIn.signup {
-    padding-top: 15%; }
   .beforeLoggedIn .container {
     width: 50%;
     border: 1px solid #D3D3D3;
@@ -91,7 +90,8 @@ ul {
 html,
 body {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  background-color: #FFFFFF; }
 
 header {
   position: absolute;
@@ -109,3 +109,6 @@ header h1 {
   font-weight: 100;
   margin: 0;
   padding: 0; }
+
+.main-container {
+  margin-left: 250px; }

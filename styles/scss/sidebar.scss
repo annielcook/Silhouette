@@ -7,7 +7,7 @@
 	width: 200px;
 	
 	i, p {
-		color: white;
+		color: #FFFFFF;
 	}
 
 	a{
@@ -15,7 +15,7 @@
 	}
 	h1 {
 		font-family: 'Lobster', cursive;
-		color: white;
+		color: #FFFFFF;
 	}
 
 	li {
@@ -24,14 +24,16 @@
 
 	}
 	.active { 
-	  background-color: white;
+	  background-color: #337AB7;
+	    -moz-box-shadow: inset 0 0 6px 3px rgba(42, 95, 171, 0.56);
+  		-webkit-box-shadow: inset 0 0 6px 3px rgba(42, 95, 171, 0.56);
 		p {
 			visibility: visible;
 			display: block;
-			color: #337AB7;
+			color: #FFFFFF;
 		}
 		i {
-			color: #337AB7;
+			color: #FFFFFF;
 		}
 	}
 
@@ -47,15 +49,15 @@
 	}
 
 	.magic {
-		margin-top: 137px;
+		margin-top: 250px;
 		//background-color: #337AB7;
-		border-top: 2px solid white;
+		border-top: 2px solid #FFFFFF;
 		p {
 			visibility: visible;
 			display: block;
 		}
 		i, p {
-			color: white;
+			color: #FFFFFF;
 		}
 	}
 }

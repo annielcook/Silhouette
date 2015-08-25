@@ -20,7 +20,8 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
       var commands = [
         'xcode-select --install', 
         'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"',
-        'brew install caskroom/brew/brew-cask',
+        'brew tap caskroom/cask',
+        'brew install brew-cask',
         'export PATH="/usr/local/bin:$PATH"',
         'brew install node']
 
@@ -36,7 +37,9 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
           console.log('error: ', err)
           console.log('pushing to need to install: ', commands[index])
           needToInstall.push(commands[index]);
-          (index === 3) ? needToInstall.push(commands[4]) : console.log('pushed two commands');
+          (index === 2) ? needToInstall.push(commands[3]) : console.log('pushed two commands');
+          if(index === 3) return;
+          (index === 4) ? needToInstall.push(commands[5]) : console.log('pushed two commands');
         })
       }))
       .then(function (){
