@@ -14,15 +14,14 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 
 //require('./login/index.js')(app)
 window.thisApp = app;
-console.log("GLOBAL APP: ", window.thisApp)
+
 
 window.thisApp.run(['$state', '$rootScope', function ($state, $rootScope) {
-	console.log('here')
-	$state.go('login')
+	$state.go('login');
 }])
 
-console.log('dirname: ', __dirname)
 
+require(__dirname + '/app/menu.js')
 require(__dirname + '/db')
 require(__dirname + '/app/login')
 require(__dirname + '/app/loggedIn')
