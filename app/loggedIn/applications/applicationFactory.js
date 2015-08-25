@@ -5,6 +5,7 @@ var User = mongoose.model('User');
 var App = mongoose.model('App');
 var Promise = require('bluebird');
 var exec = require('child_process').exec;
+var availableApps = require('./appList.js');
 
 
 
@@ -14,20 +15,6 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
   return{
 
   	uploadFinderInstalled: function(){
-
-      // loads list of available apps from brew cask
-      var availableApps = new Promise(function(resolve, reject){
-        exec("brew cask search", function (err, stdout, stderr) {
-          if(err) return reject(err);
-          var rawOut = stdout
-          var formattedOut = JSON.parse("[\"" + rawOut.substr(20, rawOut.length - 21).replace(/\n/gi, "\", \"") + "\"]")
-
-          // console.log("formattedOut: ", formattedOut)
-          // console.log("typeof formattedOut: ", typeof formattedOut)
-          // console.log("is formattedOut an array? ", Array.isArray(formattedOut))
-          resolve(formattedOut)
-        })
-      })
 
       return availableApps
       .then(function(appList){
@@ -61,9 +48,11 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       return appPrefs;
     },
 
-    addAppsToUser: function(prefs){
+    addAppsToUser: function(prefs, dontWant){
       console.log('calling add apps to user')
       console.log('prefs', prefs);
+      console.log('dont want in factory: ', dontWant)
+      /////////////
 
       return Promise.all(_.map(prefs, function(app){
         return App.create(
