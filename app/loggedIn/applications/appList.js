@@ -2685,26 +2685,39 @@ var listOfApps = [
 
 // check for a caskroom
 var availableApps
-var stat = fs.statSync("/opt/homebrew-cask/Caskroom");
-if ( stat.isDirectory() ) {
-	var availableApps = new Promise(function(resolve, reject){	
-    exec("brew cask search", function (err, stdout, stderr) {
-			if(err) return reject(err);
-			// console.log("stdout: ", stdout)
-			var rawOut = stdout
-			// var formattedOut = stdout.split(", ")
-			var formattedOut = JSON.parse("[\"" + rawOut.substr(20, rawOut.length - 21).replace(/\n/gi, "\", \"") + "\"]")
-			// var jsonified = JSON.parse(formattedOut)
-			console.log("formattedOut: ", formattedOut)
-			// console.log("jsonified: ", jsonified)
-			console.log("typeof formattedOut: ", typeof formattedOut)
-			console.log("is formattedOut an array? ", Array.isArray(formattedOut))
-			resolve(formattedOut);
+try {
+	var brewStat = fs.statSync("/usr/local/Cellar");
+	var caskStat = fs.statSync("/usr/local/Cellar/brew-cask");
+	var caskroomStat = fs.statSync("/opt/homebrew-cask/Caskroom")
+	console.log("brew path: ", brewStat.isDirectory())
+	console.log("cask path: ", caskStat.isDirectory())
+	console.log("caskroom path: ", caskroomStat.isDirectory())
+	if ( brewStat.isDirectory() && caskStat.isDirectory() && caskroomStat.isDirectory()) {
+		availableApps = new Promise(function (resolve, reject){	
+	    exec("brew cask search", function (err, stdout, stderr) {
+				if(err) return reject(err);
+				// console.log("stdout: ", stdout)
+				var rawOut = stdout
+				// var formattedOut = stdout.split(", ")
+				var formattedOut = JSON.parse("[\"" + rawOut.substr(20, rawOut.length - 21).replace(/\n/gi, "\", \"") + "\"]")
+				// var jsonified = JSON.parse(formattedOut)
+				console.log("formattedOut: ", formattedOut)
+				// console.log("jsonified: ", jsonified)
+				console.log("typeof formattedOut: ", typeof formattedOut)
+				console.log("is formattedOut an array? ", Array.isArray(formattedOut))
+				resolve(formattedOut);
+			})
 		})
-	})
+	}
 }
-else {
-	availableApps = listOfApps;
+
+catch (e) {
+	availableApps = new Promise(function (resolve, reject){
+		resolve(listOfApps)
+		reject(e)
+	})
+
+	// listOfApps;
 }
 
 console.log("availableApps in list file: ", availableApps)
