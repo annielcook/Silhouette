@@ -21,12 +21,17 @@ window.thisApp.controller('FileManagerCtrl', function ($scope, $state, AccountEd
   }
 
   $scope.updateFile = function(file){
-    file.content = fs.readFileSync(file.path, 'utf8').toString();
-    file.date = new Date();
-    FileManagerFactory.changeFile(file)
-    .then(function(user){
-      $scope.retrieveAllFiles();
-    })
+    // var oldContent = file.content
+    var newContent = fs.readFileSync(file.path, 'utf8').toString();
+    if (newContent != file.content){
+      file.content = newContent
+      file.date = new Date();
+      FileManagerFactory.changeFile(file)
+      .then(function(user){
+        $scope.retrieveAllFiles();
+      })
+    }
+    
   }
 
   $scope.downloadFile = function(file){

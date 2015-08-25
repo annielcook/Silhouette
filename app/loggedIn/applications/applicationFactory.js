@@ -33,15 +33,19 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       //   return formattedOut
         
       // })
-      console.log("availableApps in factory: ", availableApps)
-      var finderApps = fs.readdirSync("/Applications")
-        var finder = []
-        finderApps.forEach(function(app){
-          var formatted = app.replace(/\.app$/gi, "").replace(/\s/gi, "-").toLowerCase()
-          var indexOfMatch = availableApps.indexOf(formatted);
-          if (indexOfMatch != -1) finder.push(availableApps[indexOfMatch]);
-        })
-        return finder
+      return availableApps
+      .then(function(appList){
+        console.log("availableApps in factory: ", appList)
+        var finderApps = fs.readdirSync("/Applications")
+          var finder = []
+          finderApps.forEach(function(app){
+            var formatted = app.replace(/\.app$/gi, "").replace(/\s/gi, "-").toLowerCase()
+            var indexOfMatch = appList.indexOf(formatted);
+            if (indexOfMatch != -1) finder.push(appList[indexOfMatch]);
+          })
+          return finder
+      })
+      
   		
 
   	},

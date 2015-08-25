@@ -6,20 +6,24 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 	$scope.checked = true;
 
 	$scope.displayAppList = function(){
-		var appsAvailableInCask = ApplicationFactory.uploadFinderInstalled();
-		$scope.appPrefs = []
-		// $scope.appPreferences = []
+		return ApplicationFactory.uploadFinderInstalled()
+		.then(function(apps){
+			var appsAvailableInCask = apps
+			 // $scope.appPrefs = []
+			// $scope.appPreferences = []
 
-		var appsInCurrentCask = ApplicationFactory.uploadCaskInstalled()
+			var appsInCurrentCask = ApplicationFactory.uploadCaskInstalled()
 
-		// app prefs is what is displayed
-		// app preferences is what is selected
-		$scope.appPrefs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask
-		$scope.appPreferences = _.clone($scope.appPrefs)
-		// $scope.appPreferencs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask.concat([])
+			// app prefs is what is displayed
+			// app preferences is what is selected
+			$scope.appPrefs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask
+			$scope.appPreferences = _.clone($scope.appPrefs)
+			// $scope.appPreferencs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask.concat([])
 
-		console.log("$scope.appPrefs: ", $scope.appPrefs)
-		console.log("$scope.appPreferences: ", $scope.appPreferences)
+			console.log("$scope.appPrefs: ", $scope.appPrefs)
+			console.log("$scope.appPreferences: ", $scope.appPreferences)
+		});
+		
 	}
 
 	$scope.displayAppList()
