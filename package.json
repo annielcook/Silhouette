@@ -7,7 +7,7 @@
   "main": "index.js",
   "repository": "annielcook/silhouette",
   "author": {
-    "name": "Annie Cook",
+    "name": "Annie Cook Anna Goldberg Jovia Nierenberg",
     "email": "anniecook@ostby.com",
     "url": "localhost:1337"
   },
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore=dist --prune --asar --all --version=0.30.0",
+    "build":  "electron-packager . Silhouette --platform=darwin --arch=x64 --version=0.25.1 && cp Icon.icns Silhouette-darwin-x64/Silhouette.app/Contents/Resources/atom.icns",
     "postinstall": "gulp build"
   },
   "files": [
