@@ -24,14 +24,16 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       //   // console.log("stdout: ", stdout)
       //   var rawOut = stdout
       //   // var formattedOut = stdout.split(", ")
-      //   var formattedOut = "[" + rawOut.substr(15, rawOut.length - 1).replace(/\n/gi, ", ").replace("==> Partial matches", "") + "]"
+      //   var formattedOut = JSON.parse("[\"" + rawOut.substr(20, rawOut.length - 21).replace(/\n/gi, "\", \"") + "\"]")
+      //   // var jsonified = JSON.parse(formattedOut)
       //   console.log("formattedOut: ", formattedOut)
+      //   // console.log("jsonified: ", jsonified)
       //   console.log("typeof formattedOut: ", typeof formattedOut)
+      //   console.log("is formattedOut an array? ", Array.isArray(formattedOut))
       //   return formattedOut
-
-      //   // return stdout
         
       // })
+      console.log("availableApps in factory: ", availableApps)
       var finderApps = fs.readdirSync("/Applications")
         var finder = []
         finderApps.forEach(function(app){
@@ -41,6 +43,7 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
         })
         return finder
   		
+
   	},
     uploadCaskInstalled: function(){
       // check if brew cask storage directory exists before reading it
