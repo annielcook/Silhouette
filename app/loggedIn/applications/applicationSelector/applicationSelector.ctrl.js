@@ -26,6 +26,7 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 	}
 
 	$scope.addAllAppsToUser = function(){
+		console.log('$scope.addPreferences', $scope.appPreferences);
 		ApplicationFactory.addAppsToUser($scope.appPreferences)
 		.then(function(apps){
 			console.log("apps from factory: ", apps)
