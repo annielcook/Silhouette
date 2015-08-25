@@ -17,16 +17,20 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 	$scope.updateCurrentApps()
 
 	$scope.syncAppsFromComputer = function(){
-		var finderApps = ApplicationFactory.uploadFinderInstalled()
-		var caskApps = ApplicationFactory.uploadCaskInstalled()
-		var chosenApps = _.uniq(finderApps.concat(caskApps))
-		console.log("chosenApps: ", chosenApps)
-		ApplicationFactory.addAppsToUser(chosenApps)
+		ApplicationFactory.uploadFinderInstalled()
 		.then(function(apps){
-			console.log("apps from factory: ", apps)
-			$scope.updateCurrentApps();
-			$scope.$digest();
-		});
+			var finderApps = apps
+			var caskApps = ApplicationFactory.uploadCaskInstalled()
+			var chosenApps = _.uniq(finderApps.concat(caskApps))
+			console.log("chosenApps: ", chosenApps)
+			ApplicationFactory.addAppsToUser(chosenApps)
+			.then(function(apps){
+				console.log("apps from factory: ", apps)
+				$scope.updateCurrentApps();
+				$scope.$digest();
+			});
+		})
+		
 	}
 
 	$scope.removeApp = function(app){
