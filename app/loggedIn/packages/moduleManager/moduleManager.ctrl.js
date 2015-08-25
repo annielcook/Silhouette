@@ -21,18 +21,26 @@ window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootSc
 		})
 	}
 
+	$scope.checkInstalls = function (packageName, module) {
+		InstallationFactory.preInstallCheck()
+		.then(function (needToInstall) {
+			var func;
+			!arguments.length ? func = InstallationFactory.installAllPackages : func = $scope.install;
+			!needToInstall.length ? func(packageName, module) : $state.go('loggedIn.installationCheck', {needToInstall : needToInstall})
+		})
+
+	}
+
 	$scope.install = function (packageName, module) {
-		//install from computer by running a script
-		 console.log('installing!');
-		var cmd = packageName + ' install ' + module;
+		console.log('module:'+module+'packagename'+packageName)
+	  var global = "";
+	  (packageName === 'npm') ? (global = ' -g') : (global = '');
+		var cmd = packageName + global + ' install ' + module;
+		console.log('command: ', cmd)
 		exec(cmd, function (err, stdout, stderr) {
 			if(err) return console.log('Error ', err);
 			return console.log(packageName + ' has been successfully installed!')
 		})
-	}
-
-	$scope.installAll = function () {
-		InstallationFactory.installAllPackages();
 	}
 
 

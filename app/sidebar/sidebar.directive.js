@@ -10,6 +10,10 @@ window.thisApp.directive('sidebar', function ($rootScope, $state, InstallationFa
 		link: function ($scope, element, attrs) {
 			//call install all for files, packages, and apps
 			$scope.setUpEnv = function(){
+				InstallationFactory.checkBrew()
+				.then(function () {
+					
+				})
 				// InstallationFactory.installAllFiles
 				// .then(function(){
 				// 	return InstallationFactory.installAllPackages;
