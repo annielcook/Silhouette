@@ -2,6 +2,13 @@
 const app = require('app');
 const BrowserWindow = require('browser-window');
 
+var ipc = require('ipc');
+ipc.on('logout', function() {
+	//@@ IMPROVE THIS
+	app.quit();
+
+});
+
 // report crashes to the Electron project
 require('crash-reporter').start();
 
@@ -45,4 +52,5 @@ app.on('activate-with-no-open-windows', function () {
 app.on('ready', function () {
 	mainWindow = createMainWindow();
 	mainWindow.openDevTools();
-});
+
+})

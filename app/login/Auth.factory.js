@@ -2,6 +2,7 @@
 var Crypto = require('crypto')
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var ipc = require('ipc')
 
 //@@ these are duplicates from models/user.js -- how can i share between these files
 var encryptPassword = function(plainText, salt) {
