@@ -1,16 +1,21 @@
 .sidebar-nav {
-	background-color: #d3d3d3;
+	background-color: #337AB7;
 	left: 0;
 	height: 100%;
 	overflow-y: auto;
 	position: fixed;
 	width: 200px;
+	
+	i, p {
+		color: white;
+	}
 
 	a{
 		text-decoration: none;
 	}
 	h1 {
 		font-family: 'Lobster', cursive;
+		color: white;
 	}
 
 	li {
@@ -19,10 +24,14 @@
 
 	}
 	.active { 
-	  background-color: #BFBFBF;
+	  background-color: white;
 		p {
 			visibility: visible;
 			display: block;
+			color: #337AB7;
+		}
+		i {
+			color: #337AB7;
 		}
 	}
 
@@ -38,14 +47,15 @@
 	}
 
 	.magic {
-		margin-top: 45px;
-		background-color: #337AB7;
+		margin-top: 137px;
+		//background-color: #337AB7;
+		border-top: 2px solid white;
 		p {
 			visibility: visible;
 			display: block;
 		}
 		i, p {
-			color: #d3d3d3;
+			color: white;
 		}
 	}
 }
