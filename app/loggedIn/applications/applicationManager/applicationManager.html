@@ -4,7 +4,7 @@
 		<h4>Applications Currently Being Tracked:</h4>
 		<div ng-repeat="app in currentCask">
 			<i class="fa fa-3x fa-file-code-o"></i><button ng-click="installApp(app)" class="btn btn-default btn-xs">Install</button><button ng-click="removeApp(app)" class="btn btn-default btn-xs">Stop Tracking</button>
-			<p>{{app}}</p>
+			<p>{{app.name}}</p>
 		</div>
 		{{appsAvailableInCask}}
 		<button ng-click="syncAppsFromComputer()" class="btn btn-default btn-xs">Update App List</button>
