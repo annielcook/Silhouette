@@ -12,8 +12,10 @@ var schema = new mongoose.Schema ({
 	files: [{type: mongoose.Schema.Types.ObjectId, ref:'File'}],
   filePreferences: [String],
   packages: [{type: mongoose.Schema.Types.ObjectId, ref:'Package'}],
-  applicationPreferences: [String]
-})
+  applicationPreferences: [String],
+  applications: [{type: mongoose.Schema.Types.ObjectId, ref:'App'}]
+
+});
 
 var generateSalt = function() {
    return crypto.randomBytes(16).toString('base64');

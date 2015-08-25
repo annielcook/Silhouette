@@ -41,7 +41,7 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 	}
 
 	$scope.installApp = function(app){
-		ApplicationFactory.installApp(app);
+		ApplicationFactory.installApp(app.name);
 	}
 
 	$scope.installAllApps = function(){
