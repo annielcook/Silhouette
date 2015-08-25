@@ -15,6 +15,7 @@ window.thisApp.factory('PackageFactory', function($rootScope){
       }
       return packagePrefs;
     },
+    //[[npm, []], [brew, []]]
     createPackages: function (arrOfArrs){
     	return Promise.all(_.map(arrOfArrs, function(arr) {
     		return Package.create(
@@ -23,7 +24,7 @@ window.thisApp.factory('PackageFactory', function($rootScope){
     		)
         }))
     		.then(function (arrayOfPackageObjs) {
-    			return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: arrayOfPackageObjs}}, {new: true})
+    			return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$set: {packages: arrayOfPackageObjs}}, {new: true}).populate('packages')
           .then(function(user){
             return user;
           })
@@ -33,7 +34,6 @@ window.thisApp.factory('PackageFactory', function($rootScope){
       return User.findOne({email: $rootScope.currentUser.email})
              .populate('packages')
              .then(function(user){
-              console.log('getting packages for user in factory:', user);
               return user.packages;
              })
     },
