@@ -8,12 +8,18 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 	$scope.displayAppList = function(){
 		var appsAvailableInCask = ApplicationFactory.uploadFinderInstalled();
 		$scope.appPrefs = []
+		// $scope.appPreferences = []
 
 		var appsInCurrentCask = ApplicationFactory.uploadCaskInstalled()
 
-		$scope.appPrefs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask.concat([])
-		$scope.appPreferencs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask.concat([])
+		// app prefs is what is displayed
+		// app preferences is what is selected
+		$scope.appPrefs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask
+		$scope.appPreferences = _.clone($scope.appPrefs)
+		// $scope.appPreferencs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask.concat([])
 
+		console.log("$scope.appPrefs: ", $scope.appPrefs)
+		console.log("$scope.appPreferences: ", $scope.appPreferences)
 	}
 
 	$scope.displayAppList()
@@ -26,11 +32,21 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 	}
 
 	$scope.addAllAppsToUser = function(){
-		ApplicationFactory.addAppsToUser($scope.appPreferences)
-		.then(function(apps){
-			console.log("apps from factory: ", apps)
-			$scope.$digest();
-			$state.go('loggedIn.home');
-		});
+		// if ($scope.appPreferences != undefined){
+			ApplicationFactory.addAppsToUser($scope.appPreferences)
+			.then(function(apps){
+				console.log("apps from factory: ", apps)
+				$scope.$digest();
+				$state.go('loggedIn.home');
+			});
+		// } 
+		// else {
+		// 	ApplicationFactory.addAppsToUser($scope.appPrefs)
+		// 	.then(function(apps){
+		// 		console.log("apps from factory: ", apps)
+		// 		$scope.$digest();
+		// 		$state.go('loggedIn.home');
+		// 	});
+		// }
 	}
 })
