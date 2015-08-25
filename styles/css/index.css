@@ -79,6 +79,9 @@ ul {
     background-color: #D3D3D3;
     padding: 25px; }
 
+.error {
+  color: white; }
+
 html,
 body {
   padding: 0;
