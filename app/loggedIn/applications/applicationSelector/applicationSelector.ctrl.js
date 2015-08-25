@@ -9,8 +9,6 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 		return ApplicationFactory.uploadFinderInstalled()
 		.then(function(apps){
 			var appsAvailableInCask = apps
-			 // $scope.appPrefs = []
-			// $scope.appPreferences = []
 
 			var appsInCurrentCask = ApplicationFactory.uploadCaskInstalled()
 
@@ -18,7 +16,6 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 			// app preferences is what is selected
 			$scope.appPrefs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask
 			$scope.appPreferences = _.clone($scope.appPrefs)
-			// $scope.appPreferencs = _.uniq(appsAvailableInCask.concat(appsInCurrentCask)) || appsAvailableInCask.concat([])
 
 			console.log("$scope.appPrefs: ", $scope.appPrefs)
 			console.log("$scope.appPreferences: ", $scope.appPreferences)

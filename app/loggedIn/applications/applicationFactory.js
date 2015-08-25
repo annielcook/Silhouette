@@ -19,20 +19,6 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
     },
 
   	uploadFinderInstalled: function(){
-      // var availableApps = exec("brew cask search", function (err, stdout, stderr) {
-      //   if(err) return console.log('Error ', err);
-      //   // console.log("stdout: ", stdout)
-      //   var rawOut = stdout
-      //   // var formattedOut = stdout.split(", ")
-      //   var formattedOut = JSON.parse("[\"" + rawOut.substr(20, rawOut.length - 21).replace(/\n/gi, "\", \"") + "\"]")
-      //   // var jsonified = JSON.parse(formattedOut)
-      //   console.log("formattedOut: ", formattedOut)
-      //   // console.log("jsonified: ", jsonified)
-      //   console.log("typeof formattedOut: ", typeof formattedOut)
-      //   console.log("is formattedOut an array? ", Array.isArray(formattedOut))
-      //   return formattedOut
-        
-      // })
       return availableApps
       .then(function(appList){
         console.log("availableApps in factory: ", appList)
