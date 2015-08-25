@@ -42,5 +42,10 @@ window.thisApp.config(function ($stateProvider) {
 		templateUrl: __dirname + '/home/home.html',
 		controller: 'HomeCtrl',
 	})
+	.state('loggedIn.installationCheck', {
+		templateUrl: __dirname + '/installationCheck/installationCheck.html',
+		controller: 'InstallationCheckCtrl',
+		params: ['needToInstall']
+	})
 
 }) 

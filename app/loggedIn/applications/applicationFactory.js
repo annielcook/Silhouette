@@ -49,9 +49,6 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
     },
 
     addAppPrefs: function(appName, appPrefs){
-      // console.log('in factory in addAppPrefs')
-      // console.log("appName in factory: ", appName)
-      // console.log("appPrefs in factory: ", appPrefs )
       var appIndex = appPrefs.indexOf(appName);
       if(appIndex === -1){
         appPrefs.push(appName);

@@ -1,0 +1,6 @@
+<h1>There are some things you need to install!</h1>
+<h3>Please copy and past these commands into your terminal one by one</h3>
+<p ng-repeat="command in commands">
+	{{$index+1}}. {{command}}
+</p>
+<button class=" btn btn-default" ng-click="checkUserInstalled()">Continue</button>

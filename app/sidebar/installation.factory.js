@@ -8,11 +8,50 @@ var exec = require('child_process').exec;
 
 window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactory, FileManagerFactory, ApplicationFactory){
   return{
+    preInstallCheck: function () {
+
+      //check brew
+        //check xcode
+      //check node
+      //check if npm exists
+
+      var checkInstalls = [
+        '/Applications/Xcode.app',
+        '/usr/local/Cellar',
+        '/usr/local/Cellar/brew-cask',
+        '/usr/local/bin/node',
+      ]
+
+      var commands = [
+        'xcode-select --install', 
+        'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"',
+        'brew install brew-cask',
+        'export PATH="/usr/local/bin:$PATH"',
+        'brew install node']
+
+      var needToInstall = [];
+      //check brew
+
+      return Promise.all(_.map(checkInstalls, function (installPath, index) {
+        return fs.lstatAsync(installPath)
+        .then(function (lstatObj) {
+          console.log('already exists: ', lstatObj)
+          return lstatObj;
+        }, function (err) {
+          console.log('error: ', err)
+          console.log('pushing to need to install: ', commands[index])
+          needToInstall.push(commands[index]);
+          (index === 3) ? needToInstall.push(commands[4]) : console.log('pushed two commands');
+        })
+      }))
+      .then(function (){
+        return needToInstall;
+      })
+
+    },
     installAllPackages: function(){
      PackageFactory.getPackages()
       .then(function(thePackages) {
-        console.log('inside get packages . then')
-          console.log('global', global);
         thePackages.forEach(function (pack) {
           var global = "";
           (pack.name === 'npm') ? (global = ' -g') : (global = '');
@@ -20,7 +59,6 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
             var cmd = pack.name + global + ' install ' + mod;
             exec(cmd, function (err, stdout, stderr) {
               if(err) return console.log('Error ', err);
-              console.log(mod + ' has been successfully installed!')
             })
           })
         })      
