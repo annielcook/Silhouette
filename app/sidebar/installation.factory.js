@@ -25,7 +25,7 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
       var commands = [
         'xcode-select --install', 
         'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"',
-        'brew install brew-cask',
+        'brew install caskroom/brew/brew-cask',
         'export PATH="/usr/local/bin:$PATH"',
         'brew install node']
 
