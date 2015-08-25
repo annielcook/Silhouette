@@ -21,15 +21,6 @@ window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootSc
 		})
 	}
 
-	$scope.uninstall = function (packageName, module) {
-		//uninstall from computer by running a script
-		var cmd = packageName + ' uninstall ' + module;
-		exec(cmd, function (err, stdout, stderr) {
-			if(err) return console.log('Error ', err);
-			return $scope.removeModule(packageName, module);
-		})
-	}
-
 	$scope.install = function (packageName, module) {
 		//install from computer by running a script
 		 console.log('installing!');
