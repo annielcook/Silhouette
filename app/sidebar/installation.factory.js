@@ -10,11 +10,6 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
   return{
     preInstallCheck: function () {
 
-      //check brew
-        //check xcode
-      //check node
-      //check if npm exists
-
       var checkInstalls = [
         '/Applications/Xcode.app',
         '/usr/local/Cellar',
