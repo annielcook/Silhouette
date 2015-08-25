@@ -32,6 +32,7 @@ window.thisApp.controller('ModuleManagerCtrl', function ($scope, $state, $rootSc
 
 	$scope.install = function (packageName, module) {
 		//install from computer by running a script
+		 console.log('installing!');
 		var cmd = packageName + ' install ' + module;
 		exec(cmd, function (err, stdout, stderr) {
 			if(err) return console.log('Error ', err);

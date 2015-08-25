@@ -6,14 +6,18 @@ var _ = require('lodash');
 var fs = Promise.promisifyAll(require("fs"));
 var exec = require('child_process').exec;
 
-window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactory, FileManagerFactory){
+window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactory, FileManagerFactory, ApplicationFactory){
   return{
     installAllPackages: function(){
-      PackageFactory.getPackages()
+     PackageFactory.getPackages()
       .then(function(thePackages) {
+        console.log('inside get packages . then')
+          console.log('global', global);
         thePackages.forEach(function (pack) {
+          var global = "";
+          (pack.name === 'npm') ? (global = ' -g') : (global = '');
           pack.modules.forEach(function (mod) {
-            var cmd = pack.name + ' install ' + mod;
+            var cmd = pack.name + global + ' install ' + mod;
             exec(cmd, function (err, stdout, stderr) {
               if(err) return console.log('Error ', err);
               console.log(mod + ' has been successfully installed!')
@@ -22,9 +26,9 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
         })      
       })
      },
-     installAllFiles: function(){
+    installAllFiles: function(){
       console.log('installing files!');
-      FileManagerFactory.getAllFiles()
+      return FileManagerFactory.getAllFiles()
       .then(function(files){
         Promise.all(_.map(files, function(file){
           console.log('installing file with writeFileAsync', file);
@@ -43,6 +47,18 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
       .then(null, function(err){
         console.error('Error', err);
       })
-     }
+     },
+    installAllApps: function(){
+      return ApplicationFactory.retrieveCurrentApps()
+      .then(function(apps){
+        console.log('installing this app!!!')
+        _.each(apps, function(app){
+          ApplicationFactory.installApp(app);
+        })
+      })
+      .then(null, function(err){
+        console.error('error:', err);
+      })
+    }
   }
 })

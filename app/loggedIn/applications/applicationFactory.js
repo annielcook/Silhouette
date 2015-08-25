@@ -53,6 +53,7 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       }
     },
     addAppPrefs: function(appName, appPrefs){
+      console.log('in factory in addAppPrefs')
       var appIndex = appPrefs.indexOf(appName);
       if(appIndex === -1){
         appPrefs.push(appName);
@@ -62,11 +63,15 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       return appPrefs;
     },
     addAppsToUser: function(prefs){
+      console.log('calling add apps to user')
+      console.log('prefs', prefs);
       return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {applicationPreferences: prefs}, {new : true})
       .then(function(user){
+        console.log('user', user);
         return user.applicationPreferences;
       })
       .then(null, function (err) {
+        console.log('err:', err);
         throw err;
       });
     },

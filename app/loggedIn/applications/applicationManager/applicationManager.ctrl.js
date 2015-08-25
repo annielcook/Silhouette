@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 var fs = Promise.promisifyAll(require("fs"));
 var _ = require('lodash');
 
-window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory) {
+window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory, InstallationFactory) {
 
 	$scope.updateCurrentApps = function(){
 		return 	ApplicationFactory.retrieveCurrentApps()
@@ -40,11 +40,9 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 		ApplicationFactory.installApp(app);
 	}
 
-	$scope.installAllApps = function(apps){
-		console.log("currentCask is: ", apps)
-		apps.forEach(function(app){
-			ApplicationFactory.installApp(app);
-		})
+	$scope.installAllApps = function(){
+		console.log('installing all apps!!');
+		InstallationFactory.installAllApps();
 	}
 
 })
