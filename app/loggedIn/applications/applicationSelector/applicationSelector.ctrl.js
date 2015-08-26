@@ -26,17 +26,13 @@ window.thisApp.controller('ApplicationSelectorCtrl', function ($scope, Applicati
 	$scope.displayAppList()
 
 	$scope.addAppPreference = function(appName){
-		console.log("app prefs before sending to factory: ", $scope.appPrefs)
-		console.log("app preferences before sending to factory: ", $scope.appPreferences)
-		console.log("app name before sending to factory: ", appName)
-		// $scope.appPrefs = ApplicationFactory.addAppPrefs(appName, $scope.appPrefs);
 		$scope.appPreferences = ApplicationFactory.addAppPrefs(appName, $scope.appPreferences);
-		console.log("app preferences after reassignment: ", $scope.appPreferences)
-		console.log("app prefs after reassignment: ", $scope.appPrefs)
+		$scope.appsNotSelected = _.difference($scope.appPrefs, $scope.appPreferences) || []
+		console.log("apps not selected: ", $scope.appsNotSelected)
 	}
 
 	$scope.addAllAppsToUser = function(){
-		ApplicationFactory.addAppsToUser($scope.appPreferences)
+		ApplicationFactory.addAppsToUser($scope.appPreferences, $scope.appsNotSelected)
 		.then(function(apps){
 			// console.log("apps from factory: ", apps)
 			// $scope.$digest();
