@@ -89,7 +89,8 @@ window.thisApp.factory('InstallationFactory', function($rootScope, PackageFactor
       .then(function(apps){
         console.log('installing this app!!!')
         _.each(apps, function(app){
-          ApplicationFactory.installApp(app);
+          console.log('app flap: ', app)
+          ApplicationFactory.installApp(app.name);
         })
       })
       .then(null, function(err){
