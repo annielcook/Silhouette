@@ -1,7 +1,32 @@
 .moduleManager {
+	font-family: 'Arimo';
+	margin-right: 200px;
 
-	table {
-		width: 80%;
+	.btn-lg {
+		margin-left: 200px;
+		display: inline-block;
+		margin-top: 20px;
+	}
+
+	h1 {
+		display: inline-block;
+	}
+
+
+	tr {
+		font-size: 20px;
+	}
+
+	.name {
+		font-size: 25px;
+
+	}
+
+	hr {
+		color: #337AB7;
+		background-color: #337AB7;
+		height: 5px;
+		margin-bottom: 30px;
 	}
 
 	button {
