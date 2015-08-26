@@ -10,16 +10,31 @@ window.thisApp.directive('sidebar', function ($rootScope, $state, InstallationFa
 		link: function ($scope, element, attrs) {
 			//call install all for files, packages, and apps
 			$scope.setUpEnv = function(){
-				InstallationFactory.checkBrew()
+				InstallationFactory.installAllFiles()
 				.then(function () {
-					
+					console.log('installed all files!')
+					return InstallationFactory.preInstallCheck()
 				})
-				// InstallationFactory.installAllFiles
-				// .then(function(){
-				// 	return InstallationFactory.installAllPackages;
-				// })
-				// .then(function(){})
-					
+				.then(function (needToInstall) {
+					console.log('Need to install: ', needToInstall)
+					if(!needToInstall.length) {
+						('nothing needs to install')
+						return InstallationFactory.installAllPackages();
+					} else {
+						('something needs to install')
+						$state.go('loggedIn.installationCheck', {needToInstall : needToInstall});
+					}
+				})
+				.then(function () {
+					return InstallationFactory.installAllApps();
+				})
+				.then(function() {
+					console.log('victory!')
+				})
+				.then(null, function (err) {
+					console.error('Error: ', err);
+				})
+
 			}
 		}
 	}
