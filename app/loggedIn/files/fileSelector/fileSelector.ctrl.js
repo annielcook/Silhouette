@@ -59,7 +59,7 @@ window.thisApp.controller('FileSelectorCtrl', function ($scope, FileManagerFacto
   $scope.addFilePrefToUser = function(){
     console.log('files to save to user ', $scope.filePrefs);
     $rootScope.currentUser.filePreferences = $scope.filePrefs;
-    AccountEditFactory.saveUserChanges();
+    AccountEditFactory.saveUserChanges($rootScope.currentUser);
     // console.log('updated user in files:', $rootScope.currentUser);
     getFilePaths();
     //go to file manager state
