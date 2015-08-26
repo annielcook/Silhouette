@@ -5,7 +5,11 @@ var fs = Promise.promisifyAll(require("fs"));
 var _ = require('lodash');
 
 window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory, InstallationFactory) {
+
+	$scope.icons = ['firefox','github', 'chrome', 'google', 'skype', 'spotify', 'bitcoin', 'dropbox', 'slack', 'whatsapp']
+
 	$scope.currentCask = [];
+
 	$scope.updateCurrentApps = function(){
 		return 	ApplicationFactory.retrieveCurrentApps()
 		.then(function(apps){

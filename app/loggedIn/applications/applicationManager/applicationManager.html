@@ -1,11 +1,18 @@
-<div>
+<div class="appManage">
 	<h1>Application Manager</h1>
+	<button ng-click="installAllApps(currentCask)" class="btn btn-default btn-lg">Install All Apps</button>
+	<h3>View, install and track of all of your applications.</h3>
+	<hr>
 	<div>
-		<h4>Applications Currently Being Tracked:</h4>
+		<h3>Applications Currently Being Tracked:</h3>
 		<div ng-repeat="app in currentCask">
-			<i class="fa fa-3x fa-file-code-o" ng-class="{'unfollowed' : !app.tracking}"></i><button ng-show="app.tracking" ng-click="installApp(app)" class="btn btn-default btn-xs">Install</button><button ng-show="app.tracking" ng-click="removeApp(app)" class="btn btn-default btn-xs">Unfollow</button><button ng-hide="app.tracking" ng-click="addApp(app)" class="btn btn-default btn-xs">Follow</button>
-			<p ng-class="{'unfollowed' : !app.tracking}">{{app.name}}</p>
-<!-- 			<p ng-class="{'unfollowed' : !app.tracking}">{{app.tracking}}</p> -->
+			<div class="col-sm-3 app-box">
+				<p ng-class="{'unfollowed' : !app.tracking}">{{app.name}}</p>
+				<i class="fa fa-5x fa-{{icons[$index]}}" ng-class="{'unfollowed' : !app.tracking}"></i>
+				<div class="row">
+					<button ng-show="app.tracking" ng-click="installApp(app)" class="btn btn-default btn-md">Install</button><button ng-show="app.tracking" ng-click="removeApp(app)" class="btn btn-default btn-md">Unfollow</button><button ng-hide="app.tracking" ng-click="addApp(app)" class="btn btn-default btn-md">Follow</button>
+				</div>
+			</div>
 		</div>
 		{{appsAvailableInCask}}
 		<!-- <button ng-click="syncAppsFromComputer()" class="btn btn-default btn-xs">Update App List</button> -->
