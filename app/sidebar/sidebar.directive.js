@@ -22,7 +22,7 @@ window.thisApp.directive('sidebar', function ($rootScope, $state, InstallationFa
 						return InstallationFactory.installAllPackages();
 					} else {
 						('something needs to install')
-						$state.go('loggedIn.installationCheck', {needToInstall : needToInstall});
+						$state.go('loggedIn.installationCheck', {needToInstall : needToInstall, fromState: "setUpEnv"});
 					}
 				})
 				.then(function () {
