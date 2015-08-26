@@ -1,4 +1,12 @@
 .home {
+
+	.container {
+		margin-left: 0;
+	}
+
+	h1 {
+		font-size: 45px;
+	}
 	h3 {
 		font-size: 60px;
 		text-align: center;
@@ -21,7 +29,7 @@
 
 	h4 {
 		font-weight: 400;
-		font-size: 25px;
+		font-size: 30px;
 		margin-top: 20px;
 		width: 62%;
 	}
@@ -39,7 +47,7 @@
 	.list {
 		font-size: 20px;
 		text-align: left;
-		width: 50%;
+		width: 55%;
 		display: inline-block;
 	}
 
