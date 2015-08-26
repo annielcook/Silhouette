@@ -4,7 +4,8 @@
   height: 100%;
   overflow-y: auto;
   position: fixed;
-  width: 200px; }
+  width: 200px;
+  font-family: 'Arimo', normal, sans-serif; }
   .sidebar-nav i, .sidebar-nav p {
     color: #FFFFFF; }
   .sidebar-nav a {
@@ -97,66 +98,58 @@ ul {
 .unfollowed {
   color: #D3D3D3; }
 
-.home .container {
-  margin-left: 0; }
-
-.home h1 {
-  font-size: 45px; }
-
-.home h3 {
-  font-size: 60px;
-  text-align: center; }
-
-.home p {
-  font-size: 25px;
-  text-align: center; }
-
-.home .stat {
-  margin: 20px;
-  border: 10px solid #337AB7;
-  border-radius: 30px;
-  box-shadow: 2px 2px 2px #d3d3d3; }
-
-.home .stat:first-child {
-  margin-left: 0px; }
-
-.home h4 {
-  font-weight: 400;
-  font-size: 30px;
-  margin-top: 20px;
-  width: 62%; }
-
-.home hr {
-  width: 70%;
-  color: #c8c8c8;
-  float: left; }
-
-.home li {
-  font-size: 20px;
-  margin: 15px 0; }
-
-.home .list {
-  font-size: 20px;
-  text-align: left;
-  width: 55%;
-  display: inline-block; }
-
-.home .fa {
-  padding: 18px 15px;
-  display: inline-block;
-  -moz-border-radius: 100px;
-  -webkit-border-radius: 100px;
-  border-radius: 25px;
-  -moz-box-shadow: 0px 0px 2px #888;
-  -webkit-box-shadow: 0px 0px 2px #888;
-  box-shadow: 0px 0px 2px #888;
-  background-color: #999;
-  color: #fff;
-  margin-left: 10px; }
-  .home .fa.fa-mouse-pointer {
-    padding: 18px 30px;
-    margin-right: 10px;
+.home {
+  font-family: 'Arimo', normal, sans-serif; }
+  .home .container {
     margin-left: 0; }
+  .home h1 {
+    font-size: 45px; }
+  .home h3 {
+    font-size: 60px;
+    text-align: center; }
+  .home p {
+    font-size: 25px;
+    text-align: center; }
+  .home .stat {
+    margin: 20px;
+    border: 10px solid #337AB7;
+    border-radius: 30px;
+    box-shadow: 2px 2px 2px #d3d3d3; }
+  .home .stat:first-child {
+    margin-left: 0px; }
+  .home h4 {
+    font-weight: 400;
+    font-size: 30px;
+    margin-top: 20px;
+    width: 62%; }
+  .home hr {
+    width: 70%;
+    color: #c8c8c8;
+    float: left; }
+  .home li {
+    font-size: 20px;
+    margin: 15px 0; }
+  .home .list {
+    font-size: 20px;
+    text-align: left;
+    width: 55%;
+    display: inline-block; }
+  .home .fa {
+    padding: 18px 15px;
+    display: inline-block;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 25px;
+    -moz-box-shadow: 0px 0px 2px #888;
+    -webkit-box-shadow: 0px 0px 2px #888;
+    box-shadow: 0px 0px 2px #888;
+    background-color: #999;
+    color: #fff;
+    margin-left: 10px; }
+    .home .fa.fa-mouse-pointer {
+      padding: 18px 30px;
+      margin-right: 10px;
+      margin-left: 0; }
 
 .accountText {
   font-size: 20px; }
@@ -180,6 +173,102 @@ ul {
 .headerSettings {
   margin: 20px; }
 
+/* cyrillic */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(http://fonts.gstatic.com/s/lobster/v15/MeFZ5NpSE1j8mC06Jh1miFKPGs1ZzpMvnHX-7fPOuAc.woff2) format("woff2");
+  unicode-range: U400-45F, U490-491, U4B -4B 1, U2116; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(http://fonts.gstatic.com/s/lobster/v15/UKmFXcLnvG78k2CT5LYRfFKPGs1ZzpMvnHX-7fPOuAc.woff2) format("woff2");
+  unicode-range: U102-103, U1EA -1EF 1, U20AB; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(http://fonts.gstatic.com/s/lobster/v15/MCZn_h27nLxWmTqnbmnb3lKPGs1ZzpMvnHX-7fPOuAc.woff2) format("woff2");
+  unicode-range: U100-24F, U1E -1EFF, U20A -20AB, U20AD-20CF, U2C 58C 7F, UA720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(http://fonts.gstatic.com/s/lobster/v15/G6-OYdAAwU5fSlE7MlBvhQLUuEpTyoUstqEm5AMlJo4.woff2) format("woff2");
+  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/6yxuWfvvwL6sRuuLVujCo4DGDUGfDkXyfkzVDelzfFk.woff2) format("woff2");
+  unicode-range: U460-52F, U20B 4, U2DE -2DFF, UA640-A69F; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/pZWmmfuKiSKRuR8DZvlbR4DGDUGfDkXyfkzVDelzfFk.woff2) format("woff2");
+  unicode-range: U400-45F, U490-491, U4B -4B 1, U2116; }
+
+/* greek-ext */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/B75qyz4dRW0ik816V7jBnIDGDUGfDkXyfkzVDelzfFk.woff2) format("woff2");
+  unicode-range: U1F -1FFF; }
+
+/* greek */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/kazQtCHILhg0dazJeX7tgoDGDUGfDkXyfkzVDelzfFk.woff2) format("woff2");
+  unicode-range: U370-3FF; }
+
+/* hebrew */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/C9D0NKNOeY121NaeSHhbhoDGDUGfDkXyfkzVDelzfFk.woff2) format("woff2");
+  unicode-range: U590-5FF, U20AA, U25CC, UFB1D-FB4F; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/1UbnmhyD_WWKr8RP-sOOGIDGDUGfDkXyfkzVDelzfFk.woff2) format("woff2");
+  unicode-range: U102-103, U1EA -1EF 1, U20AB; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/TiQL6NBhTEJ6MIQRmGAWSIDGDUGfDkXyfkzVDelzfFk.woff2) format("woff2");
+  unicode-range: U100-24F, U1E -1EFF, U20A -20AB, U20AD-20CF, U2C 58C 7F, UA720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/Gy9Y2XtPh2ochAQDpqJXSaCWcynf_cDxXwCLxiixG1c.woff2) format("woff2");
+  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+
 html,
 body {
   padding: 0;
@@ -197,7 +286,7 @@ header {
   text-align: center; }
 
 header h1 {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Arimo', sans-serif;
   font-size: 60px;
   font-weight: 100;
   margin: 0;
