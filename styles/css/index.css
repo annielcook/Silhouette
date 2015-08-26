@@ -74,6 +74,12 @@ ul {
     display: inline-block; }
   .moduleManager tr {
     font-size: 20px; }
+  .moduleManager td {
+    border-top: 1px solid #c2bfbf;
+    border-bottom: 1px solid #c2bfbf; }
+  .moduleManager .table > thead:first-child > tr:first-child > th {
+    border-bottom: 1px solid gray;
+    width: 100%; }
   .moduleManager .name {
     font-size: 25px; }
   .moduleManager hr {
@@ -199,17 +205,18 @@ ul {
     display: inline-block; }
   .appManage .btn-lg {
     display: inline-block;
-    margin-left: 300px; }
+    float: right;
+    margin-top: 20px; }
   .appManage i {
     margin-bottom: 15px;
-    margin-left: 72px; }
+    margin-left: 120px; }
   .appManage .app-box {
     margin: 30px 0; }
     .appManage .app-box p {
       font-size: 30px;
       text-align: center; }
     .appManage .app-box .row {
-      margin-left: 36px; }
+      margin-left: 80px; }
 
 /* cyrillic */
 @font-face {

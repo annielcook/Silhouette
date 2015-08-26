@@ -17,6 +17,17 @@
 		font-size: 20px;
 	}
 
+	td {
+		border-top: 1px solid rgb(194, 191, 191);
+		border-bottom: 1px solid rgb(194, 191, 191);
+	}
+
+	.table>thead:first-child>tr:first-child>th {
+		border-bottom: 1px solid gray;
+		width: 100%;
+	}
+
+
 	.name {
 		font-size: 25px;
 
