@@ -36,3 +36,18 @@ header h1 {
 	margin-left: 250px;
 	margin-top: 10px;
 }
+
+.postInstallCheck {
+	h1 {
+		width: 70%;
+	}
+
+	.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 22px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+	}
+}
