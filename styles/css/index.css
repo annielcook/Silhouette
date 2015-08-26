@@ -16,7 +16,7 @@
     text-align: center;
     padding: 10px 0; }
   .sidebar-nav .active {
-    background-color: #337AB7;
+    background-color: #3674A9;
     -moz-box-shadow: inset 0 0 6px 3px rgba(42, 95, 171, 0.56);
     -webkit-box-shadow: inset 0 0 6px 3px rgba(42, 95, 171, 0.56); }
     .sidebar-nav .active p {
@@ -89,7 +89,6 @@ ul {
 .error {
   color: red; }
 
-
 .unfollowed {
   color: #D3D3D3; }
 
@@ -147,7 +146,6 @@ ul {
     padding: 18px 30px;
     margin-right: 10px;
     margin-left: 0; }
-
 
 html,
 body {
