@@ -15,13 +15,13 @@
       <hr>
       <div class="fileWrapper textSize">
         <div ng-repeat="file in files">
-        	<div class="col-md-12 filebox">
-            <div class="col-md-6">
+        	<div class="col-md-10 filebox">
+            <div class="col-md-5">
           		<i class="fa fa-3x fa-file-text-o"></i>
               <p><h3>{{file.name}}</h3></p>
               <p>{{file.date | date:'medium'}}</p> 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               <ul>  
                 <li>
                   <button ng-click="updateFile(file)" class="btn btn-default btn-sm">Update

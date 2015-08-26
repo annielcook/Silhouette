@@ -294,7 +294,7 @@ ul {
   unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
 
 .fileManage {
-  margin-right: 200px;
+  margin-right: 400px;
   font-family: 'Arimo'; }
   .fileManage .textSize {
     font-size: 15px; }
