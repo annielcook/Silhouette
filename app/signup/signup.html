@@ -3,27 +3,27 @@
   <div class="container">
     <form ng-submit="signupUser(user) && signupForm.$valid" name="signupForm" novalidate>
       <div class="form-group">
-        <input required type="name" name="firstname" class="form-control" placeholder="Enter your first name" ng-model="user.firstName">
+        <input required type="name" name="firstname" class="form-control input-lg" placeholder="Enter your first name" ng-model="user.firstName">
         <span class="error" ng-show="signupForm.firstname.$invalid && signupForm.firstname.$touched"> Please enter first name
         </span>
       </div>
       <div class="form-group">
-        <input required type="name"  name="lastname" class="form-control" placeholder="Enter your last name" ng-model="user.lastName">
+        <input required type="name"  name="lastname" class="form-control input-lg" placeholder="Enter your last name" ng-model="user.lastName">
          <span class="error" ng-show="signupForm.lastname.$invalid && signupForm.lastname.$touched"> Please enter last name
         </span>
       </div>
       <div class="form-group">
-        <input required type="email" name="email" class="form-control" placeholder="Enter email" ng-model="user.email">
+        <input required type="email" name="email" class="form-control input-lg" placeholder="Enter email" ng-model="user.email">
         <span class="error" ng-show="signupForm.email.$invalid && signupForm.email.$touched"> Please enter e-mail in correct format
         </span>
       </div>
       <div class="form-group">
-        <input required type="password" ng-minlength="6" name="password" placeholder="Enter password" class="form-control" ng-model="user.password">
+        <input required type="password" ng-minlength="6" name="password" placeholder="Enter password" class="form-control input-lg" ng-model="user.password">
         <span class="error" ng-show="signupForm.password.$invalid && signupForm.password.$touched"> Password must be at least 6 characters
         </span>
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-      <button ui-sref="login" class="btn btn-default">Back to login</button>
+      <button type="submit" class="btn btn-default btn-lg">Submit</button>
+      <button ui-sref="login" class="btn btn-default btn-lg">Back to login</button>
     </form>
   </div>
 </div>
