@@ -49,17 +49,24 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
     },
 
     addAppsToUser: function(prefs, dontWant){
-      console.log('calling add apps to user')
-      console.log('prefs', prefs);
-      console.log('dont want in factory: ', dontWant)
-      /////////////
+      dontWant = dontWant || []
 
-      return Promise.all(_.map(prefs, function(app){
-        return App.create(
-          { 'name': app,
+      // making app arrays into objects with dates and tracking
+      var mappedWant = _.map(prefs, function(app){
+        return {'name': app,
             'tracking': true,
             'date': new Date()}
-        )
+      })
+      var mappedDontWant = _.map(dontWant, function(app){
+        return {'name': app,
+            'tracking': false,
+            'date': new Date()}
+      })
+      var appsObjArr = mappedWant.concat(mappedDontWant)
+
+      // promisifying arrays of app objects, then adding them to the user
+      return Promise.all(_.map(appsObjArr, function(app){
+        return App.create(app)
       }))
       .then(function(arrayOfAppObjs){
         return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {applications: arrayOfAppObjs}, {new: true}).populate('applications')
@@ -81,23 +88,31 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
       });
     },
 
-    deleteApp: function(app){
-      return User.findOne({email: $rootScope.currentUser.email})
-      .populate('applications')
-      .then(function (user){
-        var appToDelete = _.filter(user.applications, function (appObj){
-          return (appObj.name === app.name)
-        })
-        return appToDelete[0].id
-      })
-      .then(function (appId){
-        console.log("app id in .then: ", appId)
-        return App.findById(appId)
-        .remove()
-        .then(function (){
-          return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$pull: {applications: appId} }, {new : true})//.populate('applications')
-        })
-      })    
+    // deleteApp: function(app){
+    //   return User.findOne({email: $rootScope.currentUser.email})
+    //   .populate('applications')
+    //   .then(function (user){
+    //     var appToDelete = _.filter(user.applications, function (appObj){
+    //       return (appObj.name === app.name)
+    //     })
+    //     return appToDelete[0].id
+    //   })
+    //   .then(function (appId){
+    //     console.log("app id in .then: ", appId)
+    //     return App.findById(appId)
+    //     .remove()
+    //     .then(function (){
+    //       return User.findOneAndUpdate({email: $rootScope.currentUser.email}, {$pull: {applications: appId} }, {new : true})//.populate('applications')
+    //     })
+    //   })    
+    //   .then(null, function(error){
+    //     console.log(error)
+    //   })
+    // },
+
+    toggleFollow: function(app){
+      console.log("app in followApp in factory: ", app)
+      return App.findOneAndUpdate({_id: app.id}, {tracking: app.tracking}, {new : true})
       .then(null, function(error){
         console.log(error)
       })
