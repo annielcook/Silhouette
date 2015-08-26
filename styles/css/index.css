@@ -63,16 +63,30 @@ ul {
   height: 250px;
   border: 1px solid #8599A7; }
 
-.moduleManager table {
-  width: 80%; }
-
-.moduleManager button {
-  float: right;
-  margin-left: 15px;
-  display: none; }
-
-.moduleManager tr:hover button {
-  display: block; }
+.moduleManager {
+  font-family: 'Arimo';
+  margin-right: 200px; }
+  .moduleManager .btn-lg {
+    margin-left: 200px;
+    display: inline-block;
+    margin-top: 20px; }
+  .moduleManager h1 {
+    display: inline-block; }
+  .moduleManager tr {
+    font-size: 20px; }
+  .moduleManager .name {
+    font-size: 25px; }
+  .moduleManager hr {
+    color: #337AB7;
+    background-color: #337AB7;
+    height: 5px;
+    margin-bottom: 30px; }
+  .moduleManager button {
+    float: right;
+    margin-left: 15px;
+    display: none; }
+  .moduleManager tr:hover button {
+    display: block; }
 
 .beforeLoggedIn {
   background-color: #337AB7;
