@@ -3,9 +3,9 @@
 	<div>
 		<h4>Applications Currently Being Tracked:</h4>
 		<div ng-repeat="app in currentCask">
-			<i class="fa fa-3x fa-file-code-o"></i><button ng-click="installApp(app)" class="btn btn-default btn-xs">Install</button><button ng-click="removeApp(app)" class="btn btn-default btn-xs">Stop Tracking</button>
-			<p>{{app.name}}</p>
-			<p>{{app.tracking}}</p>
+			<i class="fa fa-3x fa-file-code-o" ng-class="{'unfollowed' : !app.tracking}"></i><button ng-show="app.tracking" ng-click="installApp(app)" class="btn btn-default btn-xs">Install</button><button ng-show="app.tracking" ng-click="removeApp(app)" class="btn btn-default btn-xs">Unfollow</button><button ng-hide="app.tracking" ng-click="addApp(app)" class="btn btn-default btn-xs">Follow</button>
+			<p ng-class="{'unfollowed' : !app.tracking}">{{app.name}}</p>
+			<p ng-class="{'unfollowed' : !app.tracking}">{{app.tracking}}</p>
 		</div>
 		{{appsAvailableInCask}}
 		<button ng-click="syncAppsFromComputer()" class="btn btn-default btn-xs">Update App List</button>

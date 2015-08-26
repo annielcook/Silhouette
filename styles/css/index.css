@@ -88,6 +88,9 @@ ul {
 .error {
   color: red; }
 
+.unfollowed {
+  color: #D3D3D3; }
+
 html,
 body {
   padding: 0;

@@ -32,10 +32,24 @@ window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScop
 	}
 
 	$scope.removeApp = function(app){
-		ApplicationFactory.deleteApp(app)
-	    .then(function(user){
+		console.log("app: ", app)
+		app.tracking = false
+		ApplicationFactory.toggleFollow(app)
+		.then(function(app){
+			console.log("app after factory: ", app)
 	      $scope.updateCurrentApps();
-	    })
+	   })
+	}
+
+	$scope.addApp = function(app){
+		console.log("app: ", app)
+		app.tracking = true
+		ApplicationFactory.toggleFollow(app)
+		.then(function(app){
+			console.log("app after factory: ", app)
+	      $scope.updateCurrentApps();
+	   })
+
 	}
 
 	$scope.installApp = function(app){
