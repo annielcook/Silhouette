@@ -1,0 +1,7 @@
+<h3>You probably use some package managers. Select which ones you want to track. We will also track the globally installed modules from selected package managers</h3>
+<div ng-repeat="option in packageOptions">
+	<div class="checkbox">
+		<label><input type="checkbox" ng-model="checked" ng-change="addPackagePreference(option)" value="true"/>{{option}}</label>
+	</div>
+</div>
+<button class="btn btn-default" ng-click="getAllModules()">Continue</button>

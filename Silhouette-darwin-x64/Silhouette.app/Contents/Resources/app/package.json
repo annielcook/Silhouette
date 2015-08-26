@@ -1,0 +1,64 @@
+{
+  "name": "silhouette",
+  "productName": "Silhouette",
+  "version": "0.0.0",
+  "description": "My world-class app",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "annielcook/silhouette",
+  "author": {
+    "name": "Annie Cook Anna Goldberg Jovia Nierenberg",
+    "email": "anniecook@ostby.com",
+    "url": "localhost:1337"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build":  "electron-packager . Silhouette --platform=darwin --arch=x64 --version=0.25.1 && cp Icon.icns Silhouette-darwin-x64/Silhouette.app/Contents/Resources/atom.icns",
+    "postinstall": "gulp build"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css"
+  ],
+  "keywords": [
+    "electron-app"
+  ],
+  "dependencies": {
+    "angular": "^1.4.4",
+    "bluebird": "^2.9.34",
+    "bootstrap": "^3.3.5",
+    "child-process-promise": "^1.1.0",
+    "crypto": "0.0.3",
+    "electron-debug": "^0.1.1",
+    "express": "^4.13.3",
+    "font-awesome": "^4.4.0",
+    "gridfs-stream": "^1.1.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.4",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
+    "mongodb": "^2.0.40",
+    "mongoose": "^4.1.2",
+    "mongoose-crate": "^1.0.10",
+    "mongoose-crate-s3": "^1.1.3",
+    "nedb": "^1.1.3",
+    "node-sass-middleware": "^0.9.0",
+    "nodemon": "^1.4.1",
+    "path": "^0.11.14",
+    "run-sequence": "^1.1.2",
+    "serve-static": "^1.10.0",
+    "ui-router": "0.0.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.0.0",
+    "electron-prebuilt": "^0.30.0",
+    "electron-rebuild": "^0.2.5"
+  }
+}

@@ -1,0 +1,21 @@
+<h1>Module Manager</h1>
+<div class="moduleManager" ng-repeat="package in packages">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>{{package.name}}</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<div>
+				<tr class="module" ng-repeat="module in package.modules" >
+						<td>{{module}}</td>
+						<td></td>
+						<td><button class="btn btn-xs" ng-click="removeModule(package.name, module)">remove</button><button class=" btn btn-xs" ng-click="checkInstalls(package.name, module)">install</button></td>
+				</tr>
+		 </div>
+		</tbody>
+	</table>
+</div>
+<button class=" btn btn-default" ng-click="checkInstalls()">Install All</button>

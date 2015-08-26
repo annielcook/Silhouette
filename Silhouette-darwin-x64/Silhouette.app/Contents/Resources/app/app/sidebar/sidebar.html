@@ -1,0 +1,23 @@
+<ul class="sidebar-nav">
+	<li class="sidebar-brand">
+		<a><h1>Silhouette</h1></a>
+	</li>
+	<li ui-sref="loggedIn.home" is-active class="active">
+		<a href="" ><i class="fa fa-3x fa-home"></i><p>Home</p></a>
+	</li>
+	<li ui-sref="loggedIn.fileManager" is-active>
+		<a href=""><i class="fa fa-3x fa-files-o"></i><p>File Manager</p></a>
+	</li>
+	<li ui-sref="loggedIn.moduleManager" is-active>
+		<a href=""><i  class="fa fa-3x fa fa-archive"></i><p>Module Manager</p></a>
+	</li>
+	<li ui-sref="loggedIn.applicationManager" is-active>
+		<a href=""><i  class="fa fa-3x fa-desktop"></i><p>App Manager</p></a>
+	</li>
+	<li ui-sref="loggedIn.account" is-active>
+		<a href=""><i  class="fa fa-3x fa-user"></i><p>Account</p></a>
+	</li>
+	<li ng-click="setUpEnv()" class="magic">
+		<a href=""><p>Set Up Environment</p><i class="fa fa-3x fa-magic"></i></a>
+	</li>
+</ul>

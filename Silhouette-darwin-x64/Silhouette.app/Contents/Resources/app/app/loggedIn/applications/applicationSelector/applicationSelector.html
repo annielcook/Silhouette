@@ -1,0 +1,9 @@
+<div>
+	<h3>We have analyzed the applications on your computer, and the following applications are available to track. Select the ones that you would like to track.</h3>
+	<div ng-repeat="app in appPrefs">
+		<div class="checkbox">
+			<label><input type="checkbox" ng-model="checked" ng-change="addAppPreference(app)" value="true">{{app}}</label>
+		</div>
+	</div>
+	<button class="btn btn-default" ng-click="addAllAppsToUser()">Continue</button>
+</div>

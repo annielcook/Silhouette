@@ -1,0 +1,15 @@
+<div class="row">
+  <h1>Module Selector</h1>
+    <p class="help-block">Manage your modules here.</p>
+    <h2>My Modules</h2>
+    <div ng-repeat="(package, moduleArr) in moduleOptions">
+      <strong>{{package}}</strong>
+      <div ng-repeat="moduleName in moduleArr">        
+        
+          <input type="checkbox" ng-model="checked" ng-change="addModulePreference(package, moduleName)" value="true"/>
+          {{moduleName}}
+        
+      </div>
+    </div>
+    <button class="btn btn-default" ng-click="saveModulePrefs()">Continue</button>
+</div> 

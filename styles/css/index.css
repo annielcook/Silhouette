@@ -172,6 +172,14 @@ ul {
   margin: 25px 0px 0px 30px;
   display: inline-block; }
 
+.bluebox {
+  border: 10px solid #337AB7;
+  border-radius: 30px;
+  box-shadow: 2px 2px 2px #d3d3d3; }
+
+.headerSettings {
+  margin: 20px; }
+
 html,
 body {
   padding: 0;
