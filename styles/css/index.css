@@ -179,6 +179,14 @@ ul {
   margin: 25px 0px 0px 30px;
   display: inline-block; }
 
+.bluebox {
+  border: 10px solid #337AB7;
+  border-radius: 30px;
+  box-shadow: 2px 2px 2px #d3d3d3; }
+
+.headerSettings {
+  margin: 20px; }
+
 .appManage {
   margin-right: 200px;
   font-family: 'Arimo'; }
@@ -298,6 +306,29 @@ ul {
   font-weight: 400;
   src: local("Arimo"), url(http://fonts.gstatic.com/s/arimo/v9/Gy9Y2XtPh2ochAQDpqJXSaCWcynf_cDxXwCLxiixG1c.woff2) format("woff2");
   unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+
+.fileManage {
+  margin-right: 200px;
+  font-family: 'Arimo'; }
+  .fileManage .textSize {
+    font-size: 15px; }
+  .fileManage .fileWrapper {
+    margin-bottom: 100px; }
+  .fileManage .uploadFile {
+    margin-bottom: 30px; }
+  .fileManage .fileButtons {
+    display: inline-block;
+    float: right;
+    margin-top: 30px; }
+  .fileManage h1 {
+    display: inline-block; }
+  .fileManage hr {
+    color: #337AB7;
+    background-color: #337AB7;
+    height: 5px;
+    margin-bottom: 30px; }
+  .fileManage .filebox {
+    margin: 10px 60px 40px 0px; }
 
 html,
 body {
