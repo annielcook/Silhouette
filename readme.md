@@ -1,9 +1,9 @@
 # silhouette
 
 <!-- > Hate keeping track of and setting up your development environment? So do we, so we made Silhouette! -->
-
+<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 <div class="col-sm-12 row">
-  	<h1>About Your Silhouette</h1>
+  	<!-- <h1>About Your Silhouette</h1> -->
   	<div class="row">
 	  	<h4 class="col-sm-8"><i>Hate keeping track of and setting up your development environment? So do we, so we made Silhouette!</i></h4>
 	  </div>
