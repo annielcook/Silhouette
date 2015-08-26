@@ -5,11 +5,16 @@ var fs = Promise.promisifyAll(require("fs"));
 var _ = require('lodash');
 
 window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory, InstallationFactory) {
-
+	$scope.currentCask = [];
 	$scope.updateCurrentApps = function(){
 		return 	ApplicationFactory.retrieveCurrentApps()
 		.then(function(apps){
-			$scope.currentCask = apps;
+			console.log('apps:', apps);
+			_.each(apps,function(app){
+				if(app.tracking === true) $scope.currentCask.push(app)
+			})
+			console.log('$scope.currentCask',$scope.currentCask)
+			// $scope.currentCask = apps;
 			// // return array with just the names of the current apps
 			// $scope.currentUploadedNames = []
 			// $scope.currentCask.forEach(function(appObj){
