@@ -1,30 +1,71 @@
+<div class="accountSettings">
 <h1>Account Settings</h1>
-<form name="editAccountForm" ng-submit="saveAccountChanges()">
-	<div class="form-group">
-		<label>First name: </label>
-		<input ng-model="currentUser.firstName" placeholder="{{currentUser.firstName}}"></input>
-	</div>
-	<div class="form-group">
-		<label>Last name: </label>
-		<input ng-model="currentUser.lastName" placeholder="{{currentUser.lastName}}"></input>
-	</div>
-	<div class="form-group">
-		<label>Email: </label>
-		<input ng-model="currentUser.email" placeholder="{{currentUser.email}}"></input>
-	</div>
-	<div class="form-group">
-		<label>Confirm email: </label>
-		<input name="confirmEmail" ng-model="currentUser.confirmEmail" ng-pattern="currentUser.email" placeholder="{{currentUser.email}}"></input>
-	</div>
-	<div class="form-group">
-		<label>Password: </label>
-		<input ng-model="currentUser.password" type="password" placeholder="Enter a password"></input>
-	</div>
-	<div class="form-group">
-		<label>Confirm password: </label>
-		<input name="confirmPassword" ng-model="currentUser.confirmPassword" ng-pattern="currentUser.password" type="password" ></input>
-	</div>
-	<button type="submit" class="btn btn-default">Save</button>
+</div>
+<form name="editAccountForm" ng-submit="saveAccountChanges(editeduser)">
+	<table class = "table-condensed">
+	<tbody>
+		<div class="form-group">
+			<td class="accountText">
+			<label>First name: </label>
+			</td>
+			<td>
+			<input class="input-lg" ng-model="editeduser.firstName" placeholder="First Name"></input>
+			</td>
+			</tr>
+		</div>
+		<div class="form-group">
+			<tr>
+				<td class="accountText">
+				<label>Last name: </label>
+				</td>
+				<td>
+				<input class="input-lg" ng-model="editeduser.lastName" placeholder="Last Name"></input>
+				</td>
+			</tr>
+		</div>
+		<div class="form-group">
+			<tr>
+				<td>
+				<label class="accountText">Email: </label>
+				</td>
+				<td>
+				<input class="input-lg" ng-model="editeduser.email" placeholder="Silhouette@gmail.com"></input>
+				</td>
+			</tr>
+		</div>
+		<div class="form-group">
+			<tr>
+				<td>
+				<label class="accountText">Confirm email: </label>
+				</td>
+				<td>
+				<input class="input-lg" name="confirmEmail" ng-model="editeduser.confirmEmail" ng-pattern="editeduser.email" placeholder="Silhouette@gmail.com"></input>
+				</td>
+			</tr>
+		</div>
+		<div class="form-group">
+			<tr>
+				<td>
+				<label class="accountText">Password: </label>
+				</td>
+				<td>
+				<input class="input-lg" ng-model="editeduser.password" type="password" placeholder="Password"></input>
+				</td>
+			</tr>
+		</div>
+		<div class="form-group">
+			<tr>
+				<td>
+				<label class="accountText">Confirm password: </lbael>
+				</td>
+				<td>
+				<input class="input-lg" name="confirmPassword" ng-model="editeduser.confirmPassword" placeholder="Password" ng-pattern="editeduser.password" type="password" ></input>
+				</td>
+			</tr>
+		</div>
+	 </tbody>
+	</table>
+	<button type="submit" class="btn btn-large">Save</button>
 </form>
 <span ng-show="editAccountForm.confirmEmail.$error.pattern">Make sure emails match</span>
 <span ng-show="editAccountForm.confirmPassword.$error.pattern">Make sure emails match</span>

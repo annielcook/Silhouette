@@ -5,10 +5,10 @@
 		<div ng-repeat="app in currentCask">
 			<i class="fa fa-3x fa-file-code-o" ng-class="{'unfollowed' : !app.tracking}"></i><button ng-show="app.tracking" ng-click="installApp(app)" class="btn btn-default btn-xs">Install</button><button ng-show="app.tracking" ng-click="removeApp(app)" class="btn btn-default btn-xs">Unfollow</button><button ng-hide="app.tracking" ng-click="addApp(app)" class="btn btn-default btn-xs">Follow</button>
 			<p ng-class="{'unfollowed' : !app.tracking}">{{app.name}}</p>
-			<p ng-class="{'unfollowed' : !app.tracking}">{{app.tracking}}</p>
+<!-- 			<p ng-class="{'unfollowed' : !app.tracking}">{{app.tracking}}</p> -->
 		</div>
 		{{appsAvailableInCask}}
-		<button ng-click="syncAppsFromComputer()" class="btn btn-default btn-xs">Update App List</button>
+		<!-- <button ng-click="syncAppsFromComputer()" class="btn btn-default btn-xs">Update App List</button> -->
 		<button ng-click="installAllApps(currentCask)" class="btn btn-default btn-xs">Install All Apps</button>
 	</div>
 </div>
