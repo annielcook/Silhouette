@@ -1,21 +1,25 @@
-<h1>Module Manager</h1>
-<div class="moduleManager" ng-repeat="package in packages">
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>{{package.name}}</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<div>
-				<tr class="module" ng-repeat="module in package.modules" >
-						<td>{{module}}</td>
-						<td></td>
-						<td><button class="btn btn-xs" ng-click="removeModule(package.name, module)">remove</button><button class=" btn btn-xs" ng-click="checkInstalls(package.name, module)">install</button></td>
+<div class="moduleManager">
+	<h1>Module Manager</h1>
+	<button class=" btn btn-default btn-lg" ng-click="checkInstalls()">Install All</button>
+	<h4>Install and remove all of your globally installed modules</h4>
+	<hr>
+	<div ng-repeat="package in packages">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th class="name">{{package.name}}</th>
+					<th></th>
 				</tr>
-		 </div>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<div>
+					<tr class="module" ng-repeat="module in package.modules" >
+							<td>{{module}}</td>
+							<td></td>
+							<td><button class="btn btn-sm" ng-click="removeModule(package.name, module)">remove</button><button class=" btn btn-sm" ng-click="checkInstalls(package.name, module)">install</button></td>
+					</tr>
+			 </div>
+			</tbody>
+		</table>
+	</div>
 </div>
-<button class=" btn btn-default" ng-click="checkInstalls()">Install All</button>
