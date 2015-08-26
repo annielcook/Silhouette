@@ -4,11 +4,13 @@
 @import './login';
 @import './signup';
 @import './loggedIn';
+@import './home';
 
 html,
 body {
 	padding: 0;
 	margin: 0;
+	background-color: #FFFFFF;
 }
 
 header {
@@ -28,4 +30,9 @@ header h1 {
 	font-weight: 100;
 	margin: 0;
 	padding: 0;
+}
+
+.main-container {
+	margin-left: 250px;
+	margin-top: 10px;
 }
