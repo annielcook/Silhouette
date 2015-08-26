@@ -173,3 +173,14 @@ header h1 {
 .main-container {
   margin-left: 250px;
   margin-top: 10px; }
+
+.postInstallCheck h1 {
+  width: 70%; }
+
+.postInstallCheck .btn-xlarge {
+  padding: 18px 28px;
+  font-size: 22px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px; }
