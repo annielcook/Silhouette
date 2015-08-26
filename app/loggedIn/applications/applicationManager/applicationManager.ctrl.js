@@ -6,6 +6,21 @@ var _ = require('lodash');
 
 window.thisApp.controller('ApplicationCtrl', function ($scope, $state, $rootScope, ApplicationFactory, InstallationFactory) {
 
+	$scope.icons = ['firefox','github', 'chrome', 'google', 'skype', 'spotify', 'bitcoin', 'dropbox', 'slack', 'whatsapp']
+
+	// { 
+	// 	'firefox': 'firefox',
+	// 	'github-desktop': 'github',
+	// 	'google-chrome': 'chrome',
+	// 	'google-drive': 'google',
+	// 	'skype' : 'skype',
+	// 	'spotify': 'spotify',
+	// 	'bitcoin-core':'bitcoin',
+	// 	'dropbox': 'dropbox',
+	// 	'slack': 'slack'
+	// 	'whatsapp' : 'whatsapp',
+	// }
+
 	$scope.updateCurrentApps = function(){
 		return 	ApplicationFactory.retrieveCurrentApps()
 		.then(function(apps){

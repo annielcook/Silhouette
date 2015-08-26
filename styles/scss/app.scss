@@ -1,0 +1,38 @@
+.appManage {
+	margin-right: 200px;
+	font-family: 'Arimo';
+	
+	hr {
+		color: #337AB7;
+		background-color: #337AB7;
+		height: 5px;
+		margin-bottom: 30px;
+	}
+
+	h1 {
+		display: inline-block;
+	}
+
+	.btn-lg {
+		display: inline-block;
+		margin-left: 300px;
+	}
+
+
+
+	i {
+		margin-bottom: 15px;
+		margin-left: 72px
+	}
+	.app-box {
+		margin: 30px 0;
+		p {
+			font-size: 30px;
+			text-align: center;
+		}
+		.row {
+			margin-left: 36px;
+		}
+
+	}
+}
