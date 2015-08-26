@@ -18,7 +18,7 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
 
       return availableApps
       .then(function(appList){
-        console.log("availableApps in factory: ", appList)
+        // console.log("availableApps in factory: ", appList)
         var finderApps = fs.readdirSync("/Applications")
           var finder = []
           finderApps.forEach(function(app){
@@ -119,11 +119,16 @@ window.thisApp.factory('ApplicationFactory', function($rootScope){
     },
 
     installApp: function(app){
-      var terminalCommand = "brew cask install " + app;
-      exec(terminalCommand, function (err, stdout, stderr) {
-        if(err) return console.log('Error ', err);
-        return console.log(app + ' has been successfully installed!')
-      })
+      console.log(app)
+      console.log(app.name)
+      console.log(app.tracking)
+      if (app.tracking){
+        var terminalCommand = "brew cask install " + app.name;
+        exec(terminalCommand, function (err, stdout, stderr) {
+          if(err) return console.log('Error ', err);
+          return console.log(app + ' has been successfully installed!')
+        })
+      }
     }
   }
 })

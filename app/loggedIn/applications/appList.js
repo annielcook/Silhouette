@@ -2689,9 +2689,9 @@ try {
 	var brewStat = fs.statSync("/usr/local/Cellar");
 	var caskStat = fs.statSync("/usr/local/Cellar/brew-cask");
 	var caskroomStat = fs.statSync("/opt/homebrew-cask/Caskroom")
-	console.log("brew path: ", brewStat.isDirectory())
-	console.log("cask path: ", caskStat.isDirectory())
-	console.log("caskroom path: ", caskroomStat.isDirectory())
+	// console.log("brew path: ", brewStat.isDirectory())
+	// console.log("cask path: ", caskStat.isDirectory())
+	// console.log("caskroom path: ", caskroomStat.isDirectory())
 	if ( brewStat.isDirectory() && caskStat.isDirectory() && caskroomStat.isDirectory()) {
 		availableApps = new Promise(function (resolve, reject){	
 	    exec("brew cask search", function (err, stdout, stderr) {
@@ -2701,10 +2701,10 @@ try {
 				// var formattedOut = stdout.split(", ")
 				var formattedOut = JSON.parse("[\"" + rawOut.substr(20, rawOut.length - 21).replace(/\n/gi, "\", \"") + "\"]")
 				// var jsonified = JSON.parse(formattedOut)
-				console.log("formattedOut: ", formattedOut)
+				// console.log("formattedOut: ", formattedOut)
 				// console.log("jsonified: ", jsonified)
-				console.log("typeof formattedOut: ", typeof formattedOut)
-				console.log("is formattedOut an array? ", Array.isArray(formattedOut))
+				// console.log("typeof formattedOut: ", typeof formattedOut)
+				// console.log("is formattedOut an array? ", Array.isArray(formattedOut))
 				resolve(formattedOut);
 			})
 		})
@@ -2720,7 +2720,7 @@ catch (e) {
 	// listOfApps;
 }
 
-console.log("availableApps in list file: ", availableApps)
+// console.log("availableApps in list file: ", availableApps)
 
 
 module.exports = availableApps
